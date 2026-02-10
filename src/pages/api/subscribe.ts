@@ -18,8 +18,9 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const email = result.data;
-    const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
-    const RESEND_AUDIENCE_ID = import.meta.env.RESEND_AUDIENCE_ID;
+    // Usamos process.env como fallback para asegurar que lea las variables inyectadas por Docker en tiempo de ejecución
+    const RESEND_API_KEY = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
+    const RESEND_AUDIENCE_ID = import.meta.env.RESEND_AUDIENCE_ID || process.env.RESEND_AUDIENCE_ID;
 
     // MODO DEV (Sin API Key)
     if (!RESEND_API_KEY) {
