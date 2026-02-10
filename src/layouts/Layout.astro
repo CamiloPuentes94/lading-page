@@ -13,7 +13,7 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Camandre Factory - Construyendo el futuro digital" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		
         <!-- Fonts: Preconnect para performance -->
@@ -37,11 +37,13 @@ const { title } = Astro.props;
 			document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
 		</script>
 	</head>
-	<body class="bg-background text-foreground min-h-screen flex flex-col relative overflow-hidden transition-colors duration-300 font-body">
-		<!-- Background Elements (Decorativos) -->
-		<div class="absolute inset-0 z-0 bg-tech-pattern opacity-100 pointer-events-none bg-size-[30px_30px]"></div>
-		<div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-secondary/10 blur-[120px] pointer-events-none"></div>
-		<div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px] pointer-events-none"></div>
+	<body class="bg-background text-foreground min-h-screen flex flex-col relative overflow-x-hidden w-full max-w-[100vw] transition-colors duration-300 font-body">
+		<!-- Background Elements (Fixed Container para que no genere scroll) -->
+		<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+			<div class="absolute inset-0 bg-tech-pattern opacity-100 bg-size-[30px_30px]"></div>
+			<div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-secondary/10 blur-[120px]"></div>
+			<div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px]"></div>
+		</div>
 		
 		<slot />
 	</body>
