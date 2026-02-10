@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="¡Gracias por registrarte! | Camandre Factory">
+    <main class="grow flex flex-col items-center justify-center relative z-10 px-4 py-12 text-center">
+        <div class="mb-8 animate-fade-in-down">
+            <span class="material-icons text-6xl text-secondary">check_circle</span>
+        </div>
+        
+        <h1 class="text-3xl md:text-5xl font-bold text-primary dark:text-foreground mb-4 font-display">
+            ¡Ya estás dentro!
+        </h1>
+        
+        <p class="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
+            Gracias por tu interés. Te avisaremos en cuanto nuestra plataforma esté lista para despegar.
+        </p>
+
+        <a 
+            href="/" 
+            class="text-secondary hover:text-secondary/80 underline underline-offset-4 transition-colors font-medium"
+        >
+            Volver al inicio
+        </a>
+    </main>
+</Layout>

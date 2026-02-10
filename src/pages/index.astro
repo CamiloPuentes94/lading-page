@@ -1,11 +1,339 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import localLogo from "../assets/logo-principal.png";
+import darkLogo from "../assets/logo-principal-oscuro.png";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Página en Construcción | Camandre Factory">
+    <!-- Theme Toggle -->
+    <div class="absolute top-4 right-4 z-50">
+        <button
+            id="theme-toggle"
+            class="p-3 rounded-full bg-muted text-foreground hover:bg-muted-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary flex items-center justify-center size-12 shadow-lg cursor-pointer"
+        >
+            <span id="icon-moon" class="hidden leading-none">
+                <span class="material-icons text-2xl">dark_mode</span>
+            </span>
+            <span id="icon-sun" class="hidden leading-none">
+                <span class="material-icons text-2xl">light_mode</span>
+            </span>
+            <span class="sr-only">Alternar tema</span>
+        </button>
+    </div>
+
+    <main
+        class="grow flex flex-col items-center justify-center relative z-10 px-4 sm:px-6 lg:px-8 py-12"
+    >
+        <!-- Logo Section -->
+        <div class="mb-12 animate-fade-in-down">
+            <div class="relative group">
+                <div
+                    class="absolute -inset-1 bg-linear-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"
+                >
+                </div>
+                <div
+                    class="relative bg-card rounded-xl p-6 shadow-xl border border-border"
+                >
+                    <Image
+                        src={localLogo}
+                        alt="Camandre Factory Logo"
+                        class="h-16 md:h-20 w-auto object-contain mx-auto dark:hidden"
+                        loading="eager"
+                    />
+                    <Image
+                        src={darkLogo}
+                        alt="Camandre Factory Logo"
+                        class="h-16 md:h-20 w-auto object-contain mx-auto hidden dark:block"
+                        loading="eager"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Text -->
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary dark:text-foreground mb-2 font-display"
+            >
+                Estamos construyendo el <span class="text-secondary"
+                    >futuro digital</span
+                >
+            </h1>
+            <p
+                class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed"
+            >
+                Nuestra nueva plataforma de soluciones tecnológicas estará lista
+                pronto.
+                <br class="hidden md:block" />Innovación, eficiencia y código
+                limpio en camino.
+            </p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full max-w-md mt-12 mb-8">
+            <div class="flex justify-between items-end mb-2">
+                <span
+                    class="text-sm font-semibold text-foreground uppercase tracking-widest"
+                    >Estado del proyecto</span
+                >
+                <span class="text-sm font-bold text-secondary">5%</span>
+            </div>
+            <div
+                class="w-full bg-muted rounded-full h-2.5 overflow-hidden shadow-inner"
+            >
+                <div
+                    class="bg-secondary h-2.5 rounded-full w-[5%] shadow-[0_0_10px_var(--color-secondary)] relative overflow-hidden transition-all duration-1000 ease-out"
+                >
+                    <div
+                        class="absolute top-0 left-0 bottom-0 right-0 bg-linear-to-r from-transparent via-white/30 to-transparent w-full -translate-x-full animate-shimmer"
+                    >
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex justify-between text-xs text-muted-foreground mt-2 font-mono"
+            >
+                <span>Fase Inicial</span>
+                <span>Lanzamiento 2026</span>
+            </div>
+        </div>
+
+        <!-- Newsletter Form -->
+        <div class="w-full max-w-lg mt-8">
+            <form
+                id="newsletter-form"
+                class="flex flex-col sm:flex-row gap-3 relative group"
+                novalidate
+            >
+                <div class="relative grow">
+                    <div
+                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                    >
+                        <span class="material-icons text-muted-foreground"
+                            >mail_outline</span
+                        >
+                    </div>
+                    <input
+                        id="email-input"
+                        name="email"
+                        class="block w-full pl-10 pr-3 py-3 border border-border rounded-lg leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary sm:text-sm transition-all shadow-sm"
+                        placeholder="Introduce tu correo electrónico"
+                        type="email"
+                        autocomplete="email"
+                    />
+                </div>
+                <button
+                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+                    type="submit"
+                >
+                    Notificarme
+                    <span class="material-icons ml-2 text-sm"
+                        >arrow_forward</span
+                    >
+                </button>
+            </form>
+            <!-- Mensaje de error movido aquí para asegurar visibilidad -->
+            <div id="email-error-container" class="h-6 mt-1 opacity-0 transition-opacity duration-200">
+                <p id="email-error" class="text-sm text-red-500 font-medium flex items-center gap-1 pl-1">
+                    <span class="material-icons text-sm">error</span>
+                    <span id="email-error-text"></span>
+                </p>
+            </div>
+            <p class="text-xs text-muted-foreground mt-1 text-center">
+                Te avisaremos en cuanto estemos en línea. Sin spam.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="relative z-10 py-8 px-4 w-full border-t border-border bg-background/50 backdrop-blur-sm"
+    >
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+            <div class="text-sm text-muted-foreground font-medium">
+                © 2026 Camandre Factory. Todos los derechos reservados.
+            </div>
+            <div class="flex space-x-6">
+                <a
+                    class="text-muted-foreground hover:text-secondary transition-colors duration-300"
+                    href="#"
+                    ><span class="sr-only">LinkedIn</span><svg
+                        class="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                        ></path></svg
+                    ></a
+                >
+                <a
+                    class="text-muted-foreground hover:text-secondary transition-colors duration-300"
+                    href="#"
+                    ><span class="sr-only">X</span><svg
+                        class="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                        ></path></svg
+                    ></a
+                >
+                <a
+                    class="text-muted-foreground hover:text-secondary transition-colors duration-300"
+                    href="#"
+                    ><span class="sr-only">Instagram</span><svg
+                        class="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"
+                        ></path></svg
+                    ></a
+                >
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        import { z } from "zod";
+
+        // Theme Toggle
+        const toggleButton = document.getElementById("theme-toggle");
+        const iconSun = document.getElementById("icon-sun");
+        const iconMoon = document.getElementById("icon-moon");
+        const htmlElement = document.documentElement;
+
+        const updateIcons = (isDark: boolean) => {
+            if (isDark) {
+                iconSun?.classList.remove("hidden");
+                iconMoon?.classList.add("hidden");
+            } else {
+                iconSun?.classList.add("hidden");
+                iconMoon?.classList.remove("hidden");
+            }
+        };
+
+        const isDarkInitial = htmlElement.classList.contains("dark");
+        updateIcons(isDarkInitial);
+
+        toggleButton?.addEventListener("click", () => {
+            if (htmlElement.classList.contains("dark")) {
+                htmlElement.classList.remove("dark");
+                localStorage.theme = "light";
+                updateIcons(false);
+            } else {
+                htmlElement.classList.add("dark");
+                localStorage.theme = "dark";
+                updateIcons(true);
+            }
+        });
+
+        // Form Validation Logic
+        const form = document.getElementById("newsletter-form") as HTMLFormElement;
+        const emailInput = document.getElementById("email-input") as HTMLInputElement;
+        const errorContainer = document.getElementById("email-error-container");
+        const errorText = document.getElementById("email-error-text");
+
+        const emailSchema = z.string().min(1, { message: "El correo es obligatorio" }).email({ message: "Ingresá un correo válido (ej: nombre@dominio.com)" });
+
+        const showError = (message: string) => {
+            if (errorContainer && errorText) {
+                errorText.textContent = message;
+                errorContainer.classList.remove("opacity-0");
+            }
+            emailInput?.classList.add("border-red-500", "focus:ring-red-500", "text-red-600");
+            emailInput?.classList.remove("border-border", "focus:ring-secondary", "text-foreground");
+        };
+
+        const clearError = () => {
+            if (errorContainer) {
+                errorContainer.classList.add("opacity-0");
+            }
+            emailInput?.classList.remove("border-red-500", "focus:ring-red-500", "text-red-600");
+            emailInput?.classList.add("border-border", "focus:ring-secondary", "text-foreground");
+        };
+
+        form?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = emailInput?.value;
+            const result = emailSchema.safeParse(email);
+
+            if (!result.success) {
+                console.log("Zod error:", result);
+                const firstError = result.error.issues?.[0] || result.error.errors?.[0];
+                const message = firstError?.message || "Verificá el correo ingresado";
+                showError(message);
+            } else {
+                clearError();
+                
+                // UX: Deshabilitar botón y mostrar estado de carga
+                const submitButton = form.querySelector("button");
+                const originalBtnContent = submitButton?.innerHTML || "";
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `<span class="animate-spin mr-2 material-icons text-sm">refresh</span> Enviando...`;
+                    submitButton.classList.add("opacity-75", "cursor-not-allowed");
+                }
+
+                try {
+                    // Llamada al Backend (API Route)
+                    const response = await fetch("/api/subscribe", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ email }),
+                    });
+
+                    if (response.ok) {
+                        // Éxito real del servidor
+                        window.location.href = "/gracias";
+                    } else {
+                        // Error del servidor (ej: base de datos caída)
+                        const errorData = await response.json();
+                        showError(errorData.message || "Hubo un error al procesar tu solicitud.");
+                        
+                        // Restaurar botón
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = originalBtnContent;
+                            submitButton.classList.remove("opacity-75", "cursor-not-allowed");
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error de red:", error);
+                    showError("Error de conexión. Intentalo de nuevo.");
+                    
+                    // Restaurar botón
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalBtnContent;
+                        submitButton.classList.remove("opacity-75", "cursor-not-allowed");
+                    }
+                }
+            }
+        });
+
+        emailInput?.addEventListener("input", () => {
+             clearError();
+        });
+
+        // Validación on blur para mejor UX
+        emailInput?.addEventListener("blur", () => {
+            const email = emailInput?.value;
+            // Solo validamos al salir si hay algo escrito
+            if (email.length > 0) {
+                const result = emailSchema.safeParse(email);
+                if (!result.success) {
+                    const firstError = result.error.issues?.[0] || result.error.errors?.[0];
+                    const message = firstError?.message || "Verificá el correo ingresado";
+                    showError(message);
+                }
+            }
+        });
+    </script>
 </Layout>

@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* --- Brand Colors --- */
+  /* Mantengo tus Hex originales por precisión de marca */
+  --color-primary: #14244E;
+  --color-secondary: #009B60;
+  
+  /* --- Semantic Tokens (Light Default) --- */
+  --color-background: #F3F4F6;
+  --color-foreground: #1F2937; /* gray-800 */
+
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1F2937;
+
+  --color-muted: #E5E7EB; /* gray-200 */
+  --color-muted-foreground: #6B7280; /* gray-500 */
+
+  --color-border: #E5E7EB;
+
+  /* --- Fonts --- */
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* --- Animations --- */
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 2s infinite;
+  --animate-fade-in-down: fade-in-down 1s ease-out;
+
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px var(--color-secondary), 0 0 10px var(--color-secondary); }
+    100% { box-shadow: 0 0 20px var(--color-secondary), 0 0 30px var(--color-secondary); }
+  }
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+  @keyframes fade-in-down {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* --- Dark Mode Overrides --- */
+/* La magia de Tailwind 4: redefinir variables en el scope .dark */
+.dark {
+  --color-background: #0B1221; /* Tu tech-dark */
+  --color-foreground: #F3F4F6; /* gray-100 */
+
+  --color-card: #0F172A; /* slate-900 */
+  --color-card-foreground: #F3F4F6;
+
+  --color-muted: #1F2937; /* gray-800 */
+  --color-muted-foreground: #9CA3AF; /* gray-400 */
+
+  --color-border: #1F2937;
+}
+
+/* Utilities customizados si son necesarios */
+@utility bg-tech-pattern {
+  background-image: radial-gradient(circle at 2px 2px, rgba(0, 155, 96, 0.15) 1px, transparent 0);
+}
