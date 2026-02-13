@@ -1,0 +1,81 @@
+name: 🐳 Docker CI/CD - Docker Hub
+
+# 🎯 Se ejecuta en push a main y development
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+  workflow_dispatch:
+
+# 🌍 Variables de entorno
+env:
+  DOCKER_USERNAME: jcpsandoval
+  IMAGE_NAME: camandre-landing
+
+jobs:
+  build-and-push:
+    name: 🔨 Build & Push to Docker Hub
+    runs-on: ubuntu-latest
+
+    steps:
+      # ⬇️ Descargar código
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      # 🔧 Configurar QEMU (para soporte multi-plataforma)
+      - name: 🔧 Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # 🔧 Configurar Docker Buildx (igual que tu comando local)
+      - name: 🔧 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 🔑 Login en Docker Hub
+      - name: 🔑 Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      # 🏷️ Definir tags según la rama
+      - name: 🏷️ Define Docker tags
+        id: tags
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "tags=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest,${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:main" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/development" ]]; then
+            echo "tags=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:development,${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:dev" >> $GITHUB_OUTPUT
+          else
+            echo "tags=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
+          fi
+
+      # 🏗️ Build y Push (equivalente a tu comando buildx)
+      - name: 🏗️ Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64 # Mismo que tu comando --platform linux/amd64
+          push: true
+          tags: ${{ steps.tags.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # 📝 Resumen
+      - name: 📝 Build summary
+        run: |
+          echo "### 🎉 Docker Image Published! 🐳" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Repository:** Docker Hub" >> $GITHUB_STEP_SUMMARY
+          echo "**Image:** \`${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Tags:** \`${{ steps.tags.outputs.tags }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Pull command:**" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "docker pull ${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
