@@ -1,81 +1,75 @@
-name: 🐳 Docker CI/CD - Docker Hub
+name: 🐳 Build and Push Docker Image
 
-# 🎯 Se ejecuta en push a main y development
 on:
   push:
     branches:
       - main
       - development
-  pull_request:
-    branches:
-      - main
-      - development
   workflow_dispatch:
 
-# 🌍 Variables de entorno
 env:
   DOCKER_USERNAME: jcpsandoval
   IMAGE_NAME: camandre-landing
 
 jobs:
   build-and-push:
-    name: 🔨 Build & Push to Docker Hub
+    name: Build & Push to Docker Hub
     runs-on: ubuntu-latest
 
     steps:
-      # ⬇️ Descargar código
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout code
         uses: actions/checkout@v5
 
-      # 🔧 Configurar QEMU (para soporte multi-plataforma)
       - name: 🔧 Set up QEMU
         uses: docker/setup-qemu-action@v3
 
-      # 🔧 Configurar Docker Buildx (igual que tu comando local)
       - name: 🔧 Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 🔑 Login en Docker Hub
-      - name: 🔑 Log in to Docker Hub
+      - name: 🔑 Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      # 🏷️ Definir tags según la rama
-      - name: 🏷️ Define Docker tags
-        id: tags
+      - name: 🏷️ Set Docker tag
+        id: set-tag
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "tags=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest,${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:main" >> $GITHUB_OUTPUT
+            echo "tag=latest" >> $GITHUB_OUTPUT
+            echo "full_tag=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_OUTPUT
+            echo "should_deploy=true" >> $GITHUB_OUTPUT
           elif [[ "${{ github.ref }}" == "refs/heads/development" ]]; then
-            echo "tags=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:development,${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:dev" >> $GITHUB_OUTPUT
-          else
-            echo "tags=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
+            echo "tag=development" >> $GITHUB_OUTPUT
+            echo "full_tag=${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:development" >> $GITHUB_OUTPUT
+            echo "should_deploy=false" >> $GITHUB_OUTPUT
           fi
 
-      # 🏗️ Build y Push (equivalente a tu comando buildx)
-      - name: 🏗️ Build and push Docker image
+      - name: 🏗️ Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64 # Mismo que tu comando --platform linux/amd64
+          platforms: linux/amd64
           push: true
-          tags: ${{ steps.tags.outputs.tags }}
+          tags: ${{ steps.set-tag.outputs.full_tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # 📝 Resumen
-      - name: 📝 Build summary
+      - name: ✅ Build Complete
         run: |
-          echo "### 🎉 Docker Image Published! 🐳" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Repository:** Docker Hub" >> $GITHUB_STEP_SUMMARY
-          echo "**Image:** \`${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "**Tags:** \`${{ steps.tags.outputs.tags }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Pull command:**" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          echo "docker pull ${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Image: ${{ steps.set-tag.outputs.full_tag }}"
+          echo "🔽 Pull: docker pull ${{ steps.set-tag.outputs.full_tag }}"
+
+      # 🚀 AUTO-DEPLOY (solo en main)
+      - name: 🚀 Deploy to Production
+        if: steps.set-tag.outputs.should_deploy == 'true'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ~/apps/landing-page
+            ./deploy.sh
