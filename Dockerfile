@@ -2,7 +2,6 @@
 FROM node:20-alpine AS base
 WORKDIR /app
 # Instalamos libc6-compat por si alguna librería nativa lo necesita (buena práctica en Alpine)
-# RUN apk add --no-cache libc6-compat
 
 # Etapa 2: Dependencias
 FROM base AS deps
