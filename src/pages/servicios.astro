@@ -10,8 +10,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        SERVICES HERO
   ════════════════════════════════════════════════════════════ -->
-  <section style="
-    padding: 110px 0 80px;
+  <section class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]" style="
     border-bottom: 1px solid var(--cf-rule);
     position: relative;
     overflow: hidden;
@@ -31,12 +30,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       "
     ></div>
 
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; position: relative;">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto; position: relative;">
       <div class="cf-stagger" style="max-width: 880px;">
         <Eyebrow>Oficios · 4 disciplinas</Eyebrow>
         <h1 style="
           font-family: 'Geist', system-ui, sans-serif;
-          font-size: 96px;
+          font-size: clamp(40px, 8vw, 96px);
           font-weight: 600;
           letter-spacing: -0.04em;
           line-height: 0.98;
@@ -64,18 +63,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 01 — PRODUCTO (paper bg, normal order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="producto" style="
-    padding: 120px 0;
+  <section id="producto" class="py-16 md:py-24 lg:py-[120px]" style="
     background: var(--cf-paper);
     border-bottom: 1px solid var(--cf-rule);
   ">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="
-        display: grid;
-        grid-template-columns: 1.1fr 1fr;
-        gap: 80px;
-        align-items: center;
-      ">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Mock — order 1 -->
         <div
@@ -172,7 +165,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 56px; font-weight: 600;
+            font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
             margin: 0; line-height: 1;
@@ -186,7 +179,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           <!-- Includes -->
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
-            <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Investigación + diseño de producto', 'Sistema de UI propio', 'Frontend con Astro / React', 'Backend con TypeScript o Go', 'SEO técnico + Core Web Vitals', 'Accesibilidad WCAG 2.2 AA'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;">
@@ -199,7 +192,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </div>
 
           <!-- Deliverables + Stack -->
-          <div style="margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Producto en producción + repo + sistema de diseño + documentación viva</div>
@@ -222,18 +215,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 02 — SISTEMAS (bg, reverse order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="sistemas" style="
-    padding: 120px 0;
+  <section id="sistemas" class="py-16 md:py-24 lg:py-[120px]" style="
     background: var(--cf-bg);
     border-bottom: 1px solid var(--cf-rule);
   ">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="
-        display: grid;
-        grid-template-columns: 1fr 1.1fr;
-        gap: 80px;
-        align-items: center;
-      ">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Body — order 1 (reverse) -->
         <div
@@ -254,7 +241,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 56px; font-weight: 600;
+            font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
             margin: 0; line-height: 1;
@@ -267,7 +254,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
-            <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Modelado de dominio del negocio', 'Migración desde sistemas legacy', 'Permisos y trazabilidad finos', 'Reportería en tiempo real', 'Integraciones (SAP, Siesa, Stripe)', 'Capacitación a tu equipo'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;">
@@ -279,7 +266,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             </ul>
           </div>
 
-          <div style="margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Sistema en producción + integraciones + onboarding · 90+ días de soporte</div>
@@ -352,18 +339,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 03 — INFRAESTRUCTURA (paper bg, normal order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="infra" style="
-    padding: 120px 0;
+  <section id="infra" class="py-16 md:py-24 lg:py-[120px]" style="
     background: var(--cf-paper);
     border-bottom: 1px solid var(--cf-rule);
   ">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="
-        display: grid;
-        grid-template-columns: 1.1fr 1fr;
-        gap: 80px;
-        align-items: center;
-      ">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Mock — order 1 -->
         <div
@@ -439,7 +420,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 56px; font-weight: 600;
+            font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
             margin: 0; line-height: 1;
@@ -452,7 +433,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
-            <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Auditoría de infraestructura actual', 'Diseño de arquitectura cloud', 'Migración por fases con canary', 'IaC con Terraform / Pulumi', 'Observabilidad: logs, métricas, tracing', 'Plan de respuesta a incidentes'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;">
@@ -464,7 +445,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             </ul>
           </div>
 
-          <div style="margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Infraestructura productiva + IaC + runbooks + SLOs documentados</div>
@@ -487,18 +468,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 04 — CONSULTORÍA (bg, reverse order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="consultoria" style="
-    padding: 120px 0;
+  <section id="consultoria" class="py-16 md:py-24 lg:py-[120px]" style="
     background: var(--cf-bg);
     border-bottom: 1px solid var(--cf-rule);
   ">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="
-        display: grid;
-        grid-template-columns: 1fr 1.1fr;
-        gap: 80px;
-        align-items: center;
-      ">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Body — order 1 (reverse) -->
         <div
@@ -519,7 +494,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 56px; font-weight: 600;
+            font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
             margin: 0; line-height: 1;
@@ -532,7 +507,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
-            <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Auditoría de código y arquitectura', 'Due diligence técnico para M&A', 'Hojas de ruta a 6 / 12 meses', 'Acompañamiento a tu CTO', 'Procesos de contratación técnica', 'Coaching de equipos de ingeniería'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;">
@@ -544,7 +519,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             </ul>
           </div>
 
-          <div style="margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Informe ejecutivo + plan accionable + acompañamiento opcional</div>
@@ -614,8 +589,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        ENGAGEMENT MODELS
   ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 120px 0; background: var(--cf-bg);">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
 
       <SectionHeader
         eyebrow="Cómo nos contratan"
@@ -625,9 +600,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       />
 
       <div
-        class="cf-reveal"
+        class="cf-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
         data-cf-reveal
-        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;"
       >
 
         <!-- Card 1: Proyecto cerrado -->

@@ -27,8 +27,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       "
     ></div>
 
-    <div style="max-width: 1240px; margin: 0 auto; padding: 110px 40px 100px; position: relative;">
-      <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; align-items: center;">
+    <div class="px-5 md:px-10 pt-16 md:pt-24 lg:pt-[110px] pb-16 md:pb-20 lg:pb-[100px]" style="max-width: 1240px; margin: 0 auto; position: relative;">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 lg:gap-[72px] items-center">
 
         <!-- Left column — stagger animated -->
         <div class="cf-stagger">
@@ -84,11 +84,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </div>
 
           <!-- Stats bar -->
-          <div style="
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-14" style="
             margin-top: 64px;
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            gap: 56px;
             padding-top: 28px;
             border-top: 1px solid var(--cf-rule);
           ">
@@ -116,7 +113,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
         <!-- Right — code editor -->
-        <div style="position: relative;">
+        <div class="hidden lg:block" style="position: relative;">
           <!-- Hairline accent backdrop -->
           <div
             aria-hidden="true"
@@ -232,10 +229,10 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <!-- Floating metric chip -->
           <div
-            class="cf-reveal"
+            class="cf-reveal lg:absolute"
             data-cf-reveal
             style="
-              position: absolute; left: -32px; bottom: -32px;
+              position: relative; left: 0; bottom: 0;
               background: var(--cf-paper);
               border: 1px solid var(--cf-rule);
               border-radius: 14px;
@@ -283,13 +280,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
     background: var(--cf-paper);
     border-bottom: 1px solid var(--cf-rule);
   ">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="
-        display: grid;
-        grid-template-columns: 220px 1fr;
-        gap: 56px;
-        align-items: center;
-      ">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
         <!-- Left: label -->
         <div>
           <Eyebrow>Confían en nosotros</Eyebrow>
@@ -326,8 +318,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        SERVICES
   ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 120px 0; background: var(--cf-bg);">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
 
       <!-- Header -->
       <div style="
@@ -340,7 +332,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           <div style="margin-bottom: 22px;"><Eyebrow>Cómo trabajamos</Eyebrow></div>
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 60px; font-weight: 600;
+            font-size: clamp(32px, 5.5vw, 60px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink); margin: 0; line-height: 1;
           ">
@@ -361,7 +353,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       </div>
 
       <!-- Cards grid -->
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
           {
             n: '01',
@@ -445,13 +437,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        FEATURED CASE — Helio Health
   ════════════════════════════════════════════════════════════ -->
-  <section style="
-    padding: 120px 0;
+  <section class="py-16 md:py-24 lg:py-[120px]" style="
     background: var(--cf-paper);
     border-top: 1px solid var(--cf-rule);
     border-bottom: 1px solid var(--cf-rule);
   ">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
 
       <!-- Header row -->
       <div style="
@@ -463,7 +454,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           <div style="margin-bottom: 22px;"><Eyebrow>Caso destacado · Sinerlly</Eyebrow></div>
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 60px; font-weight: 600;
+            font-size: clamp(32px, 5.5vw, 60px); font-weight: 600;
             letter-spacing: -0.035em;
             margin: 0; line-height: 1;
             color: var(--cf-ink); max-width: 720px;
@@ -480,12 +471,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       </div>
 
       <!-- Content grid -->
-      <div class="cf-reveal" data-cf-reveal style="
-        display: grid;
-        grid-template-columns: 1.05fr 1fr;
-        gap: 64px;
-        align-items: center;
-      ">
+      <div class="cf-reveal grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center" data-cf-reveal>
 
         <!-- Mock product UI -->
         <div style="
@@ -583,8 +569,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        PROCESS
   ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 120px 0; background: var(--cf-bg);">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
 
       <SectionHeader
         eyebrow="Metodología"
@@ -592,8 +578,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         lede="Sin BAFOs eternos, sin gerentes intermediarios, sin sorpresas en la factura. Cada tramo es un compromiso explícito."
       />
 
-      <div class="cf-reveal" data-cf-reveal style="
-        display: grid; grid-template-columns: repeat(4, 1fr);
+      <div class="cf-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" data-cf-reveal style="
         gap: 0;
         background: var(--cf-paper);
         border: 1px solid var(--cf-rule);
@@ -639,16 +624,16 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        WHY US
   ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 120px 0; background: var(--cf-bg);">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;">
+  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
+    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: sticky label -->
         <div class="cf-reveal" data-cf-reveal style="position: sticky; top: 100px;">
           <Eyebrow>Por qué Camandre</Eyebrow>
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
-            font-size: 56px; font-weight: 600;
+            font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
             margin: 22px 0 0; line-height: 1;
@@ -667,8 +652,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
         <!-- Right: 2x2 features -->
-        <div style="
-          display: grid; grid-template-columns: 1fr 1fr;
+        <div class="grid grid-cols-1 sm:grid-cols-2" style="
           gap: 1px;
           background: var(--cf-rule);
           border: 1px solid var(--cf-rule);

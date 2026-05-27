@@ -32,7 +32,7 @@ const { title, description = "Camandre Factory - Soluciones de software a medida
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-[var(--cf-bg)] text-[var(--cf-text)] min-h-screen flex flex-col">
+  <body class="bg-[var(--cf-bg)] text-[var(--cf-text)] min-h-screen flex flex-col overflow-x-hidden">
     <Nav activePage={activePage} />
     <main class="flex-1">
       <slot />

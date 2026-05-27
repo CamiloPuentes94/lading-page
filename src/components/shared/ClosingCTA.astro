@@ -4,10 +4,10 @@ import Eyebrow from './Eyebrow.astro';
 
 <section
   id="contacto"
+  class="py-24 px-5 md:py-28 md:px-10 lg:py-36"
   style="
     background: var(--cf-navy-deep);
     color: #FFFFFF;
-    padding: 140px 40px;
     position: relative;
     overflow: hidden;
   "
@@ -24,10 +24,10 @@ import Eyebrow from './Eyebrow.astro';
   ></div>
 
   <div
+    class="px-5 md:px-10"
     style="
       max-width: 1240px;
       margin: 0 auto;
-      padding: 0 40px;
       position: relative;
       text-align: center;
     "
@@ -47,7 +47,7 @@ import Eyebrow from './Eyebrow.astro';
       data-cf-reveal
       style="
         font-family: 'Geist', system-ui, sans-serif;
-        font-size: 88px;
+        font-size: clamp(36px, 7vw, 88px);
         font-weight: 600;
         letter-spacing: -0.04em;
         margin: 0;
@@ -76,9 +76,9 @@ import Eyebrow from './Eyebrow.astro';
 
     <!-- CTAs -->
     <div
-      class="cf-reveal"
+      class="cf-reveal flex flex-col sm:flex-row"
       data-cf-reveal
-      style="display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;"
+      style="gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center;"
     >
       <a
         href="https://wa.me/573134212476?text=Hola%2C%20quiero%20agendar%20una%20consulta%20de%2030%20minutos%20con%20Camandre%20Factory."
@@ -88,6 +88,7 @@ import Eyebrow from './Eyebrow.astro';
         style="
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 10px;
           padding: 16px 28px;
           font-size: 15px;
@@ -97,7 +98,6 @@ import Eyebrow from './Eyebrow.astro';
           border-radius: 8px;
           font-family: 'Geist', system-ui, sans-serif;
           text-decoration: none;
-          white-space: nowrap;
         "
       >
         Agendar consulta de 30 min <span>→</span>
@@ -108,6 +108,7 @@ import Eyebrow from './Eyebrow.astro';
         style="
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 10px;
           padding: 16px 28px;
           font-size: 15px;
@@ -118,7 +119,6 @@ import Eyebrow from './Eyebrow.astro';
           border-radius: 8px;
           font-family: 'Geist', system-ui, sans-serif;
           text-decoration: none;
-          white-space: nowrap;
         "
       >
         camandrefactory@gmail.com

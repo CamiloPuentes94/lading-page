@@ -45,7 +45,7 @@ const CASES = [
   <!-- ═══════════════════════════════════════════════════════════
        PORTFOLIO HERO
   ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 110px 0 80px; border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
+  <section class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]" style="border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
 
     <!-- Grid backdrop -->
     <div
@@ -61,7 +61,7 @@ const CASES = [
       "
     ></div>
 
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px; position: relative;">
+    <div class="px-5 md:px-10" style="max-width: 1280px; margin: 0 auto; position: relative;">
       <div class="cf-stagger" style="max-width: 900px;">
         <Eyebrow>Portafolio · 3 proyectos en producción</Eyebrow>
         <h1
@@ -97,11 +97,10 @@ const CASES = [
 
       <!-- Stats bar -->
       <div
+        class="grid grid-cols-2 sm:grid-cols-4"
         data-cf-reveal
         style="
           margin-top: 64px;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
           gap: 0;
           padding-top: 32px;
           border-top: 1px solid var(--cf-rule);
@@ -134,8 +133,8 @@ const CASES = [
   <!-- ═══════════════════════════════════════════════════════════
        PORTFOLIO GRID
   ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 100px 0 120px; background: var(--cf-bg);">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
+  <section class="py-16 md:py-20 lg:py-[100px]" style="background: var(--cf-bg);">
+    <div class="px-5 md:px-10" style="max-width: 1280px; margin: 0 auto;">
 
       <!-- Header row + filters -->
       <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
@@ -181,7 +180,7 @@ const CASES = [
       </div>
 
       <!-- Cards grid -->
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {CASES.map((c) => (
           <article
             class="cf-card cf-reveal"
