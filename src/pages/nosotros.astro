@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/shared/Eyebrow.astro';
+import Button from '../components/shared/Button.astro';
+import SectionHeader from '../components/shared/SectionHeader.astro';
+import ClosingCTA from '../components/shared/ClosingCTA.astro';
+
+const timeline = [
+  { y: '2019', t: 'Dos ingenieros, un garaje en Chapinero' },
+  { y: '2021', t: 'Primer cliente enterprise · Banco Norte' },
+  { y: '2023', t: 'Apertura de Madrid · 8 personas' },
+  { y: '2025', t: 'Apertura de CDMX · 14 personas' },
+  { y: '2026', t: '40+ proyectos en producción · 12 países' },
+];
+
+const values = [
+  {
+    n: '01',
+    t: 'Decir no es un acto de respeto',
+    d: 'Rechazamos al menos dos de cada tres proyectos que tocan la puerta. No por elitismo: porque sabemos que un equipo distraído entrega trabajo mediocre. Si no podemos comprometernos plenamente, te lo decimos en la primera llamada.',
+  },
+  {
+    n: '02',
+    t: 'El código que entregamos vive sin nosotros',
+    d: 'Documentación viva. Tests significativos. Decisiones de arquitectura registradas en ADRs. Si decides dejarnos, tu equipo entiende el sistema en una semana. Ese es el estándar.',
+  },
+  {
+    n: '03',
+    t: 'Lo aburrido sostiene lo brillante',
+    d: 'Observabilidad, seguridad, accesibilidad, performance. Las cosas que nadie celebra en demos pero que son la diferencia entre un producto que dura y uno que se cae el día del lanzamiento.',
+  },
+  {
+    n: '04',
+    t: 'Honestidad técnica sobre cortesía social',
+    d: 'Si una decisión nos parece equivocada —la tuya o la nuestra— lo decimos. No envolvemos en eufemismos. La cortesía cuesta proyectos a tres años; la honestidad los rescata.',
+  },
+];
+
+const team = [
+  { initials: 'AR', name: 'Alejandro Ruiz',  role: 'CEO · Fundador',          city: 'Bogotá', bio: '12 años construyendo plataformas para banca y salud. Antes de Camandre, lideró ingeniería en una fintech regional vendida a un banco español.', color: '#0F2557' },
+  { initials: 'SM', name: 'Sofía Méndez',    role: 'CTO · Cofundadora',       city: 'Madrid', bio: 'Arquitecta de sistemas distribuidos. Diseña la columna vertebral técnica de cada proyecto. Ex-Twilio, ex-MercadoLibre.', color: '#0EA472' },
+  { initials: 'CV', name: 'Carlos Vega',     role: 'Lead Engineer',           city: 'Bogotá', bio: 'Full-stack senior con foco en performance. Vive en producción: si tu p95 está por encima de 300ms, le quita el sueño.', color: '#091A3D' },
+  { initials: 'AT', name: 'Ana Torres',      role: 'Head of Design',          city: 'CDMX',   bio: 'Sistemas de diseño y producto. Antes lideró diseño en una startup B2B que pasó de 5 a 200 personas. Hace bien lo aburrido.', color: '#7A5AE0' },
+  { initials: 'LM', name: 'Luis Marín',      role: 'Staff Engineer',          city: 'Madrid', bio: 'Especialista en infraestructura cloud y observabilidad. Ha hecho on-call para sistemas con 99.99% de uptime durante 5 años seguidos.', color: '#B96B3B' },
+  { initials: 'PM', name: 'Paula Morales',   role: 'Engineering Manager',     city: 'Bogotá', bio: 'Coach técnica y manager de equipos remotos. Se asegura de que el código y la gente se sostengan entre sí.', color: '#0D7BCE' },
+];
+
+const locations = [
+  { city: 'Bogotá',  country: 'Colombia', addr: 'Calle 93 #14–20\nChapinero',         count: '8 personas',  primary: true  },
+  { city: 'Madrid',  country: 'España',   addr: 'Calle Velázquez 90\nSalamanca',       count: '4 personas',  primary: false },
+  { city: 'CDMX',    country: 'México',   addr: 'Av. Álvaro Obregón 27\nRoma Norte',   count: '2 personas',  primary: false },
+];
+
+const roles = [
+  { role: 'Staff Engineer',      city: 'Bogotá / Remoto',           t: 'Producto + plataforma',       open: true  },
+  { role: 'Product Designer',    city: 'Madrid / Remoto',           t: 'Sistemas de UI',               open: true  },
+  { role: 'SRE Senior',          city: 'Cualquier huso AMERICA',    t: 'On-call + observabilidad',     open: false },
+  { role: 'Engineering Manager', city: 'Bogotá',                    t: 'Equipos de 4–6 personas',      open: false },
+];
+---
+
+<Layout title="Nosotros — Camandre Factory" activePage="nosotros">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 110px 0 80px; border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
+    <!-- Grid backdrop -->
+    <div
+      aria-hidden="true"
+      style="
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px),
+          linear-gradient(90deg, var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
+        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
+        pointer-events: none;
+      "
+    ></div>
+
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; position: relative;">
+      <div class="cf-stagger" style="max-width: 980px;">
+        <Eyebrow>Nosotros · Camandre Factory</Eyebrow>
+        <h1 style="
+          font-family: 'Geist', system-ui, sans-serif;
+          font-size: 96px;
+          font-weight: 600;
+          letter-spacing: -0.04em;
+          line-height: 0.98;
+          color: var(--cf-ink);
+          margin: 24px 0 0;
+          text-wrap: balance;
+        ">
+          Una fábrica pequeña.<br />
+          <span style="color: var(--cf-dim);">Decisiones grandes.</span>
+        </h1>
+        <p style="font-size: 19px; line-height: 1.6; color: var(--cf-dim); margin-top: 32px; max-width: 700px;">
+          Somos 14 personas distribuidas entre Bogotá, Madrid y CDMX. Diseñadores, ingenieros y arquitectos
+          de software que decidieron, hace ocho años, que el mundo no necesitaba otra agencia que dijera sí a todo.
+          Necesitaba un equipo que dijera no cuando hace falta.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ORIGIN — Timeline
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-paper); border-bottom: 1px solid var(--cf-rule);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;">
+
+        <!-- Left: eyebrow + h2 + timeline -->
+        <div class="cf-reveal" data-cf-reveal>
+          <Eyebrow>Origen</Eyebrow>
+          <h2 style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.035em;
+            color: var(--cf-ink);
+            margin: 22px 0 0;
+            line-height: 1;
+          ">
+            Cómo<br />empezó esto.
+          </h2>
+          <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--cf-rule); display: flex; flex-direction: column; gap: 16px;">
+            {timeline.map((m) => (
+              <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 4px 0;">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--cf-brand); font-weight: 600; letter-spacing: 0.05em;">{m.y}</span>
+                <span style="font-size: 14.5px; color: var(--cf-text);">{m.t}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right: prose -->
+        <div class="cf-reveal" data-cf-reveal>
+          <p style="font-family: 'Geist', system-ui, sans-serif; font-size: 22px; line-height: 1.55; color: var(--cf-ink); margin: 0; font-weight: 500; letter-spacing: -0.012em;">
+            Camandre nació en 2019 cuando dos ingenieros se cansaron del mismo guion: agencias que prometían
+            transformación digital y entregaban sitios de WordPress con tres meses de retraso.
+          </p>
+          <p style="font-size: 17px; line-height: 1.7; color: var(--cf-text); margin-top: 24px;">
+            Empezamos con una idea simple: trabajar con pocos clientes a la vez, dedicarles un equipo real, y
+            cobrar por el valor que entregamos en producción —no por las horas que pasamos en reuniones. Ocho
+            años después, esa idea sigue siendo el contrato implícito con cada cliente nuevo.
+          </p>
+          <p style="font-size: 17px; line-height: 1.7; color: var(--cf-text); margin-top: 18px;">
+            Hoy somos 14 personas. Solo tomamos siete proyectos al año. No vamos a crecer mucho más: nuestra
+            ventaja competitiva es exactamente lo opuesto a escalar a cualquier costo. La cantidad importa,
+            pero la atención dedicada importa más.
+          </p>
+          <p style="font-size: 17px; line-height: 1.7; color: var(--cf-text); margin-top: 18px;">
+            No subcontratamos. No reciclamos código de otros clientes. No prometemos lo que no podemos sostener.
+            Es una manera lenta de crecer y, hasta ahora, también la única que nos deja dormir tranquilos.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       VALUES — Cuatro principios
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <SectionHeader
+        eyebrow="Cómo trabajamos"
+        title="Cuatro principios. Negociables solo entre nosotros."
+        lede="No son frases de pared. Son los criterios concretos con los que tomamos decisiones cuando un cliente nos pide algo que no deberíamos hacer."
+      />
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--cf-rule); border: 1px solid var(--cf-rule); border-radius: 14px; overflow: hidden;">
+        {values.map((v) => (
+          <div
+            class="cf-reveal"
+            data-cf-reveal
+            style="background: var(--cf-paper); padding: 40px 36px; min-height: 240px; display: flex; flex-direction: column; gap: 16px;"
+          >
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cf-brand); letter-spacing: 0.14em;">{v.n}</span>
+              <span style="width: 8px; height: 8px; background: var(--cf-brand); border-radius: 4px; display: inline-block;"></span>
+            </div>
+            <h3 style="font-family: 'Geist', system-ui, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0; line-height: 1.2;">{v.t}</h3>
+            <p style="font-size: 15px; line-height: 1.65; color: var(--cf-dim); margin: 0;">{v.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       TEAM — 6 cards
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-paper); border-top: 1px solid var(--cf-rule); border-bottom: 1px solid var(--cf-rule);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <SectionHeader
+        eyebrow="Equipo · 14 personas"
+        title="Los que firman cada decisión."
+        lede="No vas a hablar con un gerente comercial. Hablas, desde el primer correo, con quien va a arquitectar y construir tu sistema."
+      />
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        {team.map((m) => (
+          <div
+            class="cf-reveal"
+            data-cf-reveal
+            style="background: var(--cf-paper); border: 1px solid var(--cf-rule); border-radius: 14px; overflow: hidden;"
+          >
+            <!-- Color header with initials -->
+            <div style={`background: ${m.color}; aspect-ratio: 4/3; display: flex; align-items: flex-end; padding: 24px; position: relative;`}>
+              <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 96px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.04em; line-height: 0.9;">{m.initials}</span>
+              <span style="position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(255,255,255,0.85); letter-spacing: 0.12em; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.4); border-radius: 999px;">
+                {m.city.toUpperCase()}
+              </span>
+            </div>
+            <!-- Card body -->
+            <div style="padding: 24px 24px 26px;">
+              <h3 style="font-family: 'Geist', system-ui, sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0;">{m.name}</h3>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand); margin-top: 4px; letter-spacing: 0.08em;">{m.role.toUpperCase()}</div>
+              <p style="font-size: 13.5px; line-height: 1.6; color: var(--cf-dim); margin-top: 16px;">{m.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Footer note -->
+      <div
+        class="cf-reveal"
+        data-cf-reveal
+        style="margin-top: 32px; padding: 20px 24px; background: var(--cf-bg); border: 1px dashed var(--cf-rule); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;"
+      >
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--cf-dim);">
+          + 8 ingenieros, diseñadores y SREs que sostienen el día a día.
+        </div>
+        <a href="#" class="cf-navlink" style="font-size: 13.5px; font-weight: 600; color: var(--cf-ink);">Ver perfiles completos →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LOCATIONS — Tres oficinas
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start;">
+
+        <!-- Left: heading -->
+        <div class="cf-reveal" data-cf-reveal>
+          <Eyebrow>Ubicaciones</Eyebrow>
+          <h2 style="font-family: 'Geist', system-ui, sans-serif; font-size: 56px; font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
+            Tres oficinas.<br />
+            <span style="color: var(--cf-dim);">Una sola cultura.</span>
+          </h2>
+          <p style="font-size: 15.5px; line-height: 1.65; color: var(--cf-dim); margin-top: 20px; max-width: 360px;">
+            Trabajamos en husos horarios cercanos para que la comunicación sea sincrónica.
+            La oficina principal está en Bogotá; los equipos rotan trimestralmente.
+          </p>
+        </div>
+
+        <!-- Right: location cards -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          {locations.map((c) => (
+            <div
+              class="cf-reveal"
+              data-cf-reveal
+              style={`
+                background: ${c.primary ? 'var(--cf-navy)' : 'var(--cf-paper)'};
+                color: ${c.primary ? 'var(--cf-paper)' : 'var(--cf-ink)'};
+                border-radius: 14px;
+                padding: 32px 28px;
+                border: 1px solid ${c.primary ? 'var(--cf-navy)' : 'var(--cf-rule)'};
+                position: relative;
+              `}
+            >
+              {c.primary && (
+                <span style="position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--cf-brand); padding: 3px 8px; border: 1px solid var(--cf-brand); border-radius: 999px;">HQ</span>
+              )}
+              <div style={`font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${c.primary ? 'var(--cf-brand)' : 'var(--cf-dim)'}; letter-spacing: 0.14em;`}>{c.country.toUpperCase()}</div>
+              <h3 style="font-family: 'Geist', system-ui, sans-serif; font-size: 32px; font-weight: 600; margin: 8px 0 16px; letter-spacing: -0.025em; line-height: 1;">{c.city}</h3>
+              <div style={`font-size: 13.5px; color: ${c.primary ? '#C5CADA' : 'var(--cf-dim)'}; white-space: pre-line; line-height: 1.55; padding-bottom: 18px; border-bottom: 1px solid ${c.primary ? '#1B2548' : 'var(--cf-rule)'};`}>{c.addr}</div>
+              <div style={`margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${c.primary ? '#C5CADA' : 'var(--cf-text)'};`}>{c.count}</div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HIRING — Carreras
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-paper); border-top: 1px solid var(--cf-rule);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;">
+
+        <!-- Left: heading + CTA -->
+        <div class="cf-reveal" data-cf-reveal>
+          <Eyebrow>Carreras</Eyebrow>
+          <h2 style="font-family: 'Geist', system-ui, sans-serif; font-size: 56px; font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
+            ¿Quieres trabajar acá?<br />
+            <span style="color: var(--cf-dim);">No siempre estamos contratando.</span>
+          </h2>
+          <p style="font-size: 16.5px; line-height: 1.65; color: var(--cf-dim); margin-top: 22px; max-width: 460px;">
+            Cuando lo hacemos, el proceso toma tres semanas e incluye trabajar dos días con el equipo.
+            No hay leetcode. Hay problemas reales de clientes reales bajo NDA.
+          </p>
+          <div style="margin-top: 32px;">
+            <Button href="#" variant="primary" size="lg">Enviar CV abierto</Button>
+          </div>
+        </div>
+
+        <!-- Right: role cards grid -->
+        <div class="cf-reveal" data-cf-reveal style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          {roles.map((r) => (
+            <div style={`background: ${r.open ? 'var(--cf-bg)' : 'var(--cf-paper)'}; border: 1px solid var(--cf-rule); border-radius: 12px; padding: 24px; opacity: ${r.open ? 1 : 0.6};`}>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span style={`font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: ${r.open ? 'var(--cf-brand)' : 'var(--cf-dim)'}; letter-spacing: 0.14em;`}>
+                  {r.open ? '● ABIERTO' : '○ CERRADO'}
+                </span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.08em;">{r.city}</span>
+              </div>
+              <h4 style="font-family: 'Geist', system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0 0 8px;">{r.role}</h4>
+              <div style="font-size: 13.5px; color: var(--cf-dim);">{r.t}</div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CLOSING CTA
+  ════════════════════════════════════════════════════════════ -->
+  <ClosingCTA />
+
+</Layout>

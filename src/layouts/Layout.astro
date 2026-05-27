@@ -1,50 +1,76 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/nav/Nav.astro';
+import Footer from '../components/footer/Footer.astro';
 
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
+  activePage?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Camandre Factory - Soluciones de software a medida", activePage = "" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Camandre Factory - Construyendo el futuro digital" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		
-        <!-- Fonts: Preconnect para performance -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-		
-        <meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		
-		<!-- Script bloqueante para evitar FOUC -->
-		<script is:inline>
-			const getThemePreference = () => {
-				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-					return localStorage.getItem('theme');
-				}
-				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-			};
-			const isDark = getThemePreference() === 'dark';
-			document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-		</script>
-	</head>
-	<body class="bg-background text-foreground min-h-screen flex flex-col relative overflow-x-hidden w-full max-w-[100vw] transition-colors duration-300 font-body">
-		<!-- Background Elements (Fixed Container para que no genere scroll) -->
-		<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-			<div class="absolute inset-0 bg-tech-pattern opacity-100 bg-size-[30px_30px]"></div>
-			<div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-secondary/10 blur-[120px]"></div>
-			<div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px]"></div>
-		</div>
-		
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Anti-FOUC: runs synchronously before first paint -->
+    <script is:inline>
+      (function () {
+        var t = localStorage.getItem('cf-theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (t === 'dark') document.documentElement.classList.add('dark');
+      })();
+    </script>
+
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-[var(--cf-bg)] text-[var(--cf-text)] min-h-screen flex flex-col">
+    <Nav activePage={activePage} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- IntersectionObserver global for .cf-reveal elements -->
+    <script is:inline>
+      (function () {
+        if (!('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.setAttribute('data-cf-in', '1');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.05, rootMargin: '-10% 0px' }
+        );
+        document.querySelectorAll('[data-cf-reveal]').forEach(function (el) {
+          io.observe(el);
+        });
+        // Also observe elements added dynamically (e.g. after Astro hydration)
+        var mo = new MutationObserver(function (mutations) {
+          mutations.forEach(function (m) {
+            m.addedNodes.forEach(function (node) {
+              if (node.nodeType !== 1) return;
+              if (node.hasAttribute && node.hasAttribute('data-cf-reveal')) io.observe(node);
+              node.querySelectorAll && node.querySelectorAll('[data-cf-reveal]').forEach(function (el) {
+                io.observe(el);
+              });
+            });
+          });
+        });
+        mo.observe(document.body, { childList: true, subtree: true });
+      })();
+    </script>
+  </body>
 </html>

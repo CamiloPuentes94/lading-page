@@ -1,0 +1,126 @@
+---
+import Eyebrow from './Eyebrow.astro';
+---
+
+<section
+  id="contacto"
+  style="
+    background: var(--cf-navy-deep);
+    color: #FFFFFF;
+    padding: 140px 40px;
+    position: relative;
+    overflow: hidden;
+  "
+>
+  <!-- Radial gradient overlay -->
+  <div
+    aria-hidden="true"
+    style="
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(14,164,114,0.22), transparent 70%);
+      pointer-events: none;
+    "
+  ></div>
+
+  <div
+    style="
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      text-align: center;
+    "
+  >
+    <!-- Eyebrow -->
+    <div
+      class="cf-reveal"
+      data-cf-reveal
+      style="margin-bottom: 28px; display: flex; justify-content: center;"
+    >
+      <Eyebrow color="var(--cf-brand)">Próximo paso</Eyebrow>
+    </div>
+
+    <!-- Heading -->
+    <h2
+      class="cf-reveal"
+      data-cf-reveal
+      style="
+        font-family: 'Geist', system-ui, sans-serif;
+        font-size: 88px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        margin: 0;
+        line-height: 1.0;
+        color: #FFFFFF;
+      "
+    >
+      Hablemos del sistema<br />
+      que tu equipo <span style="color: var(--cf-brand);">está esperando</span>.
+    </h2>
+
+    <!-- Body copy -->
+    <p
+      class="cf-reveal"
+      data-cf-reveal
+      style="
+        font-size: 18px;
+        color: #9BA6BE;
+        max-width: 580px;
+        margin: 32px auto 44px;
+        line-height: 1.65;
+      "
+    >
+      30 minutos. Sin pitch ni venta dura. Cuéntanos tu reto y te decimos honestamente si podemos ayudar.
+    </p>
+
+    <!-- CTAs -->
+    <div
+      class="cf-reveal"
+      data-cf-reveal
+      style="display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;"
+    >
+      <a
+        href="#"
+        class="cf-btn"
+        style="
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 28px;
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--cf-ink);
+          background: var(--cf-brand);
+          border-radius: 8px;
+          font-family: 'Geist', system-ui, sans-serif;
+          text-decoration: none;
+          white-space: nowrap;
+        "
+      >
+        Agendar consulta de 30 min <span>→</span>
+      </a>
+      <a
+        href="mailto:hola@camandre.factory"
+        class="cf-btn"
+        style="
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 28px;
+          font-size: 15px;
+          font-weight: 500;
+          color: #FFFFFF;
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.25);
+          border-radius: 8px;
+          font-family: 'Geist', system-ui, sans-serif;
+          text-decoration: none;
+          white-space: nowrap;
+        "
+      >
+        hola@camandre.factory
+      </a>
+    </div>
+  </div>
+</section>

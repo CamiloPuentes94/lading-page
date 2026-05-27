@@ -1,0 +1,57 @@
+---
+interface Props {
+  dark?: boolean;
+  size?: number;
+}
+
+const { dark = false, size = 40 } = Astro.props;
+---
+
+<a
+  href="/"
+  aria-label="Camandre Factory"
+  style="display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0;"
+>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 40 40"
+    aria-hidden="true"
+    fill="none"
+  >
+    <!-- C: navy open ring -->
+    <path
+      d="M 32 11 A 14 14 0 1 0 32 29"
+      fill="none"
+      stroke={dark ? '#FFFFFF' : 'var(--cf-navy)'}
+      stroke-width="3.8"
+      stroke-linecap="round"
+    />
+    <!-- A: brand letter inside C -->
+    <path
+      d="M14.5 27 L20 13 L25.5 27 M16.6 22.5 L23.4 22.5"
+      stroke="var(--cf-brand)"
+      stroke-width="2.6"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- Cursor arrow overlapping bottom-right -->
+    <path
+      d="M22.5 22.5 L31 30.6 L27.8 31.1 L29.6 34.3 L27.6 35.4 L25.8 32.2 L23.4 33.6 Z"
+      fill="var(--cf-brand)"
+      stroke={dark ? '#FFFFFF' : 'var(--cf-navy)'}
+      stroke-width="0.8"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+  <div style="display: flex; flex-direction: column; line-height: 1; font-family: 'Geist', system-ui, sans-serif;">
+    <span
+      style={`font-size: 15px; letter-spacing: 0.04em; font-weight: 700; color: ${dark ? '#FFFFFF' : 'var(--cf-navy)'}; line-height: 1.1;`}
+    >CAMANDRE</span>
+    <span
+      style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.32em; color: var(--cf-brand); margin-top: 4px; font-weight: 500; line-height: 1.1;"
+    >FACTORY</span>
+  </div>
+</a>

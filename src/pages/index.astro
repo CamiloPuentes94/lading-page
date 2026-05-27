@@ -1,339 +1,834 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import localLogo from "../assets/logo-principal.png";
-import darkLogo from "../assets/logo-principal-oscuro.png";
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/shared/Eyebrow.astro';
+import Button from '../components/shared/Button.astro';
+import SectionHeader from '../components/shared/SectionHeader.astro';
+import ClosingCTA from '../components/shared/ClosingCTA.astro';
 ---
 
-<Layout title="Página en Construcción | Camandre Factory">
-    <!-- Theme Toggle -->
-    <div class="absolute top-4 right-4 z-50">
-        <button
-            id="theme-toggle"
-            class="p-3 rounded-full bg-muted text-foreground hover:bg-muted-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary flex items-center justify-center size-12 shadow-lg cursor-pointer"
-        >
-            <span id="icon-moon" class="hidden leading-none">
-                <span class="material-icons text-2xl">dark_mode</span>
-            </span>
-            <span id="icon-sun" class="hidden leading-none">
-                <span class="material-icons text-2xl">light_mode</span>
-            </span>
-            <span class="sr-only">Alternar tema</span>
-        </button>
+<Layout title="Camandre Factory — Software a medida para empresas que toman decisiones serias" activePage="home">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <section style="position: relative; overflow: hidden; border-bottom: 1px solid var(--cf-rule);">
+    <!-- Faint grid backdrop -->
+    <div
+      aria-hidden="true"
+      style="
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px),
+          linear-gradient(90deg, var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 90%);
+        -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 90%);
+        pointer-events: none;
+      "
+    ></div>
+
+    <div style="max-width: 1240px; margin: 0 auto; padding: 110px 40px 100px; position: relative;">
+      <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; align-items: center;">
+
+        <!-- Left column — stagger animated -->
+        <div class="cf-stagger">
+
+          <!-- Badge pill -->
+          <div style="
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 6px 14px; border-radius: 999px;
+            background: var(--cf-paper); border: 1px solid var(--cf-rule);
+            font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+            color: var(--cf-ink); letter-spacing: 0.04em;
+          ">
+            <span
+              class="cf-pulse"
+              style="position: relative; display: inline-block; width: 7px; height: 7px; background: var(--cf-brand); border-radius: 999px;"
+            ></span>
+            <span>EST. 2019 · BOGOTÁ · MADRID · CDMX</span>
+          </div>
+
+          <!-- H1 -->
+          <h1 style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: clamp(56px, 6.5vw, 96px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.0;
+            color: var(--cf-ink);
+            margin: 28px 0 0;
+            text-wrap: balance;
+          ">
+            Software a medida{' '}
+            <span style="color: var(--cf-brand);">para empresas</span>{' '}
+            que toman decisiones serias.
+          </h1>
+
+          <!-- Subhead -->
+          <p style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 18.5px;
+            line-height: 1.6;
+            color: var(--cf-dim);
+            margin: 32px 0 0;
+            max-width: 520px;
+          ">
+            Diseñamos, construimos y mantenemos las plataformas, productos y sistemas internos
+            que sostienen a empresas con ambiciones técnicas reales.
+          </p>
+
+          <!-- CTAs -->
+          <div style="display: flex; gap: 12px; margin-top: 40px; align-items: center;">
+            <Button href="#contacto" variant="primary" size="lg">Conversemos</Button>
+            <Button href="/portafolio" variant="ghost" size="lg" icon={false}>Ver casos de éxito →</Button>
+          </div>
+
+          <!-- Stats bar -->
+          <div style="
+            margin-top: 64px;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 56px;
+            padding-top: 28px;
+            border-top: 1px solid var(--cf-rule);
+          ">
+            {[
+              { k: '40+',    v: 'proyectos entregados' },
+              { k: '99.98%', v: 'uptime promedio' },
+              { k: '12',     v: 'países en operación' },
+            ].map(s => (
+              <div>
+                <div style="
+                  font-family: 'Geist', system-ui, sans-serif;
+                  font-size: 30px; font-weight: 600;
+                  color: var(--cf-ink); letter-spacing: -0.02em;
+                ">{s.k}</div>
+                <div style="
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px; color: var(--cf-dim);
+                  margin-top: 4px; letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                ">{s.v}</div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Right — code editor -->
+        <div style="position: relative;">
+          <!-- Hairline accent backdrop -->
+          <div
+            aria-hidden="true"
+            style="
+              position: absolute; inset: -20px -20px -20px -10px;
+              background: linear-gradient(135deg, rgba(14,164,114,0.063), transparent 50%);
+              border-radius: 24px; filter: blur(40px); pointer-events: none;
+            "
+          ></div>
+
+          <!-- Editor panel -->
+          <div style="
+            position: relative;
+            background: var(--cf-navy-deep);
+            border-radius: 14px;
+            border: 1px solid #1B2548;
+            overflow: hidden;
+            box-shadow: 0 30px 80px -40px rgba(11,19,43,0.45);
+          ">
+            <!-- Titlebar -->
+            <div style="
+              display: flex; align-items: center; gap: 8px;
+              padding: 14px 18px;
+              border-bottom: 1px solid #1B2548;
+            ">
+              <span style="width: 11px; height: 11px; border-radius: 6px; background: #FF5F56; display: inline-block;"></span>
+              <span style="width: 11px; height: 11px; border-radius: 6px; background: #FFBD2E; display: inline-block;"></span>
+              <span style="width: 11px; height: 11px; border-radius: 6px; background: #27C93F; display: inline-block;"></span>
+              <span style="
+                flex: 1; text-align: center;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 11.5px; color: #7E869A;
+              ">projects/helio-health · main · ↑ 2 ↓ 0</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E869A;">project.ts</span>
+            </div>
+
+            <!-- Body -->
+            <div style="
+              padding: 24px 24px 28px;
+              font-family: 'JetBrains Mono', monospace;
+              font-size: 13.5px; line-height: 1.85;
+            ">
+              <!-- Line 1: comment -->
+              <div class="cf-editor-line" style="color: #5C657A; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.45s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">1</span>
+                <span style="font-style: italic;">// camandre.factory · sprint 04</span>
+              </div>
+              <!-- Line 2: blank -->
+              <div class="cf-editor-line" style="display: flex; gap: 18px; min-height: 24px; animation-delay: 0.54s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">2</span>
+                <span>&nbsp;</span>
+              </div>
+              <!-- Line 3 -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.63s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">3</span>
+                <span>export const project = &#123;</span>
+              </div>
+              <!-- Line 4: string accent -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.72s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">4</span>
+                <span>&nbsp;&nbsp;client: <span style="color: var(--cf-brand);">"Helio Health"</span>,</span>
+              </div>
+              <!-- Line 5 -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.81s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">5</span>
+                <span>&nbsp;&nbsp;stack: &nbsp;[<span style="color: var(--cf-brand);">"Astro"</span>, <span style="color: var(--cf-brand);">"React"</span>, <span style="color: var(--cf-brand);">"Go"</span>, <span style="color: var(--cf-brand);">"GCP"</span>],</span>
+              </div>
+              <!-- Line 6 -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.90s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">6</span>
+                <span>&nbsp;&nbsp;team: &nbsp;&nbsp;&#123; engineers: 4, designers: 1 &#125;,</span>
+              </div>
+              <!-- Line 7: string accent -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.99s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">7</span>
+                <span>&nbsp;&nbsp;status: <span style="color: var(--cf-brand);">"shipping"</span>,</span>
+              </div>
+              <!-- Line 8 -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 1.08s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">8</span>
+                <span>&nbsp;&nbsp;uptime: 99.98,</span>
+              </div>
+              <!-- Line 9 -->
+              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 1.17s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">9</span>
+                <span>&#125;;</span>
+              </div>
+              <!-- Line 10: blank -->
+              <div class="cf-editor-line" style="display: flex; gap: 18px; min-height: 24px; animation-delay: 1.26s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">10</span>
+                <span>&nbsp;</span>
+              </div>
+              <!-- Line 11: comment accent -->
+              <div class="cf-editor-line" style="color: var(--cf-brand); display: flex; gap: 18px; min-height: 24px; animation-delay: 1.35s;">
+                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">11</span>
+                <span style="font-style: italic;">// build · 2026-q2 · all green</span>
+              </div>
+            </div>
+
+            <!-- Status strip -->
+            <div style="
+              display: flex; justify-content: space-between;
+              padding: 10px 18px;
+              border-top: 1px solid #1B2548;
+              font-family: 'JetBrains Mono', monospace;
+              font-size: 11px; color: #7E869A;
+              background: #070C20;
+            ">
+              <span>● shipping · sprint 04</span>
+              <span>p95 184ms · 0 incidentes</span>
+            </div>
+          </div>
+
+          <!-- Floating metric chip -->
+          <div
+            class="cf-reveal"
+            data-cf-reveal
+            style="
+              position: absolute; left: -32px; bottom: -32px;
+              background: var(--cf-paper);
+              border: 1px solid var(--cf-rule);
+              border-radius: 14px;
+              padding: 14px 18px;
+              box-shadow: 0 12px 32px -16px rgba(11,19,43,0.18);
+              display: flex; align-items: center; gap: 14px;
+            "
+          >
+            <div style="
+              width: 42px; height: 42px; border-radius: 10px;
+              background: rgba(14,164,114,0.094);
+              display: flex; align-items: center; justify-content: center;
+            ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                   stroke="var(--cf-brand)" stroke-width="2.4"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 17l6-6 4 4 8-8" />
+                <path d="M14 7h7v7" />
+              </svg>
+            </div>
+            <div>
+              <div style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 10.5px; color: var(--cf-dim);
+                letter-spacing: 0.1em; text-transform: uppercase;
+              ">Cierres Q1</div>
+              <div style="
+                font-family: 'Geist', system-ui, sans-serif;
+                font-size: 20px; font-weight: 600;
+                color: var(--cf-ink); margin-top: 2px;
+              ">−71% tiempo</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+  </section>
 
-    <main
-        class="grow flex flex-col items-center justify-center relative z-10 px-4 sm:px-6 lg:px-8 py-12 md:py-0"
-    >
-        <!-- Logo Section -->
-        <div class="mb-12 md:mb-8 animate-fade-in-down">
-            <div class="relative group">
-                <div
-                    class="absolute -inset-1 bg-linear-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"
-                >
+  <!-- ═══════════════════════════════════════════════════════════
+       LOGO STRIP
+  ════════════════════════════════════════════════════════════ -->
+  <section style="
+    padding: 64px 0;
+    background: var(--cf-paper);
+    border-bottom: 1px solid var(--cf-rule);
+  ">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 56px;
+        align-items: center;
+      ">
+        <!-- Left: label -->
+        <div>
+          <Eyebrow>Confían en nosotros</Eyebrow>
+          <p style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 15px;
+            color: var(--cf-dim);
+            margin-top: 12px;
+            line-height: 1.5;
+          ">
+            40+ empresas en 12 países han desplegado producción con Camandre.
+          </p>
+        </div>
+
+        <!-- Right: marquee -->
+        <div style="overflow: hidden; position: relative;">
+          <div class="cf-marquee" style="width: max-content; display: flex; gap: 64px;">
+            {['ACME · INDUSTRIES', 'BANCO NORTE', 'TREVIA · LOGISTICS', 'HELIO HEALTH',
+              'NORTHWIND', 'QUANTA ENERGY', 'ESTUDIO PLOMO', 'LUMEN FOODS',
+              'ACME · INDUSTRIES', 'BANCO NORTE', 'TREVIA · LOGISTICS', 'HELIO HEALTH',
+              'NORTHWIND', 'QUANTA ENERGY', 'ESTUDIO PLOMO', 'LUMEN FOODS'].map((c, i) => (
+              <span style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 16px; font-weight: 500;
+                color: var(--cf-ink); letter-spacing: 0.05em;
+                white-space: nowrap; opacity: 0.78;
+              ">{c}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SERVICES
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+
+      <!-- Header -->
+      <div style="
+        display: flex; align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 56px;
+        flex-wrap: wrap; gap: 24px;
+      ">
+        <div class="cf-reveal" data-cf-reveal style="max-width: 680px;">
+          <div style="margin-bottom: 22px;"><Eyebrow>Cómo trabajamos</Eyebrow></div>
+          <h2 style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 60px; font-weight: 600;
+            letter-spacing: -0.035em;
+            color: var(--cf-ink); margin: 0; line-height: 1;
+          ">
+            Cuatro disciplinas.<br />
+            <span style="color: var(--cf-dim);">Un solo equipo.</span>
+          </h2>
+        </div>
+        <div class="cf-reveal" data-cf-reveal style="max-width: 320px;">
+          <p style="font-size: 16px; line-height: 1.65; color: var(--cf-dim); margin: 0;">
+            No subcontratamos. Diseño, ingeniería e infraestructura viven en la misma sala.
+          </p>
+          <a
+            href="/servicios"
+            class="cf-navlink"
+            style="display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--cf-ink);"
+          >Ver detalle de servicios →</a>
+        </div>
+      </div>
+
+      <!-- Cards grid -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        {[
+          {
+            n: '01',
+            title: 'Producto web a medida',
+            body: 'Aplicaciones SaaS, dashboards y portales construidos con Astro, React y un stack que sobrevive a las modas.',
+            stack: ['Astro', 'React', 'Tailwind', 'shadcn/ui'],
+          },
+          {
+            n: '02',
+            title: 'Sistemas a medida',
+            body: 'ERPs, CRMs y operaciones internas. Modelamos tu negocio en software para que escale sin fricción.',
+            stack: ['Django', 'PostgreSQL', 'Redis', 'Docker'],
+          },
+          {
+            n: '03',
+            title: 'Infraestructura & Cloud',
+            body: 'Migración serverless, infraestructura como código y observabilidad. Plataforma técnica invisible cuando funciona.',
+            stack: ['GCP', 'AWS', 'Terraform', 'Kubernetes'],
+          },
+          {
+            n: '04',
+            title: 'Consultoría TI',
+            body: 'Auditorías técnicas, due diligence y hojas de ruta. Recomendaciones que se pueden ejecutar, no PDFs decorativos.',
+            stack: ['Audit', 'Strategy', 'Hiring', 'Training'],
+          },
+        ].map(it => (
+          <div
+            class="cf-card cf-reveal"
+            data-cf-reveal
+            style="
+              background: var(--cf-paper);
+              border: 1px solid var(--cf-rule);
+              border-radius: 14px;
+              padding: 32px 30px 28px;
+              display: flex; flex-direction: column;
+              min-height: 280px;
+            "
+          >
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 11px; color: var(--cf-brand); letter-spacing: 0.12em;
+              ">{it.n}</span>
+              <span style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 11px; color: var(--cf-dim); letter-spacing: 0.08em;
+              ">4 OFICIOS</span>
+            </div>
+            <h3 style="
+              font-family: 'Geist', system-ui, sans-serif;
+              font-size: 26px; font-weight: 600;
+              letter-spacing: -0.018em;
+              color: var(--cf-ink);
+              margin: 20px 0 12px; line-height: 1.2;
+            ">{it.title}</h3>
+            <p style="
+              font-size: 15px; line-height: 1.62;
+              color: var(--cf-dim); margin: 0; flex: 1;
+            ">{it.body}</p>
+            <div style="
+              display: flex; flex-wrap: wrap; gap: 6px;
+              margin-top: 22px; padding-top: 20px;
+              border-top: 1px dashed var(--cf-rule);
+            ">
+              {it.stack.map(s => (
+                <span style="
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px; padding: 4px 9px;
+                  background: var(--cf-bg2); color: var(--cf-ink);
+                  border-radius: 4px; letter-spacing: 0.02em;
+                ">{s}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FEATURED CASE — Helio Health
+  ════════════════════════════════════════════════════════════ -->
+  <section style="
+    padding: 120px 0;
+    background: var(--cf-paper);
+    border-top: 1px solid var(--cf-rule);
+    border-bottom: 1px solid var(--cf-rule);
+  ">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+
+      <!-- Header row -->
+      <div style="
+        display: flex; align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 56px;
+      ">
+        <div class="cf-reveal" data-cf-reveal>
+          <div style="margin-bottom: 22px;"><Eyebrow>Caso destacado · Helio Health</Eyebrow></div>
+          <h2 style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 60px; font-weight: 600;
+            letter-spacing: -0.035em;
+            margin: 0; line-height: 1;
+            color: var(--cf-ink); max-width: 720px;
+          ">
+            Reescribimos un EMR de 14 años<br />
+            <span style="color: var(--cf-dim);">en nueve meses, sin un solo downtime.</span>
+          </h2>
+        </div>
+        <a
+          href="/portafolio"
+          class="cf-navlink"
+          style="font-size: 14px; font-weight: 600; color: var(--cf-ink); white-space: nowrap;"
+        >Ver más casos →</a>
+      </div>
+
+      <!-- Content grid -->
+      <div class="cf-reveal" data-cf-reveal style="
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 64px;
+        align-items: center;
+      ">
+
+        <!-- Mock product UI -->
+        <div style="
+          background: var(--cf-navy-deep);
+          border-radius: 14px; padding: 24px;
+          border: 1px solid #1B2548;
+          box-shadow: 0 30px 80px -40px rgba(11,19,43,0.4);
+        ">
+          <!-- Titlebar dots -->
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+            <span style="width: 9px; height: 9px; border-radius: 5px; background: #FF5F56; display: inline-block;"></span>
+            <span style="width: 9px; height: 9px; border-radius: 5px; background: #FFBD2E; display: inline-block;"></span>
+            <span style="width: 9px; height: 9px; border-radius: 5px; background: #27C93F; display: inline-block;"></span>
+            <span style="
+              flex: 1;
+              font-family: 'JetBrains Mono', monospace;
+              font-size: 11px; color: #7E869A; text-align: center;
+            ">helio.health · sala de atenciones</span>
+          </div>
+
+          <!-- Table -->
+          <div style="
+            background: #0B1530; border-radius: 10px;
+            padding: 16px 18px;
+            border: 1px solid #1B2548;
+          ">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+              <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 13px; color: #C5CADA;">Atenciones en curso</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand);">● en vivo</span>
+            </div>
+            {[
+              { p: 'M. Quispe',  s: 'Hipertensión',  r: 'Sala 02', c: 'var(--cf-brand)' },
+              { p: 'A. Ortiz',   s: 'Posoperatorio', r: 'Sala 04', c: '#F5C26B' },
+              { p: 'C. Lavalle', s: 'Triage',         r: 'Espera',  c: '#7E869A' },
+              { p: 'B. Mamani',  s: 'Pediatría',      r: 'Sala 01', c: 'var(--cf-brand)' },
+              { p: 'R. Vega',    s: 'Cardiología',    r: 'Sala 06', c: 'var(--cf-brand)' },
+            ].map((r, i) => (
+              <div style={`
+                display: grid;
+                grid-template-columns: 1.2fr 1fr 80px 16px;
+                gap: 12px; align-items: center;
+                padding: 10px 0;
+                border-top: ${i === 0 ? 'none' : '1px solid #1B2548'};
+              `}>
+                <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF;">{r.p}</span>
+                <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 12.5px; color: #9BA6BE;">{r.s}</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E869A;">{r.r}</span>
+                <span style={`width: 8px; height: 8px; border-radius: 4px; background: ${r.c}; display: inline-block; justify-self: end;`}></span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right: text + metrics -->
+        <div>
+          <p style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 19px; line-height: 1.6;
+            color: var(--cf-text); margin: 0;
+          ">
+            Una red de 14 clínicas operaba un EMR del 2010 que ya no podía mantenerse. En nueve meses migramos
+            1.2M de historias clínicas, reescribimos el core en Go + Astro, y entregamos una experiencia que el
+            personal médico realmente quiere usar.
+          </p>
+
+          <!-- Metrics 2x2 -->
+          <div style="
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 32px; margin-top: 40px;
+          ">
+            {[
+              { k: '96%',  v: 'adopción interna a 90 días' },
+              { k: '0',    v: 'incidentes en migración' },
+              { k: '1.2M', v: 'historias migradas' },
+              { k: '−42%', v: 'tiempo de consulta promedio' },
+            ].map(s => (
+              <div style="padding-top: 18px; border-top: 1px solid var(--cf-rule);">
+                <div style="
+                  font-family: 'Geist', system-ui, sans-serif;
+                  font-size: 36px; font-weight: 600;
+                  color: var(--cf-brand);
+                  letter-spacing: -0.025em; line-height: 1;
+                ">{s.k}</div>
+                <div style="
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px; color: var(--cf-dim);
+                  margin-top: 8px; letter-spacing: 0.06em; text-transform: uppercase;
+                ">{s.v}</div>
+              </div>
+            ))}
+          </div>
+
+          <div style="margin-top: 32px;">
+            <Button href="/portafolio" variant="ghost" icon={true}>Leer el caso completo</Button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PROCESS
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+
+      <SectionHeader
+        eyebrow="Metodología"
+        title="De la idea a producción en cuatro tramos claros."
+        lede="Sin BAFOs eternos, sin gerentes intermediarios, sin sorpresas en la factura. Cada tramo es un compromiso explícito."
+      />
+
+      <div class="cf-reveal" data-cf-reveal style="
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        background: var(--cf-paper);
+        border: 1px solid var(--cf-rule);
+        border-radius: 14px; overflow: hidden;
+      ">
+        {[
+          { n: '01', t: 'Discovery',     d: 'Mapeamos tu problema sin venderte nada. Salimos con un alcance, un riesgo y un costo cuantificados.' },
+          { n: '02', t: 'Arquitectura',  d: 'Diagramas, contratos de API, eventos. El plano técnico vive en tu repositorio desde el día uno.' },
+          { n: '03', t: 'Construcción',  d: 'Sprints quincenales. Demos honestas. Tú decides qué entra al siguiente sprint, no el roadmap.' },
+          { n: '04', t: 'Operación',     d: 'Observabilidad, retainer y on-call opcional. El software vive más allá del lanzamiento.' },
+        ].map((s, i) => (
+          <div style={`
+            padding: 40px 32px;
+            border-right: ${i < 3 ? '1px solid var(--cf-rule)' : 'none'};
+            display: flex; flex-direction: column; gap: 20px;
+          `}>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 12px; color: var(--cf-brand); letter-spacing: 0.12em;
+              ">{s.n}</span>
+              <span style="
+                width: 8px; height: 8px;
+                background: var(--cf-brand); border-radius: 4px;
+                display: inline-block;
+              "></span>
+            </div>
+            <h4 style="
+              font-family: 'Geist', system-ui, sans-serif;
+              font-size: 22px; font-weight: 600;
+              letter-spacing: -0.018em;
+              color: var(--cf-ink); margin: 0;
+            ">{s.t}</h4>
+            <p style="font-size: 14.5px; line-height: 1.62; color: var(--cf-dim); margin: 0;">{s.d}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       TESTIMONIAL
+  ════════════════════════════════════════════════════════════ -->
+  <section style="
+    padding: 120px 0;
+    background: var(--cf-paper);
+    border-top: 1px solid var(--cf-rule);
+    border-bottom: 1px solid var(--cf-rule);
+  ">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;">
+
+        <!-- Left: list -->
+        <div class="cf-reveal" data-cf-reveal>
+          <Eyebrow>Lo que dicen quienes nos contratan</Eyebrow>
+          <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 18px;">
+            {[
+              { i: 'MP', n: 'María Paz Quintero', r: 'CTO · Northwind Co.', active: true },
+              { i: 'JR', n: 'Juan Restrepo',      r: 'CEO · Trevia Logistics', active: false },
+              { i: 'AS', n: 'Ana Suárez',          r: 'VP Tech · Helio Health', active: false },
+            ].map(p => (
+              <div style={`
+                display: flex; align-items: center; gap: 16px;
+                padding: 14px; border-radius: 12px;
+                background: ${p.active ? 'var(--cf-bg2)' : 'transparent'};
+                border: ${p.active ? '1px solid var(--cf-rule)' : '1px solid transparent'};
+              `}>
+                <div style="
+                  width: 44px; height: 44px; border-radius: 999px;
+                  background: var(--cf-navy);
+                  color: #FFFFFF;
+                  display: flex; align-items: center; justify-content: center;
+                  font-family: 'Geist', system-ui, sans-serif;
+                  font-weight: 600; font-size: 14px; letter-spacing: -0.01em;
+                  flex-shrink: 0;
+                ">{p.i}</div>
+                <div>
+                  <div style="font-family: 'Geist', system-ui, sans-serif; font-size: 14.5px; font-weight: 600; color: var(--cf-ink);">{p.n}</div>
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-dim); margin-top: 2px;">{p.r}</div>
                 </div>
-                <div
-                    class="relative bg-card rounded-xl p-6 shadow-xl border border-border"
-                >
-                    <Image
-                        src={localLogo}
-                        alt="Camandre Factory Logo"
-                        class="h-16 md:h-20 w-auto object-contain mx-auto dark:hidden"
-                        loading="eager"
-                    />
-                    <Image
-                        src={darkLogo}
-                        alt="Camandre Factory Logo"
-                        class="h-16 md:h-20 w-auto object-contain mx-auto hidden dark:block"
-                        loading="eager"
-                    />
-                </div>
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <!-- Hero Text -->
-        <div class="text-center max-w-3xl mx-auto space-y-6">
-            <h1
-                class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary dark:text-foreground mb-2 font-display"
-            >
-                Estamos construyendo el <span class="text-secondary"
-                    >futuro digital</span
-                >
-            </h1>
-            <p
-                class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed"
-            >
-                Nuestra nueva plataforma de soluciones tecnológicas estará lista
-                pronto.
-                <br class="hidden md:block" />Innovación, eficiencia y código
-                limpio en camino.
-            </p>
+        <!-- Right: blockquote -->
+        <blockquote class="cf-reveal" data-cf-reveal style="margin: 0;">
+          <div style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 64px; color: var(--cf-brand);
+            font-weight: 600; line-height: 0.6;
+          ">"</div>
+          <p style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 30px; font-weight: 500;
+            letter-spacing: -0.018em; line-height: 1.32;
+            color: var(--cf-ink); margin: 8px 0 0;
+            text-wrap: balance;
+          ">
+            Pensábamos que necesitábamos contratar ocho ingenieros. Camandre nos demostró en once semanas
+            que necesitábamos cuatro decisiones técnicas correctas y un sistema bien diseñado. Nuestro
+            cierre contable bajó de tres semanas a tres días.
+          </p>
+          <footer style="
+            margin-top: 32px; padding-top: 24px;
+            border-top: 1px solid var(--cf-rule);
+            display: flex; justify-content: space-between; align-items: center;
+          ">
+            <div>
+              <div style="font-family: 'Geist', system-ui, sans-serif; font-size: 15px; font-weight: 600; color: var(--cf-ink);">María Paz Quintero</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-dim); margin-top: 2px;">CTO · NORTHWIND CO. · BOGOTÁ</div>
+            </div>
+            <a href="#" class="cf-navlink" style="font-size: 13.5px; font-weight: 500; color: var(--cf-ink);">Leer el caso →</a>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       WHY US
+  ════════════════════════════════════════════════════════════ -->
+  <section style="padding: 120px 0; background: var(--cf-bg);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;">
+
+        <!-- Left: sticky label -->
+        <div class="cf-reveal" data-cf-reveal style="position: sticky; top: 100px;">
+          <Eyebrow>Por qué Camandre</Eyebrow>
+          <h2 style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 56px; font-weight: 600;
+            letter-spacing: -0.035em;
+            color: var(--cf-ink);
+            margin: 22px 0 0; line-height: 1;
+          ">
+            No somos los más baratos.<br />
+            <span style="color: var(--cf-dim);">Pero somos los más responsables.</span>
+          </h2>
+          <p style="
+            font-size: 16.5px; line-height: 1.65;
+            color: var(--cf-dim);
+            margin-top: 24px; max-width: 380px;
+          ">
+            Trabajamos con siete clientes al año. Cada uno recibe un equipo dedicado, una arquitectura
+            pensada para durar diez años, y un compromiso explícito con el código que dejamos atrás.
+          </p>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="w-full max-w-md mt-12 md:mt-8 mb-8 md:mb-6">
-            <div class="flex justify-between items-end mb-2">
-                <span
-                    class="text-sm font-semibold text-foreground uppercase tracking-widest"
-                    >Estado del proyecto</span
-                >
-                <span class="text-sm font-bold text-secondary">5%</span>
+        <!-- Right: 2x2 features -->
+        <div style="
+          display: grid; grid-template-columns: 1fr 1fr;
+          gap: 1px;
+          background: var(--cf-rule);
+          border: 1px solid var(--cf-rule);
+          border-radius: 14px; overflow: hidden;
+        ">
+          {[
+            {
+              t: 'Equipo dedicado, no agencia rotativa',
+              d: 'Los mismos ingenieros y diseñadores del kick-off siguen contigo en producción. Cero handoffs.',
+              icon: 0,
+            },
+            {
+              t: 'Decisiones técnicas defendibles',
+              d: 'Documentamos cada elección. Si necesitas dejarnos, tu equipo entiende todo en una semana.',
+              icon: 1,
+            },
+            {
+              t: 'Compromiso con lo aburrido',
+              d: 'Tests, observabilidad, seguridad y documentación viva. Lo aburrido es lo que sostiene lo brillante.',
+              icon: 2,
+            },
+            {
+              t: 'Modelo de retainer transparente',
+              d: 'Horas, alcance y costo en una sola hoja. Sin facturas sorpresa, sin cláusulas escondidas.',
+              icon: 3,
+            },
+          ].map((it, i) => (
+            <div class="cf-reveal" data-cf-reveal style="background: var(--cf-paper); padding: 36px 32px; min-height: 220px;">
+              <div style="
+                width: 42px; height: 42px; border-radius: 10px;
+                background: rgba(14,164,114,0.094);
+                display: flex; align-items: center; justify-content: center;
+                margin-bottom: 22px;
+              ">
+                {i === 0 && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4" /><path d="M5 21a7 7 0 0 1 14 0" />
+                  </svg>
+                )}
+                {i === 1 && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 L20 6 V12 C20 17 16 21 12 22 C8 21 4 17 4 12 V6 Z" /><path d="M9 12 L11 14 L15 10" />
+                  </svg>
+                )}
+                {i === 2 && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 4h12M6 12h12M6 20h12" /><circle cx="3" cy="4" r="1.2" /><circle cx="3" cy="12" r="1.2" /><circle cx="3" cy="20" r="1.2" />
+                  </svg>
+                )}
+                {i === 3 && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cf-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="6" width="18" height="14" rx="2" /><path d="M3 10h18M8 16h4" />
+                  </svg>
+                )}
+              </div>
+              <h4 style="
+                font-family: 'Geist', system-ui, sans-serif;
+                font-size: 21px; font-weight: 600;
+                letter-spacing: -0.018em;
+                color: var(--cf-ink); margin: 0 0 10px; line-height: 1.2;
+              ">{it.t}</h4>
+              <p style="font-size: 14.5px; line-height: 1.62; color: var(--cf-dim); margin: 0;">{it.d}</p>
             </div>
-            <div
-                class="w-full bg-muted rounded-full h-2.5 overflow-hidden shadow-inner"
-            >
-                <div
-                    class="bg-secondary h-2.5 rounded-full w-[5%] shadow-[0_0_10px_var(--color-secondary)] relative overflow-hidden transition-all duration-1000 ease-out"
-                >
-                    <div
-                        class="absolute top-0 left-0 bottom-0 right-0 bg-linear-to-r from-transparent via-white/30 to-transparent w-full -translate-x-full animate-shimmer"
-                    >
-                    </div>
-                </div>
-            </div>
-            <div
-                class="flex justify-between text-xs text-muted-foreground mt-2 font-mono"
-            >
-                <span>Fase Inicial</span>
-                <span>Lanzamiento 2026</span>
-            </div>
+          ))}
         </div>
 
-        <!-- Newsletter Form -->
-        <div class="w-full max-w-lg mt-8">
-            <form
-                id="newsletter-form"
-                class="flex flex-col sm:flex-row gap-3 relative group"
-                novalidate
-            >
-                <div class="relative grow">
-                    <div
-                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                    >
-                        <span class="material-icons text-muted-foreground"
-                            >mail_outline</span
-                        >
-                    </div>
-                    <input
-                        id="email-input"
-                        name="email"
-                        class="block w-full pl-10 pr-3 py-3 border border-border rounded-lg leading-5 bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary sm:text-sm transition-all shadow-sm"
-                        placeholder="Introduce tu correo electrónico"
-                        type="email"
-                        autocomplete="email"
-                    />
-                </div>
-                <button
-                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
-                    type="submit"
-                >
-                    Notificarme
-                    <span class="material-icons ml-2 text-sm"
-                        >arrow_forward</span
-                    >
-                </button>
-            </form>
-            <!-- Mensaje de error movido aquí para asegurar visibilidad -->
-            <div id="email-error-container" class="h-6 mt-1 opacity-0 transition-opacity duration-200">
-                <p id="email-error" class="text-sm text-red-500 font-medium flex items-center gap-1 pl-1">
-                    <span class="material-icons text-sm">error</span>
-                    <span id="email-error-text"></span>
-                </p>
-            </div>
-            <p class="text-xs text-muted-foreground mt-1 text-center">
-                Te avisaremos en cuanto estemos en línea. Sin spam.
-            </p>
-        </div>
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer
-        class="relative z-10 py-8 px-4 w-full border-t border-border bg-background/50 backdrop-blur-sm"
-    >
-        <div
-            class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4"
-        >
-            <div class="text-sm text-muted-foreground font-medium">
-                © 2026 Camandre Factory. Todos los derechos reservados.
-            </div>
-            <div class="flex space-x-6">
-                <a
-                    class="text-muted-foreground hover:text-secondary transition-colors duration-300"
-                    href="#"
-                    ><span class="sr-only">LinkedIn</span><svg
-                        class="h-6 w-6"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        ><path
-                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                        ></path></svg
-                    ></a
-                >
-                <a
-                    class="text-muted-foreground hover:text-secondary transition-colors duration-300"
-                    href="#"
-                    ><span class="sr-only">X</span><svg
-                        class="h-6 w-6"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        ><path
-                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                        ></path></svg
-                    ></a
-                >
-                <a
-                    class="text-muted-foreground hover:text-secondary transition-colors duration-300"
-                    href="#"
-                    ><span class="sr-only">Instagram</span><svg
-                        class="h-6 w-6"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        ><path
-                            d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"
-                        ></path></svg
-                    ></a
-                >
-            </div>
-        </div>
-    </footer>
+  <!-- ═══════════════════════════════════════════════════════════
+       CLOSING CTA
+  ════════════════════════════════════════════════════════════ -->
+  <ClosingCTA />
 
-    <script>
-        import { z } from "zod";
-
-        // Theme Toggle
-        const toggleButton = document.getElementById("theme-toggle");
-        const iconSun = document.getElementById("icon-sun");
-        const iconMoon = document.getElementById("icon-moon");
-        const htmlElement = document.documentElement;
-
-        const updateIcons = (isDark: boolean) => {
-            if (isDark) {
-                iconSun?.classList.remove("hidden");
-                iconMoon?.classList.add("hidden");
-            } else {
-                iconSun?.classList.add("hidden");
-                iconMoon?.classList.remove("hidden");
-            }
-        };
-
-        const isDarkInitial = htmlElement.classList.contains("dark");
-        updateIcons(isDarkInitial);
-
-        toggleButton?.addEventListener("click", () => {
-            if (htmlElement.classList.contains("dark")) {
-                htmlElement.classList.remove("dark");
-                localStorage.theme = "light";
-                updateIcons(false);
-            } else {
-                htmlElement.classList.add("dark");
-                localStorage.theme = "dark";
-                updateIcons(true);
-            }
-        });
-
-        // Form Validation Logic
-        const form = document.getElementById("newsletter-form") as HTMLFormElement;
-        const emailInput = document.getElementById("email-input") as HTMLInputElement;
-        const errorContainer = document.getElementById("email-error-container");
-        const errorText = document.getElementById("email-error-text");
-
-        const emailSchema = z.string().min(1, { message: "El correo es obligatorio" }).email({ message: "Ingresá un correo válido (ej: nombre@dominio.com)" });
-
-        const showError = (message: string) => {
-            if (errorContainer && errorText) {
-                errorText.textContent = message;
-                errorContainer.classList.remove("opacity-0");
-            }
-            emailInput?.classList.add("border-red-500", "focus:ring-red-500", "text-red-600");
-            emailInput?.classList.remove("border-border", "focus:ring-secondary", "text-foreground");
-        };
-
-        const clearError = () => {
-            if (errorContainer) {
-                errorContainer.classList.add("opacity-0");
-            }
-            emailInput?.classList.remove("border-red-500", "focus:ring-red-500", "text-red-600");
-            emailInput?.classList.add("border-border", "focus:ring-secondary", "text-foreground");
-        };
-
-        form?.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const email = emailInput?.value;
-            const result = emailSchema.safeParse(email);
-
-            if (!result.success) {
-                console.log("Zod error:", result);
-                const firstError = result.error.issues?.[0] || result.error.errors?.[0];
-                const message = firstError?.message || "Verificá el correo ingresado";
-                showError(message);
-            } else {
-                clearError();
-                
-                // UX: Deshabilitar botón y mostrar estado de carga
-                const submitButton = form.querySelector("button");
-                const originalBtnContent = submitButton?.innerHTML || "";
-                if (submitButton) {
-                    submitButton.disabled = true;
-                    submitButton.innerHTML = `<span class="animate-spin mr-2 material-icons text-sm">refresh</span> Enviando...`;
-                    submitButton.classList.add("opacity-75", "cursor-not-allowed");
-                }
-
-                try {
-                    // Llamada al Backend (API Route)
-                    const response = await fetch("/api/subscribe", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ email }),
-                    });
-
-                    if (response.ok) {
-                        // Éxito real del servidor
-                        window.location.href = "/gracias";
-                    } else {
-                        // Error del servidor (ej: base de datos caída)
-                        const errorData = await response.json();
-                        showError(errorData.message || "Hubo un error al procesar tu solicitud.");
-                        
-                        // Restaurar botón
-                        if (submitButton) {
-                            submitButton.disabled = false;
-                            submitButton.innerHTML = originalBtnContent;
-                            submitButton.classList.remove("opacity-75", "cursor-not-allowed");
-                        }
-                    }
-                } catch (error) {
-                    console.error("Error de red:", error);
-                    showError("Error de conexión. Intentalo de nuevo.");
-                    
-                    // Restaurar botón
-                    if (submitButton) {
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalBtnContent;
-                        submitButton.classList.remove("opacity-75", "cursor-not-allowed");
-                    }
-                }
-            }
-        });
-
-        emailInput?.addEventListener("input", () => {
-             clearError();
-        });
-
-        // Validación on blur para mejor UX
-        emailInput?.addEventListener("blur", () => {
-            const email = emailInput?.value;
-            // Solo validamos al salir si hay algo escrito
-            if (email.length > 0) {
-                const result = emailSchema.safeParse(email);
-                if (!result.success) {
-                    const firstError = result.error.issues?.[0] || result.error.errors?.[0];
-                    const message = firstError?.message || "Verificá el correo ingresado";
-                    showError(message);
-                }
-            }
-        });
-    </script>
 </Layout>

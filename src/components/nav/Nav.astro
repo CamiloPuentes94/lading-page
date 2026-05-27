@@ -1,0 +1,87 @@
+---
+import ThemeToggle from '../shared/ThemeToggle.astro';
+import LangSwitcher from '../shared/LangSwitcher.astro';
+import Logo from '../shared/Logo.astro';
+
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = '' } = Astro.props;
+
+const links = [
+  { label: 'Servicios', href: '/servicios', key: 'servicios' },
+  { label: 'Portafolio', href: '/portafolio', key: 'portafolio' },
+  { label: 'Nosotros', href: '/nosotros', key: 'nosotros' },
+];
+---
+
+<header
+  style="
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--cf-nav-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--cf-rule);
+  "
+>
+  <div
+    style="
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    "
+  >
+    <!-- Logo -->
+    <Logo />
+
+    <!-- Nav links (center) -->
+    <nav aria-label="Navegación principal" style="display: flex; gap: 32px; align-items: center;">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="cf-navlink"
+          data-active={activePage === link.key ? 'true' : 'false'}
+          style="
+            font-family: 'Geist', system-ui, sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--cf-text);
+            text-decoration: none;
+          "
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right: ThemeToggle + LangSwitcher + CTA -->
+    <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+      <ThemeToggle />
+      <LangSwitcher />
+      <a
+        href="#contacto"
+        class="cf-btn"
+        style="
+          background: var(--cf-navy);
+          color: #ffffff;
+          padding: 13px 22px;
+          border-radius: 8px;
+          font-family: 'Geist', system-ui, sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: none;
+          white-space: nowrap;
+        "
+      >
+        Conversemos
+      </a>
+    </div>
+  </div>
+</header>

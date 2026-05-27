@@ -1,0 +1,58 @@
+---
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  align?: 'left' | 'center';
+}
+
+const { eyebrow, title, lede, align = 'left' } = Astro.props;
+
+const isCenter = align === 'center';
+---
+
+<div
+  class="cf-reveal"
+  data-cf-reveal
+  style={`
+    text-align: ${align};
+    max-width: ${isCenter ? '760px' : 'none'};
+    margin: ${isCenter ? '0 auto 56px' : '0 0 56px'};
+  `}
+>
+  {eyebrow && (
+    <div style="margin-bottom: 22px;">
+      <Eyebrow>{eyebrow}</Eyebrow>
+    </div>
+  )}
+  <h2
+    style="
+      font-family: 'Geist', system-ui, sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--cf-ink);
+      margin: 0;
+      line-height: 1.02;
+    "
+  >
+    {title}
+  </h2>
+  {lede && (
+    <p
+      style={`
+        font-size: 17.5px;
+        line-height: 1.65;
+        color: var(--cf-dim);
+        margin-top: 22px;
+        max-width: 640px;
+        margin-left: ${isCenter ? 'auto' : '0'};
+        margin-right: ${isCenter ? 'auto' : '0'};
+      `}
+    >
+      {lede}
+    </p>
+  )}
+</div>

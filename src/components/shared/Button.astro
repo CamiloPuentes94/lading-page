@@ -1,0 +1,42 @@
+---
+interface Props {
+  variant?: 'primary' | 'ghost';
+  href?: string;
+  size?: 'md' | 'lg';
+  icon?: boolean;
+}
+
+const { variant = 'primary', href = '#', size = 'md', icon = true } = Astro.props;
+
+const isPrimary = variant === 'primary';
+const padding = size === 'lg' ? '16px 28px' : '13px 22px';
+const fontSize = size === 'lg' ? '15px' : '14px';
+
+const bg = isPrimary ? 'var(--cf-navy)' : 'transparent';
+const color = isPrimary ? '#FFFFFF' : 'var(--cf-ink)';
+const border = isPrimary ? '1px solid var(--cf-navy)' : '1px solid var(--cf-ink)';
+---
+
+<a
+  href={href}
+  class="cf-btn"
+  style={`
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: ${padding};
+    font-size: ${fontSize};
+    font-weight: 600;
+    color: ${color};
+    background: ${bg};
+    border: ${border};
+    border-radius: 8px;
+    letter-spacing: -0.005em;
+    font-family: 'Geist', system-ui, sans-serif;
+    white-space: nowrap;
+    text-decoration: none;
+  `}
+>
+  <slot />
+  {icon && <span style="font-size: 16px; line-height: 1; margin-left: 2px;">→</span>}
+</a>

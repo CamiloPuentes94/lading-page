@@ -3,65 +3,268 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
+/* Fontsource self-hosted */
+@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/500.css";
+@import "@fontsource/geist-sans/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+/* Dark mode via .dark class */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  /* --- Brand Colors --- */
-  /* Mantengo tus Hex originales por precisión de marca */
-  --color-primary: #14244E;
-  --color-secondary: #009B60;
-  
-  /* --- Semantic Tokens (Light Default) --- */
-  --color-background: #F3F4F6;
-  --color-foreground: #1F2937; /* gray-800 */
-
-  --color-card: #FFFFFF;
-  --color-card-foreground: #1F2937;
-
-  --color-muted: #E5E7EB; /* gray-200 */
-  --color-muted-foreground: #6B7280; /* gray-500 */
-
-  --color-border: #E5E7EB;
-
-  /* --- Fonts --- */
-  --font-display: "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
-
-  /* --- Animations --- */
-  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-glow: glow 2s ease-in-out infinite alternate;
-  --animate-shimmer: shimmer 2s infinite;
-  --animate-fade-in-down: fade-in-down 1s ease-out;
-
-  @keyframes glow {
-    0% { box-shadow: 0 0 5px var(--color-secondary), 0 0 10px var(--color-secondary); }
-    100% { box-shadow: 0 0 20px var(--color-secondary), 0 0 30px var(--color-secondary); }
-  }
-  @keyframes shimmer {
-    100% { transform: translateX(100%); }
-  }
-  @keyframes fade-in-down {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
+/* ─── Brand tokens — light ─────────────────────────────────── */
+:root {
+  --cf-ink: #0B132B;
+  --cf-navy: #0F2557;
+  --cf-navy-deep: #091A3D;
+  --cf-brand: #0EA472;
+  --cf-brand-sel: rgba(14, 164, 114, 0.10);
+  --cf-bg: #FAF8F3;
+  --cf-bg2: #F2EFE7;
+  --cf-paper: #FFFFFF;
+  --cf-rule: #E5E2D7;
+  --cf-text: #1A2236;
+  --cf-dim: #5C657A;
+  --cf-faded-navy: #E4E7F0;
+  --cf-nav-bg: rgba(250, 248, 243, 0.85);
+  --cf-shadow-md: 0 18px 40px -24px rgba(11, 19, 43, 0.18);
+  --cf-shadow-lg: 0 30px 80px -40px rgba(11, 19, 43, 0.45);
 }
 
-/* --- Dark Mode Overrides --- */
-/* La magia de Tailwind 4: redefinir variables en el scope .dark */
+/* ─── Brand tokens — dark ──────────────────────────────────── */
 .dark {
-  --color-background: #0B1221; /* Tu tech-dark */
-  --color-foreground: #F3F4F6; /* gray-100 */
-
-  --color-card: #0F172A; /* slate-900 */
-  --color-card-foreground: #F3F4F6;
-
-  --color-muted: #1F2937; /* gray-800 */
-  --color-muted-foreground: #9CA3AF; /* gray-400 */
-
-  --color-border: #1F2937;
+  --cf-ink: #F1F4FB;
+  --cf-navy: #1E3A8A;
+  --cf-navy-deep: #040814;
+  --cf-brand: #22C58E;
+  --cf-brand-sel: rgba(34, 197, 142, 0.12);
+  --cf-bg: #0A0F1F;
+  --cf-bg2: #0F1528;
+  --cf-paper: #141A2E;
+  --cf-rule: #1F2747;
+  --cf-text: #C7CDE0;
+  --cf-dim: #7C849C;
+  --cf-faded-navy: #2A3050;
+  --cf-nav-bg: rgba(10, 15, 31, 0.82);
+  --cf-shadow-md: 0 18px 40px -24px rgba(0, 0, 0, 0.55);
+  --cf-shadow-lg: 0 30px 80px -40px rgba(0, 0, 0, 0.7);
 }
 
-/* Utilities customizados si son necesarios */
-@utility bg-tech-pattern {
-  background-image: radial-gradient(circle at 2px 2px, rgba(0, 155, 96, 0.15) 1px, transparent 0);
+/* ─── Tailwind v4 token mapping ────────────────────────────── */
+@theme inline {
+  --color-cf-ink: var(--cf-ink);
+  --color-cf-navy: var(--cf-navy);
+  --color-cf-navy-deep: var(--cf-navy-deep);
+  --color-cf-brand: var(--cf-brand);
+  --color-cf-bg: var(--cf-bg);
+  --color-cf-bg2: var(--cf-bg2);
+  --color-cf-paper: var(--cf-paper);
+  --color-cf-rule: var(--cf-rule);
+  --color-cf-text: var(--cf-text);
+  --color-cf-dim: var(--cf-dim);
+  --color-cf-faded-navy: var(--cf-faded-navy);
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ─── Base styles ──────────────────────────────────────────── */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--cf-bg);
+  color: var(--cf-text);
+}
+
+body {
+  font-family: 'Geist', system-ui, sans-serif;
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--cf-brand);
+  color: white;
+}
+
+/* ─── Keyframes ────────────────────────────────────────────── */
+@keyframes cfRise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cfType {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cfMarquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes cfBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes cfPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* ─── Animation classes ────────────────────────────────────── */
+
+/* Reveal on scroll — triggered by data-cf-in="1" via IO */
+.cf-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cf-reveal[data-cf-in="1"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero stagger */
+.cf-stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: cfRise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+.cf-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.cf-stagger > *:nth-child(2) { animation-delay: 0.15s; }
+.cf-stagger > *:nth-child(3) { animation-delay: 0.28s; }
+.cf-stagger > *:nth-child(4) { animation-delay: 0.42s; }
+.cf-stagger > *:nth-child(5) { animation-delay: 0.55s; }
+.cf-stagger > *:nth-child(6) { animation-delay: 0.68s; }
+
+/* Code editor typing */
+.cf-editor-line {
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: cfType 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+/* Marquee */
+.cf-marquee {
+  display: flex;
+  gap: 64px;
+  animation: cfMarquee 38s linear infinite;
+}
+
+/* Caret blink */
+.cf-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  vertical-align: -0.12em;
+  background: var(--cf-brand);
+  margin-left: 4px;
+  animation: cfBlink 1s steps(1) infinite;
+}
+
+/* Pulse for live dot */
+.cf-pulse {
+  position: relative;
+}
+
+.cf-pulse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: cfPulse 1.8s ease-out infinite;
+}
+
+/* Button hover */
+.cf-btn {
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.cf-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Card hover */
+.cf-card {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+              box-shadow 0.3s,
+              border-color 0.3s;
+}
+
+.cf-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Nav link underline */
+.cf-navlink {
+  position: relative;
+}
+
+.cf-navlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: var(--cf-brand);
+  transition: width 0.25s ease;
+}
+
+.cf-navlink:hover::after,
+.cf-navlink[data-active="true"]::after,
+.cf-navlink[data-active="1"]::after {
+  width: 100%;
+}
+
+/* ─── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cf-reveal,
+  .cf-stagger > *,
+  .cf-editor-line,
+  .cf-btn,
+  .cf-card,
+  .cf-navlink::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cf-marquee {
+    animation: none !important;
+  }
+
+  .cf-caret {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .cf-pulse::before {
+    animation: none !important;
+  }
 }

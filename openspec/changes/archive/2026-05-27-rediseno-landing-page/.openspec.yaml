@@ -1,0 +1,9 @@
+schema: spec-driven
+created: 2026-03-31
+archived: 2026-05-27
+status: CLOSED
+change_id: rediseno-landing-page
+prs_count: 6
+estimated_changed_lines: 2500-3500
+verify_status: PASS_WITH_WARNINGS
+archive_report: archive-report.md

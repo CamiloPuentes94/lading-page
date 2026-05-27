@@ -1,0 +1,236 @@
+---
+// Footer.astro — Full 4-column footer on cf-navy-deep background
+---
+
+<footer
+  style="
+    background: var(--cf-navy-deep);
+    color: #E7EAF0;
+    padding: 88px 40px 36px;
+  "
+>
+  <div style="max-width: 1240px; margin: 0 auto;">
+
+    <!-- Top grid: 4 columns -->
+    <div
+      style="
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 48px;
+        padding-bottom: 64px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      "
+    >
+      <!-- Column 1: Logo + description -->
+      <div>
+        <!-- Logo (dark variant) -->
+        <a
+          href="/"
+          aria-label="Camandre Factory"
+          style="display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 20px;"
+        >
+          <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+            <path
+              d="M 32 11 A 14 14 0 1 0 32 29"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="3.8"
+              stroke-linecap="round"
+            />
+            <path
+              d="M14.5 27 L20 13 L25.5 27 M16.6 22.5 L23.4 22.5"
+              stroke="var(--cf-brand)"
+              stroke-width="2.6"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M22.5 22.5 L31 30.6 L27.8 31.1 L29.6 34.3 L27.6 35.4 L25.8 32.2 L23.4 33.6 Z"
+              fill="var(--cf-brand)"
+              stroke="#ffffff"
+              stroke-width="0.8"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div style="display: flex; flex-direction: column; gap: 0;">
+            <span
+              style="
+                font-family: 'Geist', system-ui, sans-serif;
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                color: #ffffff;
+                line-height: 1.1;
+              "
+            >CAMANDRE</span>
+            <span
+              style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 9.5px;
+                font-weight: 500;
+                letter-spacing: 0.32em;
+                color: var(--cf-brand);
+                line-height: 1.1;
+              "
+            >FACTORY</span>
+          </div>
+        </a>
+
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.7;
+            color: #9BA3BC;
+            max-width: 300px;
+            margin: 0 0 24px;
+          "
+        >
+          Una fábrica de software boutique. Diseñamos, construimos y mantenemos los sistemas que sostienen a empresas que toman su tecnología en serio.
+        </p>
+
+        <!-- Availability badge with pulse -->
+        <div
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(34,197,142,0.30);
+            border-radius: 999px;
+            padding: 6px 14px;
+          "
+        >
+          <span
+            class="cf-pulse"
+            style="
+              display: inline-block;
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: var(--cf-brand);
+              flex-shrink: 0;
+            "
+            aria-hidden="true"
+          ></span>
+          <span
+            style="
+              font-family: 'JetBrains Mono', monospace;
+              font-size: 11px;
+              font-weight: 500;
+              letter-spacing: 0.06em;
+              color: var(--cf-brand);
+            "
+          >Aceptamos 2 proyectos · Q3 2026</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Servicios -->
+      <div>
+        <p
+          style="
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            color: #9BA3BC;
+            margin: 0 0 20px;
+            text-transform: uppercase;
+          "
+        >Servicios</p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+          <li><a href="/servicios#producto" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Producto Web</a></li>
+          <li><a href="/servicios#sistemas" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Sistemas a medida</a></li>
+          <li><a href="/servicios#infra" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Infraestructura</a></li>
+          <li><a href="/servicios#consultoria" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Consultoría TI</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Camandre -->
+      <div>
+        <p
+          style="
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            color: #9BA3BC;
+            margin: 0 0 20px;
+            text-transform: uppercase;
+          "
+        >Camandre</p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+          <li><a href="/nosotros" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Nosotros</a></li>
+          <li><a href="/portafolio" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Portafolio</a></li>
+          <li><a href="#" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Diario técnico</a></li>
+          <li><a href="#" style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Carreras</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contacto -->
+      <div>
+        <p
+          style="
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            color: #9BA3BC;
+            margin: 0 0 20px;
+            text-transform: uppercase;
+          "
+        >Contacto</p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+          <li>
+            <a
+              href="mailto:hola@camandre.factory"
+              style="color: var(--cf-brand); text-decoration: none; font-size: 14px;"
+            >hola@camandre.factory</a>
+          </li>
+          <li>
+            <a
+              href="tel:+573002481190"
+              style="color: #E7EAF0; text-decoration: none; font-size: 14px; opacity: 0.85;"
+            >+57 300 248 1190</a>
+          </li>
+          <li>
+            <address
+              style="
+                font-style: normal;
+                font-size: 14px;
+                color: #9BA3BC;
+                line-height: 1.5;
+              "
+            >
+              Calle 93 #14–20, Bogotá
+            </address>
+          </li>
+          <li>
+            <span style="font-size: 14px; color: #9BA3BC;">Madrid · CDMX · Remoto</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 28px;
+        flex-wrap: wrap;
+        gap: 16px;
+      "
+    >
+      <p style="margin: 0; font-size: 13px; color: #9BA3BC;">
+        © Camandre Factory · 2019–2026 · Todos los derechos reservados
+      </p>
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="#" style="font-size: 13px; color: #9BA3BC; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#E7EAF0'" onmouseout="this.style.color='#9BA3BC'">Privacidad</a>
+        <a href="#" style="font-size: 13px; color: #9BA3BC; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#E7EAF0'" onmouseout="this.style.color='#9BA3BC'">Términos</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style="font-size: 13px; color: #9BA3BC; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#E7EAF0'" onmouseout="this.style.color='#9BA3BC'">LinkedIn ↗</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" style="font-size: 13px; color: #9BA3BC; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#E7EAF0'" onmouseout="this.style.color='#9BA3BC'">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</footer>

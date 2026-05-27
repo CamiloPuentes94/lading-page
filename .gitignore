@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# One Piece Agents (symlink al repo central — no versionar)
+.claude/one-piece-agents
