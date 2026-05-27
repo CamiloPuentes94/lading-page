@@ -6,11 +6,9 @@ import SectionHeader from '../components/shared/SectionHeader.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
 const timeline = [
-  { y: '2019', t: 'Dos ingenieros, un garaje en Chapinero' },
-  { y: '2021', t: 'Primer cliente enterprise · Banco Norte' },
-  { y: '2023', t: 'Apertura de Madrid · 8 personas' },
-  { y: '2025', t: 'Apertura de CDMX · 14 personas' },
-  { y: '2026', t: '40+ proyectos en producción · 12 países' },
+  { y: '2024', t: 'Dos personas, una idea en Chía, Cundinamarca' },
+  { y: '2024', t: 'Primer cliente real: Sinerlly — sistema POS en producción' },
+  { y: '2025', t: 'Falcon Precision — dos aplicaciones internas para el estado' },
 ];
 
 const values = [
@@ -37,26 +35,14 @@ const values = [
 ];
 
 const team = [
-  { initials: 'AR', name: 'Alejandro Ruiz',  role: 'CEO · Fundador',          city: 'Bogotá', bio: '12 años construyendo plataformas para banca y salud. Antes de Camandre, lideró ingeniería en una fintech regional vendida a un banco español.', color: '#0F2557' },
-  { initials: 'SM', name: 'Sofía Méndez',    role: 'CTO · Cofundadora',       city: 'Madrid', bio: 'Arquitecta de sistemas distribuidos. Diseña la columna vertebral técnica de cada proyecto. Ex-Twilio, ex-MercadoLibre.', color: '#0EA472' },
-  { initials: 'CV', name: 'Carlos Vega',     role: 'Lead Engineer',           city: 'Bogotá', bio: 'Full-stack senior con foco en performance. Vive en producción: si tu p95 está por encima de 300ms, le quita el sueño.', color: '#091A3D' },
-  { initials: 'AT', name: 'Ana Torres',      role: 'Head of Design',          city: 'CDMX',   bio: 'Sistemas de diseño y producto. Antes lideró diseño en una startup B2B que pasó de 5 a 200 personas. Hace bien lo aburrido.', color: '#7A5AE0' },
-  { initials: 'LM', name: 'Luis Marín',      role: 'Staff Engineer',          city: 'Madrid', bio: 'Especialista en infraestructura cloud y observabilidad. Ha hecho on-call para sistemas con 99.99% de uptime durante 5 años seguidos.', color: '#B96B3B' },
-  { initials: 'PM', name: 'Paula Morales',   role: 'Engineering Manager',     city: 'Bogotá', bio: 'Coach técnica y manager de equipos remotos. Se asegura de que el código y la gente se sostengan entre sí.', color: '#0D7BCE' },
+  { initials: 'JC', name: 'Juan Camilo Puentes Sandoval', role: 'Desarrollador · Fundador',       city: 'Chía', bio: 'Construye sistemas desde cero. Full-stack con foco en arquitectura limpia y sistemas que escalan sin drama.', color: '#0F2557' },
+  { initials: 'YA', name: 'Yuri Andrea Cervera Lozano',   role: 'Diseñadora UI/UX · Cofundadora', city: 'Chía', bio: 'Diseña interfaces que los usuarios entienden sin manual. Lidera pruebas y asegura que cada entrega se vea y funcione bien.', color: '#0EA472' },
 ];
 
 const locations = [
-  { city: 'Bogotá',  country: 'Colombia', addr: 'Calle 93 #14–20\nChapinero',         count: '8 personas',  primary: true  },
-  { city: 'Madrid',  country: 'España',   addr: 'Calle Velázquez 90\nSalamanca',       count: '4 personas',  primary: false },
-  { city: 'CDMX',    country: 'México',   addr: 'Av. Álvaro Obregón 27\nRoma Norte',   count: '2 personas',  primary: false },
+  { city: 'Chía',  country: 'Colombia', addr: 'Cundinamarca', count: '2 personas',  primary: true  },
 ];
 
-const roles = [
-  { role: 'Staff Engineer',      city: 'Bogotá / Remoto',           t: 'Producto + plataforma',       open: true  },
-  { role: 'Product Designer',    city: 'Madrid / Remoto',           t: 'Sistemas de UI',               open: true  },
-  { role: 'SRE Senior',          city: 'Cualquier huso AMERICA',    t: 'On-call + observabilidad',     open: false },
-  { role: 'Engineering Manager', city: 'Bogotá',                    t: 'Equipos de 4–6 personas',      open: false },
-];
 ---
 
 <Layout title="Nosotros — Camandre Factory" activePage="nosotros">
@@ -97,9 +83,8 @@ const roles = [
           <span style="color: var(--cf-dim);">Decisiones grandes.</span>
         </h1>
         <p style="font-size: 19px; line-height: 1.6; color: var(--cf-dim); margin-top: 32px; max-width: 700px;">
-          Somos 14 personas distribuidas entre Bogotá, Madrid y CDMX. Diseñadores, ingenieros y arquitectos
-          de software que decidieron, hace ocho años, que el mundo no necesitaba otra agencia que dijera sí a todo.
-          Necesitaba un equipo que dijera no cuando hace falta.
+          Somos Juan Camilo y Yuri Andrea, dos personas en Chía, Colombia, que decidieron que el mundo no
+          necesitaba otra agencia que dijera sí a todo. Necesitaba un equipo que dijera no cuando hace falta.
         </p>
       </div>
     </div>
@@ -139,18 +124,17 @@ const roles = [
         <!-- Right: prose -->
         <div class="cf-reveal" data-cf-reveal>
           <p style="font-family: 'Geist', system-ui, sans-serif; font-size: 22px; line-height: 1.55; color: var(--cf-ink); margin: 0; font-weight: 500; letter-spacing: -0.012em;">
-            Camandre nació en 2019 cuando dos ingenieros se cansaron del mismo guion: agencias que prometían
-            transformación digital y entregaban sitios de WordPress con tres meses de retraso.
+            Camandre nació en 2024 cuando dos personas se cansaron del mismo guion: agencias que prometían
+            transformación digital y entregaban sitios con tres meses de retraso.
           </p>
           <p style="font-size: 17px; line-height: 1.7; color: var(--cf-text); margin-top: 24px;">
-            Empezamos con una idea simple: trabajar con pocos clientes a la vez, dedicarles un equipo real, y
-            cobrar por el valor que entregamos en producción —no por las horas que pasamos en reuniones. Ocho
-            años después, esa idea sigue siendo el contrato implícito con cada cliente nuevo.
+            Empezamos con una idea simple: trabajar con pocos clientes a la vez, dedicarles atención real, y
+            cobrar por el valor que entregamos en producción —no por las horas que pasamos en reuniones. Un
+            año después, esa idea sigue siendo el contrato implícito con cada cliente nuevo.
           </p>
           <p style="font-size: 17px; line-height: 1.7; color: var(--cf-text); margin-top: 18px;">
-            Hoy somos 14 personas. Solo tomamos siete proyectos al año. No vamos a crecer mucho más: nuestra
-            ventaja competitiva es exactamente lo opuesto a escalar a cualquier costo. La cantidad importa,
-            pero la atención dedicada importa más.
+            Hoy somos dos personas. Tomamos los proyectos que podemos hacer bien. No vamos a crecer sin control:
+            nuestra ventaja competitiva es exactamente lo opuesto a escalar a cualquier costo.
           </p>
           <p style="font-size: 17px; line-height: 1.7; color: var(--cf-text); margin-top: 18px;">
             No subcontratamos. No reciclamos código de otros clientes. No prometemos lo que no podemos sostener.
@@ -198,12 +182,12 @@ const roles = [
   <section style="padding: 120px 0; background: var(--cf-paper); border-top: 1px solid var(--cf-rule); border-bottom: 1px solid var(--cf-rule);">
     <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
       <SectionHeader
-        eyebrow="Equipo · 14 personas"
+        eyebrow="Equipo · 2 personas"
         title="Los que firman cada decisión."
         lede="No vas a hablar con un gerente comercial. Hablas, desde el primer correo, con quien va a arquitectar y construir tu sistema."
       />
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px;">
         {team.map((m) => (
           <div
             class="cf-reveal"
@@ -227,17 +211,6 @@ const roles = [
         ))}
       </div>
 
-      <!-- Footer note -->
-      <div
-        class="cf-reveal"
-        data-cf-reveal
-        style="margin-top: 32px; padding: 20px 24px; background: var(--cf-bg); border: 1px dashed var(--cf-rule); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;"
-      >
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--cf-dim);">
-          + 8 ingenieros, diseñadores y SREs que sostienen el día a día.
-        </div>
-        <a href="#" class="cf-navlink" style="font-size: 13.5px; font-weight: 600; color: var(--cf-ink);">Ver perfiles completos →</a>
-      </div>
     </div>
   </section>
 
@@ -252,17 +225,16 @@ const roles = [
         <div class="cf-reveal" data-cf-reveal>
           <Eyebrow>Ubicaciones</Eyebrow>
           <h2 style="font-family: 'Geist', system-ui, sans-serif; font-size: 56px; font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
-            Tres oficinas.<br />
-            <span style="color: var(--cf-dim);">Una sola cultura.</span>
+            Chía,<br />
+            <span style="color: var(--cf-dim);">Cundinamarca.</span>
           </h2>
           <p style="font-size: 15.5px; line-height: 1.65; color: var(--cf-dim); margin-top: 20px; max-width: 360px;">
-            Trabajamos en husos horarios cercanos para que la comunicación sea sincrónica.
-            La oficina principal está en Bogotá; los equipos rotan trimestralmente.
+            Trabajamos desde Chía, Colombia. Atendemos clientes de forma remota sin problema.
           </p>
         </div>
 
-        <!-- Right: location cards -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <!-- Right: location card -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 320px;">
           {locations.map((c) => (
             <div
               class="cf-reveal"
@@ -291,48 +263,6 @@ const roles = [
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       HIRING — Carreras
-  ════════════════════════════════════════════════════════════ -->
-  <section style="padding: 120px 0; background: var(--cf-paper); border-top: 1px solid var(--cf-rule);">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;">
-
-        <!-- Left: heading + CTA -->
-        <div class="cf-reveal" data-cf-reveal>
-          <Eyebrow>Carreras</Eyebrow>
-          <h2 style="font-family: 'Geist', system-ui, sans-serif; font-size: 56px; font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
-            ¿Quieres trabajar acá?<br />
-            <span style="color: var(--cf-dim);">No siempre estamos contratando.</span>
-          </h2>
-          <p style="font-size: 16.5px; line-height: 1.65; color: var(--cf-dim); margin-top: 22px; max-width: 460px;">
-            Cuando lo hacemos, el proceso toma tres semanas e incluye trabajar dos días con el equipo.
-            No hay leetcode. Hay problemas reales de clientes reales bajo NDA.
-          </p>
-          <div style="margin-top: 32px;">
-            <Button href="#" variant="primary" size="lg">Enviar CV abierto</Button>
-          </div>
-        </div>
-
-        <!-- Right: role cards grid -->
-        <div class="cf-reveal" data-cf-reveal style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-          {roles.map((r) => (
-            <div style={`background: ${r.open ? 'var(--cf-bg)' : 'var(--cf-paper)'}; border: 1px solid var(--cf-rule); border-radius: 12px; padding: 24px; opacity: ${r.open ? 1 : 0.6};`}>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style={`font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: ${r.open ? 'var(--cf-brand)' : 'var(--cf-dim)'}; letter-spacing: 0.14em;`}>
-                  {r.open ? '● ABIERTO' : '○ CERRADO'}
-                </span>
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.08em;">{r.city}</span>
-              </div>
-              <h4 style="font-family: 'Geist', system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0 0 8px;">{r.role}</h4>
-              <div style="font-size: 13.5px; color: var(--cf-dim);">{r.t}</div>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════════════════════════════════════════════
        CLOSING CTA

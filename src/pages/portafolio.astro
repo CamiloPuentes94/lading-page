@@ -5,92 +5,37 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
 const CASES = [
   {
-    id: 'helio',
-    client: 'Helio Health',
+    id: 'sinerlly',
+    client: 'Sinerlly',
     cat: 'Producto',
     year: '2025',
-    title: 'Plataforma clínica para 200+ médicos',
-    desc: 'Reescritura completa de un EMR de 14 años. Migración sin downtime, adopción interna del 96%.',
-    metrics: [{ k: '96%', v: 'Adopción' }, { k: '1.2M', v: 'Historias migradas' }],
-    stack: ['Astro', 'Go', 'PostgreSQL'],
-    mock: 'helio',
+    title: 'Sistema POS para distribuidora',
+    desc: 'Control de inventario, ventas y caja en tiempo real para distribuidora y salsamentaria en Colombia.',
+    metrics: [{ k: '2025', v: 'En producción' }, { k: 'Colombia', v: 'Pyme local' }],
+    stack: ['React', 'Node.js', 'PostgreSQL'],
+    mock: 'sinerlly',
   },
   {
-    id: 'northwind',
-    client: 'Northwind Co.',
+    id: 'falcon-1',
+    client: 'Falcon Precision',
     cat: 'Sistemas',
     year: '2025',
-    title: 'ERP modular para 9 sucursales',
-    desc: 'Migración de 14 hojas de cálculo a un ERP con cierre contable automatizado.',
-    metrics: [{ k: '−71%', v: 'Tiempo de cierre' }, { k: '11 sem', v: 'Duración' }],
-    stack: ['Django', 'PostgreSQL', 'Redis'],
-    mock: 'northwind',
+    title: 'App de gestión interna',
+    desc: 'Aplicación interna para optimizar procesos administrativos en entidad del estado.',
+    metrics: [{ k: '2025', v: 'En producción' }, { k: 'Estado', v: 'Sector público' }],
+    stack: ['React', 'API REST', 'PostgreSQL'],
+    mock: 'falcon1',
   },
   {
-    id: 'trevia',
-    client: 'Trevia Logistics',
-    cat: 'Producto',
-    year: '2024',
-    title: 'TMS con visibilidad en tiempo real',
-    desc: 'Plataforma de gestión de transporte multimodal para 1,400+ rutas diarias.',
-    metrics: [{ k: '99.98%', v: 'Uptime' }, { k: '+38%', v: 'Eficiencia ruta' }],
-    stack: ['React', 'Go', 'Kafka'],
-    mock: 'trevia',
-  },
-  {
-    id: 'banconorte',
-    client: 'Banco Norte',
-    cat: 'Consultoría',
-    year: '2024',
-    title: 'Due diligence técnico (M&A · USD 80M)',
-    desc: 'Auditoría de plataforma post-adquisición de fintech regional. Plan de integración a 9 meses.',
-    metrics: [{ k: '9 mes', v: 'Plan' }, { k: '7', v: 'Sistemas auditados' }],
-    stack: ['Audit', 'Strategy'],
-    mock: 'banco',
-  },
-  {
-    id: 'lumen',
-    client: 'Lumen Foods',
+    id: 'falcon-2',
+    client: 'Falcon Precision',
     cat: 'Sistemas',
-    year: '2024',
-    title: 'CRM + e-commerce headless',
-    desc: 'Reemplazo de Magento por Astro + Shopify Hydrogen. Backoffice unificado para 12 marcas.',
-    metrics: [{ k: '−2.4s', v: 'TTI promedio' }, { k: '+22%', v: 'Conversión' }],
-    stack: ['Astro', 'Shopify', 'Postgres'],
-    mock: 'lumen',
-  },
-  {
-    id: 'quanta',
-    client: 'Quanta Energy',
-    cat: 'Infraestructura',
     year: '2025',
-    title: 'Migración multi-region a GCP',
-    desc: 'Reescritura de plataforma de monitoreo de plantas solares. SRE end-to-end.',
-    metrics: [{ k: '−54%', v: 'Costo cloud' }, { k: '12', v: 'Regiones' }],
-    stack: ['GCP', 'Terraform', 'Go'],
-    mock: 'quanta',
-  },
-  {
-    id: 'estudio',
-    client: 'Estudio Plomo',
-    cat: 'Producto',
-    year: '2024',
-    title: 'Portal de gestión de proyectos',
-    desc: 'Herramienta interna para 80+ proyectos simultáneos en estudio creativo.',
-    metrics: [{ k: '80+', v: 'Proyectos' }, { k: '−63%', v: 'Tiempo admin' }],
-    stack: ['Astro', 'React', 'Postgres'],
-    mock: 'estudio',
-  },
-  {
-    id: 'acme',
-    client: 'ACME Industries',
-    cat: 'Infraestructura',
-    year: '2023',
-    title: 'IoT + dashboard de planta',
-    desc: 'Ingesta de 2.4M eventos/día desde sensores industriales. Alertas en tiempo real.',
-    metrics: [{ k: '2.4M', v: 'Eventos/día' }, { k: '99.99%', v: 'Disponibilidad' }],
-    stack: ['Kafka', 'TimescaleDB', 'Go'],
-    mock: 'acme',
+    title: 'App operativa interna',
+    desc: 'Segunda aplicación interna para automatización de procesos operativos en entidad del estado.',
+    metrics: [{ k: '2025', v: 'En producción' }, { k: 'Estado', v: 'Sector público' }],
+    stack: ['React', 'Node.js', 'PostgreSQL'],
+    mock: 'falcon2',
   },
 ];
 ---
@@ -118,7 +63,7 @@ const CASES = [
 
     <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px; position: relative;">
       <div class="cf-stagger" style="max-width: 900px;">
-        <Eyebrow>Portafolio · 8 piezas seleccionadas</Eyebrow>
+        <Eyebrow>Portafolio · 3 proyectos en producción</Eyebrow>
         <h1
           data-cf-reveal
           style="
@@ -145,8 +90,8 @@ const CASES = [
             max-width: 640px;
           "
         >
-          Una selección de 40+ proyectos. Todos están en producción hoy.
-          Las métricas no son proyecciones, son lo que pasó después del lanzamiento.
+          Tres proyectos. Todos están en producción hoy.
+          Construidos desde cero, con el cliente, sin atajos.
         </p>
       </div>
 
@@ -163,10 +108,10 @@ const CASES = [
         "
       >
         {[
-          { k: '40+',    v: 'Proyectos entregados' },
-          { k: '12',     v: 'Países en operación' },
-          { k: '8 años', v: 'En el oficio' },
-          { k: '99.98%', v: 'Uptime promedio' },
+          { k: '3',    v: 'Proyectos en producción' },
+          { k: '1',    v: 'País en operación' },
+          { k: '1 año', v: 'En el oficio' },
+          { k: '100%', v: 'Uptime promedio' },
         ].map((s, i) => (
           <div
             style={`
@@ -212,7 +157,7 @@ const CASES = [
             border-radius: 999px;
           "
         >
-          {['Todos', 'Producto', 'Sistemas', 'Infraestructura', 'Consultoría'].map((cat) => (
+          {['Todos', 'Producto', 'Sistemas'].map((cat) => (
             <button
               data-filter={cat}
               class={cat === 'Todos' ? 'active' : ''}
@@ -254,141 +199,65 @@ const CASES = [
             <!-- Visual mock -->
             <div style="aspect-ratio: 4/3; border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
 
-              {c.mock === 'helio' && (
-                <div style="display: flex; align-items: flex-end; justify-content: center; width: 100%; height: 100%; background: linear-gradient(135deg, #0F2557, #0EA472); padding: 28px; box-sizing: border-box;">
-                  <div style="width: 100%; background: rgba(7,12,32,0.7); backdrop-filter: blur(8px); border-radius: 8px; padding: 12px 14px; border: 1px solid rgba(255,255,255,0.15);">
-                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #9BD6BC; letter-spacing: 0.1em;">● ATENCIONES · 14</div>
-                    <div style="font-family: 'Geist', sans-serif; font-size: 22px; color: #FFFFFF; font-weight: 600; margin-top: 4px;">Sala 02 · M. Quispe</div>
-                  </div>
-                </div>
-              )}
-
-              {c.mock === 'northwind' && (
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background: #0B132B; padding: 24px; box-sizing: border-box; gap: 6px;">
-                  {[80, 64, 92, 48, 70].map((w, i) => (
-                    <div style="width: 100%; display: flex; gap: 6px; align-items: center;">
-                      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #7E869A; width: 38px; flex-shrink: 0;">{`SUC-0${i + 1}`}</span>
-                      <div style="flex: 1; height: 10px; background: #1B2548; border-radius: 2px; overflow: hidden;">
-                        <div style={`width: ${w}%; height: 100%; background: var(--cf-brand);`}></div>
-                      </div>
-                      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #FFFFFF; width: 28px; text-align: right;">{w}%</span>
+              {c.mock === 'sinerlly' && (
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background: #0B132B; padding: 20px; box-sizing: border-box; gap: 0;">
+                  <div style="width: 100%; background: rgba(255,255,255,0.04); border-radius: 8px; border: 1px solid #1B2548; overflow: hidden;">
+                    <div style="padding: 10px 12px; border-bottom: 1px solid #1B2548; display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #7E869A; letter-spacing: 0.1em;">PUNTO DE VENTA</span>
+                      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--cf-brand);">● activo</span>
                     </div>
-                  ))}
-                </div>
-              )}
-
-              {c.mock === 'trevia' && (
-                <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #FAF8F3;">
-                  <svg viewBox="0 0 200 140" width="80%" height="80%">
-                    <defs>
-                      <pattern id="trevia-dots" width="10" height="10" patternUnits="userSpaceOnUse">
-                        <circle cx="1" cy="1" r="0.8" fill="#E5E2D7" />
-                      </pattern>
-                    </defs>
-                    <rect width="200" height="140" fill="url(#trevia-dots)" />
-                    <path d="M 20 110 Q 60 90 90 80 T 140 50 T 180 30" stroke="#0F2557" stroke-width="2" fill="none" stroke-dasharray="4 3" />
-                    <circle cx="20" cy="110" r="6" fill="#0EA472" />
-                    <circle cx="90" cy="80" r="5" fill="#0F2557" />
-                    <circle cx="140" cy="50" r="5" fill="#0F2557" />
-                    <circle cx="180" cy="30" r="6" fill="#0EA472" />
-                    <text x="20" y="128" font-family="JetBrains Mono" font-size="7" fill="#5C657A">BOG</text>
-                    <text x="172" y="22" font-family="JetBrains Mono" font-size="7" fill="#5C657A">MAD</text>
-                  </svg>
-                </div>
-              )}
-
-              {c.mock === 'banco' && (
-                <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; height: 100%; background: #F2EFE7; padding: 24px; box-sizing: border-box; gap: 10px;">
-                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5C657A; letter-spacing: 0.14em;">DUE DILIGENCE</div>
-                  <div style="font-family: 'Geist', sans-serif; font-size: 32px; font-weight: 600; color: #0B132B; letter-spacing: -0.025em;">USD 80M</div>
-                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; margin-top: auto;">
-                    {['CORE', 'API', 'DATA', 'INFRA', 'SEC', 'PEOPLE'].map((label, i) => (
-                      <div style={`
-                        background: ${i < 3 ? 'var(--cf-brand)' : '#FFFFFF'};
-                        color: ${i < 3 ? '#FFFFFF' : '#5C657A'};
-                        font-family: 'JetBrains Mono', monospace;
-                        font-size: 9px;
-                        padding: 4px 8px;
-                        border-radius: 3px;
-                        text-align: center;
-                        border: 1px solid ${i < 3 ? 'var(--cf-brand)' : '#E5E2D7'};
-                      `}>{label}</div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {c.mock === 'lumen' && (
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background: linear-gradient(180deg, #F7F0E4, #E8DDC4); padding: 24px; box-sizing: border-box; gap: 8px;">
-                  <div style="width: 100%; display: flex; justify-content: space-between;">
-                    <div style="font-family: 'Geist', sans-serif; font-size: 11px; color: #0B132B; font-weight: 600;">Lumen / Pantry</div>
-                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #5C657A;">+22% conv.</div>
-                  </div>
-                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; flex: 1; width: 100%;">
-                    {['#D9C49B', '#6B7857', '#B27554', '#3F4A3E', '#C99B6F', '#8A6F4D'].map((color) => (
-                      <div style={`background: ${color}; border-radius: 4px; aspect-ratio: 1/1;`}></div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {c.mock === 'quanta' && (
-                <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #091A3D; padding: 20px; box-sizing: border-box;">
-                  <svg viewBox="0 0 200 140" width="100%" height="100%">
-                    <g opacity="0.4">
-                      {[40, 70, 100, 130, 160].map((x) => (
-                        <line x1={x} y1="20" x2={x} y2="120" stroke="#1B2548" />
-                      ))}
-                      {[40, 70, 100].map((y) => (
-                        <line x1="20" y1={y} x2="180" y2={y} stroke="#1B2548" />
-                      ))}
-                    </g>
-                    <polyline points="20,100 50,80 80,60 110,68 140,40 170,30 200,28" stroke="#0EA472" stroke-width="2" fill="none" />
-                    <polyline points="20,110 50,100 80,90 110,82 140,70 170,68 200,60" stroke="#FFBD2E" stroke-width="1.5" fill="none" stroke-dasharray="3 3" />
-                    {([
-                      [50, 80], [80, 60], [110, 68], [140, 40], [170, 30]
-                    ] as [number, number][]).map(([x, y]) => (
-                      <circle cx={x} cy={y} r="3" fill="#0EA472" />
-                    ))}
-                  </svg>
-                </div>
-              )}
-
-              {c.mock === 'estudio' && (
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background: #FAF8F3; padding: 22px; box-sizing: border-box; gap: 8px;">
-                  {[
-                    { color: '#0F2557', p: 80,  label: 'Aequus · campaña 2025' },
-                    { color: '#0EA472', p: 100, label: 'Borgia · identidad' },
-                    { color: '#C28419', p: 60,  label: 'Mantra · web v2' },
-                    { color: '#0F2557', p: 40,  label: 'Halo · empaques' },
-                  ].map((r) => (
-                    <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
-                      <span style={`width: 14px; height: 14px; background: ${r.color}; border-radius: 3px; flex-shrink: 0;`}></span>
-                      <span style="font-family: 'Geist', sans-serif; font-size: 11px; color: #0B132B; font-weight: 500; flex: 1;">{r.label}</span>
-                      <div style="width: 40px; height: 5px; background: #E5E2D7; border-radius: 2px; overflow: hidden;">
-                        <div style={`width: ${r.p}%; height: 100%; background: ${r.color};`}></div>
+                    {[
+                      { p: 'Chorizo x500g', q: '12', price: '$8.500' },
+                      { p: 'Butifarra', q: '6', price: '$12.000' },
+                      { p: 'Longaniza', q: '8', price: '$9.500' },
+                    ].map((r, i) => (
+                      <div style={`display: grid; grid-template-columns: 1fr 30px 70px; gap: 8px; padding: 8px 12px; border-top: ${i === 0 ? 'none' : '1px solid #1B2548'};`}>
+                        <span style="font-family: 'Geist', sans-serif; font-size: 11px; color: #FFFFFF;">{r.p}</span>
+                        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; text-align: center;">{r.q}</span>
+                        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cf-brand); text-align: right;">{r.price}</span>
                       </div>
+                    ))}
+                    <div style="padding: 10px 12px; border-top: 1px solid #1B2548; display: flex; justify-content: space-between;">
+                      <span style="font-family: 'Geist', sans-serif; font-size: 12px; font-weight: 600; color: #FFFFFF;">Total</span>
+                      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--cf-brand);">$136.000</span>
                     </div>
-                  ))}
+                  </div>
                 </div>
               )}
 
-              {c.mock === 'acme' && (
-                <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #0B132B; padding: 20px; box-sizing: border-box;">
-                  <svg viewBox="0 0 200 140" width="100%" height="100%">
-                    {Array.from({ length: 30 }, (_, i) => {
-                      const x = 10 + (i % 10) * 18;
-                      const y = 20 + Math.floor(i / 10) * 36;
-                      const lit = (i * 7) % 5 < 2;
-                      return (
-                        <g>
-                          <rect x={x} y={y} width="12" height="24" rx="2" fill={lit ? '#0EA472' : '#1B2548'} opacity={lit ? 1 : 0.6} />
-                          {lit && <rect x={x} y={y} width="12" height="24" rx="2" fill="#0EA472" opacity="0.2" />}
-                        </g>
-                      );
-                    })}
-                    <text x="10" y="135" font-family="JetBrains Mono" font-size="8" fill="#7E869A">SENSORES · 30 · 2.4M EVTS/DÍA</text>
-                  </svg>
+              {c.mock === 'falcon1' && (
+                <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; height: 100%; background: #0B132B; padding: 24px; box-sizing: border-box; gap: 10px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cf-brand); letter-spacing: 0.1em;">GESTIÓN INTERNA</div>
+                  <div style="width: 100%; display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
+                    {[
+                      { label: 'Solicitudes', val: '87%' },
+                      { label: 'Procesadas', val: '92%' },
+                      { label: 'Pendientes', val: '38%' },
+                    ].map((r) => (
+                      <div style="display: flex; align-items: center; gap: 8px; width: 100%;">
+                        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #7E869A; width: 70px; flex-shrink: 0;">{r.label}</span>
+                        <div style="flex: 1; height: 8px; background: #1B2548; border-radius: 2px; overflow: hidden;">
+                          <div style={`width: ${r.val}; height: 100%; background: var(--cf-brand);`}></div>
+                        </div>
+                        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #FFFFFF; width: 32px; text-align: right;">{r.val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {c.mock === 'falcon2' && (
+                <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; height: 100%; background: #091A3D; padding: 24px; box-sizing: border-box; gap: 10px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cf-brand); letter-spacing: 0.1em;">APP OPERATIVA</div>
+                  <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+                    {['Registro', 'Validación', 'Aprobación', 'Cierre'].map((step, i) => (
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style={`width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600; background: ${i < 3 ? 'var(--cf-brand)' : '#1B2548'}; color: ${i < 3 ? '#FFFFFF' : '#7E869A'};`}>{i + 1}</div>
+                        <span style={`font-family: 'Geist', sans-serif; font-size: 12px; color: ${i < 3 ? '#FFFFFF' : '#7E869A'};`}>{step}</span>
+                        {i < 2 && <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--cf-brand); margin-left: auto;">✓</span>}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -445,7 +314,7 @@ const CASES = [
       <!-- Grid footer -->
       <div style="margin-top: 64px; padding: 40px 0; border-top: 1px solid var(--cf-rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--cf-dim);">
-          Mostrando <span id="portfolio-count">8</span> de 8 casos · archivo completo bajo NDA
+          Mostrando <span id="portfolio-count">3</span> de 3 casos
         </div>
         <a
           href="mailto:hola@camandre.factory"
