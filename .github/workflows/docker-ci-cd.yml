@@ -54,5 +54,21 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # Deploy automático via Watchtower corriendo en el servidor.
-  # Watchtower detecta el nuevo :latest en Docker Hub y reinicia camandre_landing.
+  deploy:
+    name: 🚀 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: needs.build-and-push.outputs.should_deploy == 'true'
+
+    steps:
+      - name: 🚀 Deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            export DOCKER_HOST=unix:///var/run/docker.sock
+            cd /opt/camandrefactory
+            docker compose pull
+            docker compose up -d
