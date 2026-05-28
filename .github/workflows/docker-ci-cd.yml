@@ -82,7 +82,12 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          envs: RESEND_API_KEY,RESEND_AUDIENCE_ID
           script: |
             cd /opt/camandrefactory/landing-page
+            printf "RESEND_API_KEY=%s\nRESEND_AUDIENCE_ID=%s\n" "$RESEND_API_KEY" "$RESEND_AUDIENCE_ID" > .env
             docker compose pull
             docker compose up -d
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
