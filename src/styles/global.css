@@ -3,6 +3,8 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
+html { overflow-x: hidden; }
+
 /* Fontsource self-hosted */
 @import "@fontsource/geist-sans/400.css";
 @import "@fontsource/geist-sans/500.css";

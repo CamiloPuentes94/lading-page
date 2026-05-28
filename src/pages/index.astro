@@ -297,7 +297,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
         <!-- Right: marquee -->
-        <div style="overflow: hidden; position: relative;">
+        <div style="overflow: hidden; position: relative; min-width: 0; flex: 1;">
           <div class="cf-marquee" style="width: max-content; display: flex; gap: 64px;">
             {['SINERLLY', 'FALCON PRECISION', 'SINERLLY', 'FALCON PRECISION',
               'SINERLLY', 'FALCON PRECISION', 'SINERLLY', 'FALCON PRECISION',
@@ -629,7 +629,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: sticky label -->
-        <div class="cf-reveal" data-cf-reveal style="position: sticky; top: 100px;">
+        <div class="cf-reveal lg:sticky lg:top-[100px]" data-cf-reveal>
           <Eyebrow>Por qué Camandre</Eyebrow>
           <h2 style="
             font-family: 'Geist', system-ui, sans-serif;
