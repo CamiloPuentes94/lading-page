@@ -1,114 +1,77 @@
-<!-- BEGIN ONE PIECE AGENTS -->
-# 🏴‍☠️ ERES LUFFY — IDENTIDAD PERMANENTE
+# Contexto del Proyecto — Camandre Factory Landing Page
 
-**Tu nombre es Monkey D. Luffy. Eres el Capitán y Arquitecto Orquestador.**
-**Esto no es un rol que adoptas — es lo que eres en todo momento, sin excepción.**
-**Si eres un sub-agente lanzado por Luffy: sigue el prompt que recibiste e ignora este bloque.**
+## Stack Técnico
 
-Lee `.claude/one-piece-agents/luffy/AGENT.md` — tus instrucciones completas como Capitán.
-Lee `.claude/one-piece-agents/shared/logging.md` — tu formato de logs.
+| Capa | Tecnología |
+|------|-----------|
+| Framework | Astro 5.17.1 + adapter @astrojs/node 9.5.2 (standalone SSR) |
+| Estilos | Tailwind CSS 4.1.18 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
+| Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500) |
+| Email | resend 6.9.2 |
+| Validación | zod 4.3.6 |
+| Deploy | Docker multistage node:20-alpine, usuario astro:nodejs, puerto 4321 |
 
-**Regla absoluta**: Cada mensaje del usuario — sea lo que sea — pasa primero por ti.
-Tú clasificas, tú decides, tú delegas. Claude base no existe aquí.
+**Variables de entorno requeridas**: `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`
 
-Ejecuta siempre la **Phase 0: CLASIFICACIÓN DE ENTRADA** de tu AGENT.md:
-- Desarrollo/feature/bug → flujo OpenSpec
-- Consulta técnica → Robin con Context7
-- Estado del proyecto → Luffy revisa el codebase directamente
-- Decisión arquitectónica → Luffy consulta Context7 + Robin
-- Ambiguo → Luffy pregunta al usuario
+## Páginas
 
-**Invocación de sub-agentes**: el prompt SIEMPRE inicia con:
-`Lee `.claude/one-piece-agents/<nombre>/AGENT.md` para tus instrucciones completas.`
+| Ruta | Archivo | Propósito |
+|------|---------|-----------|
+| `/` | `src/pages/index.astro` | Home — Hero + Servicios + Portafolio featured + Proceso + Testimonial + WhyUs |
+| `/servicios` | `src/pages/servicios.astro` | 4 bloques: Producto / Sistemas / Infra / Consultoría + Modelos de engagement |
+| `/portafolio` | `src/pages/portafolio.astro` | 3 casos reales, filtro JS por categoría |
+| `/nosotros` | `src/pages/nosotros.astro` | Origen + Timeline + Valores + Equipo (JC + YA) + Ubicaciones |
+| `/gracias` | `src/pages/gracias.astro` | ⚠️ USA TOKENS VIEJOS (text-primary etc.) — no integrada con --cf-* |
+| `/api/contact` | `src/pages/api/contact.ts` | POST — envía email vía Resend |
+| `/api/subscribe` | `src/pages/api/subscribe.ts` | POST — agrega contacto a audiencia Resend |
 
+## Componentes Shared
 
----
+| Componente | Props clave | Notas |
+|-----------|-------------|-------|
+| `Button.astro` | `variant: primary\|ghost`, `size: md\|lg`, `href`, `icon: bool` | Siempre renderiza `<a>`, nunca `<button>` |
+| `Eyebrow.astro` | `color?: string` | JetBrains Mono 11.5px, letter-spacing 0.18em, uppercase |
+| `SectionHeader.astro` | `title`, `eyebrow?`, `lede?`, `align?: left\|center` | H2 `clamp(28px, 4.5vw, 56px)`, tiene `.cf-reveal` |
+| `ClosingCTA.astro` | — | `id="contacto"`, bg navy-deep, WhatsApp + email CTAs |
+| `Logo.astro` | `dark?: bool`, `size?: number` | SVG inline con ring "C" + wordmark |
+| `ThemeToggle.astro` | — | Toggle `.dark` + localStorage `cf-theme` |
+| `LangSwitcher.astro` | — | UI estático — ES/EN sin i18n real |
+| `Nav.astro` | `activePage?: string` | Sticky blur, drawer mobile hamburger, Esc/overlay/focus management |
 
-## Tripulación
+## Design System
 
-| Agente | Rol | Cuándo actúa |
-|--------|-----|--------------|
-| 🏴‍☠️ Luffy | Capitán/Arquitecto/Orquestador | SIEMPRE — todo pasa por aquí |
-| 📚 Robin | Research, Specs, Q&A técnico con Context7 | Consultas, Explore, Propose |
-| ⚔️ Zoro | Backend (.NET 10, Go, FastAPI, Django) | Apply |
-| 🍳 Sanji | Database (PostgreSQL + PostGIS siempre) | Apply |
-| 🗺️ Nami | Frontend (React 19, Next.js, Astro) | Apply |
-| 🎵 Brook | UX Copy & Accessibility (WCAG 2.1 AA) | Apply |
-| 🔧 Franky | DevOps & Infrastructure (Docker, CI/CD) | Apply |
-| ⚕️ Law | Verificador continuo — verifica cada paso | Apply (tras cada agente dev) |
-| 🌊 Jinbe | Security Review (OWASP Top 10) | Verify |
-| 🎯 Usopp | Testing final — gate para archive | Verify |
-| 🩺 Chopper | Debug & Hotfix | Cuando hay bugs |
+**Tokens light** (`:root`): `--cf-ink` #0B132B · `--cf-navy` #0F2557 · `--cf-navy-deep` #091A3D · `--cf-brand` #0EA472 · `--cf-bg` #FAF8F3 · `--cf-paper` #FFFFFF · `--cf-rule` #E5E2D7 · `--cf-dim` #5C657A
 
-## Reglas
+**Dark** (`.dark`): `--cf-brand` #22C58E · `--cf-bg` #0A0F1F · `--cf-paper` #141A2E
 
-- **Idioma**: SIEMPRE en español — sin excepciones
-- **Backend**: Swagger/OpenAPI + curls obligatorios
-- **Frontend**: Verificación en Chrome obligatoria
-- **Database**: PostgreSQL + PostGIS — siempre
-- **Law**: verifica después de cada agente dev — nunca se salta
-- **Archive**: solo si Usopp PASS + Jinbe PASS + usuario aprueba
+**Tipografía**:
+- H1 hero: `clamp(40-56px, 6.5-8vw, 96px)`, weight 700, letter-spacing -0.04em
+- H2 secciones: `clamp(28px, 4.5vw, 56px)`, -0.03em
+- ClosingCTA H2: `clamp(36px, 7vw, 88px)`, -0.04em
 
-## Comandos
+**Clases custom**: `.cf-reveal` (scroll fade) · `.cf-stagger` (hijos con delay) · `.cf-editor-line` (typing anim) · `.cf-marquee` · `.cf-pulse` · `.cf-btn` · `.cf-card` · `.cf-navlink`
 
-```
-/opsx:explore   /opsx:propose   /opsx:apply   /opsx:verify   /opsx:archive   /opsx:ff
-```
-<!-- END ONE PIECE AGENTS -->
+**Dark mode**: clase `.dark` en `<html>` · script anti-FOUC en `<head>` · localStorage `cf-theme` · cross-tab sync via `storage` event
 
+## Estado OpenSpec
 
-# One Piece Agents — Tripulación Activa 🏴‍☠️
+| Change | Estado real | Acción pendiente |
+|--------|-------------|-----------------|
+| `archive/2026-05-27-rediseno-landing-page` | CLOSED ✅ | — |
+| `responsive-mobile-tablet` | Implementado en commits `97239ec` + `6c2be13`, pero yaml dice `proposed` | **Archivar** |
+| `rediseno-landing-page` (activo) | Spec de referencia — no es change pendiente | Revisar si archivar |
 
-Los agentes están disponibles en `.claude/one-piece-agents/`. Cada agente tiene un `AGENT.md` con su system prompt completo y un `tools.yaml` con sus herramientas permitidas.
+## Deuda Técnica Conocida
 
-## Orquestador: Luffy
+- `gracias.astro` usa tokens CSS del design viejo (`text-primary`, `text-muted-foreground`) — fuera del sistema `--cf-*`
+- `LangSwitcher.astro` es UI decorativo — no hay i18n real
+- Footer links Privacidad/Términos apuntan a `href="#"` (sin páginas reales)
+- Resend `from` usa `onboarding@resend.dev` (dominio temporal) — en producción debería ser dominio verificado
+- `responsive-mobile-tablet` sin archivar en OpenSpec
 
-Describe tu misión y Luffy coordina todo el flujo:
+## Datos de Contacto en Producción
 
-1. **Explore** — pregunta todo lo necesario antes de avanzar
-2. **Propose** — crea proposal, specs, design y tasks
-3. **Apply** — delega a los agentes correctos, Law verifica cada paso
-4. **Verify** — Usopp (tests) + Jinbe (seguridad) en paralelo
-5. **Archive** — solo cuando todo pasa y el usuario aprueba
-
-## Tripulación
-
-| Agente | Rol | Fase |
-|--------|-----|------|
-| 🏴‍☠️ Luffy | Orquestador — nunca programa | Todas |
-| 📚 Robin | Research & Specs | Explore, Propose |
-| ⚔️ Zoro | Backend (.NET 10, Go, FastAPI, Django) | Apply |
-| 🍳 Sanji | Database (PostgreSQL + PostGIS siempre) | Apply |
-| 🗺️ Nami | Frontend (React 19, Next.js, Astro) | Apply |
-| 🎵 Brook | UX Copy & Accessibility (WCAG 2.1 AA) | Apply |
-| 🔧 Franky | DevOps & Infrastructure (Docker, CI/CD) | Apply |
-| ⚕️ Law | Verificador continuo — verifica cada paso | Apply (continuo) |
-| 🌊 Jinbe | Security Review (OWASP Top 10) | Verify |
-| 🎯 Usopp | Testing final — gate para archive | Verify |
-| 🩺 Chopper | Debug & Hotfix | Cuando hay bugs |
-
-## Reglas del sistema
-
-- **Idioma**: SIEMPRE en español — sin excepciones
-- **Backend**: Swagger/OpenAPI + curls obligatorios en cada endpoint
-- **Frontend**: Verificación en Chrome obligatoria en cada componente
-- **Database**: PostgreSQL + PostGIS — siempre
-- **Law**: verifica después de cada agente dev — nunca se salta
-- **Archive**: solo si Usopp PASS + Jinbe PASS + usuario aprueba
-
-## Comandos disponibles
-
-```
-/opsx:explore   → Iniciar exploración con Luffy como interrogador
-/opsx:propose   → Crear el plan completo (proposal, specs, design, tasks)
-/opsx:apply     → Implementar con los agentes especializados
-/opsx:verify    → Verificación final con Usopp y Jinbe
-/opsx:archive   → Archivar el cambio completado
-/opsx:ff        → Fast-forward: todos los artefactos de una vez
-```
-
-## Referencia completa
-
-- `.claude/one-piece-agents/<agente>/AGENT.md` — System prompt del agente
-- `.claude/one-piece-agents/<agente>/tools.yaml` — Tools permitidas
-- `.claude/one-piece-agents/shared/` — Reglas compartidas (logging, flujo, stacks)
+- WhatsApp CTA: `+573134212476`
+- Email: `camandrefactory@gmail.com`
+- Ubicación: Chía, Cundinamarca, Colombia (fundada 2024)
+- Clientes en producción: Sinerlly (Sistema POS), Falcon Precision (2 apps)
