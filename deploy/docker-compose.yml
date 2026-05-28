@@ -15,3 +15,4 @@ services:
 networks:
   red_infraestructura:
     external: true
+    name: red_infraestructura

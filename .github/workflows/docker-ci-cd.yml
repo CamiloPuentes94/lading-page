@@ -90,6 +90,7 @@ jobs:
             networks:
               red_infraestructura:
                 external: true
+                name: red_infraestructura
             EOF
             cd "$DEPLOY_DIR"
             docker compose pull
