@@ -93,6 +93,10 @@ jobs:
                 name: red_infraestructura
             EOF
             cd "$DEPLOY_DIR"
+            echo "=== whoami ===" && whoami
+            echo "=== docker context ===" && docker context show
+            echo "=== docker networks ===" && docker network ls
+            echo "=== compose file ===" && cat docker-compose.yml
             docker compose pull
             docker compose up -d
         env:
