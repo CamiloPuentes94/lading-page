@@ -80,7 +80,7 @@ jobs:
                 restart: unless-stopped
                 env_file: .env
                 networks:
-                  - red_infraestructura
+                  - traefik-public
                 labels:
                   - "traefik.enable=true"
                   - "traefik.http.routers.landing.rule=Host(`camandrefactory.com`) || Host(`www.camandrefactory.com`)"
@@ -88,9 +88,9 @@ jobs:
                   - "traefik.http.routers.landing.tls.certresolver=letsencrypt"
                   - "traefik.http.services.landing.loadbalancer.server.port=4321"
             networks:
-              red_infraestructura:
+              traefik-public:
                 external: true
-                name: red_infraestructura
+                name: traefik-public
             EOF
             cd "$DEPLOY_DIR"
             echo "=== whoami ===" && whoami
