@@ -70,8 +70,8 @@ jobs:
           port: 22
           envs: RESEND_API_KEY,RESEND_AUDIENCE_ID
           script: |
-            mkdir -p /opt/camandrefactory/landing-page
-            cat > /opt/camandrefactory/landing-page/docker-compose.yml << 'COMPOSE'
+            mkdir -p $HOME/apps/landing-page
+            cat > $HOME/apps/landing-page/docker-compose.yml << 'COMPOSE'
             services:
               landing:
                 image: jcpsandoval/camandre-landing:latest
@@ -90,8 +90,8 @@ jobs:
               red_infraestructura:
                 external: true
             COMPOSE
-            printf "RESEND_API_KEY=%s\nRESEND_AUDIENCE_ID=%s\n" "$RESEND_API_KEY" "$RESEND_AUDIENCE_ID" > /opt/camandrefactory/landing-page/.env
-            cd /opt/camandrefactory/landing-page
+            printf "RESEND_API_KEY=%s\nRESEND_AUDIENCE_ID=%s\n" "$RESEND_API_KEY" "$RESEND_AUDIENCE_ID" > $HOME/apps/landing-page/.env
+            cd $HOME/apps/landing-page
             docker compose pull
             docker compose up -d
         env:
