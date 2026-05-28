@@ -68,7 +68,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            export DOCKER_HOST=unix:///var/run/docker.sock
-            cd /opt/camandrefactory
-            docker compose pull
-            docker compose up -d
+            whoami
+            hostname
+            ls /opt/
