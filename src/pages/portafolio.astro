@@ -301,8 +301,13 @@ const CASES = [
                     </div>
                   </div>
                 ))}
-                <a href="#" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--cf-ink); white-space: nowrap; text-decoration: none;">
-                  Caso →
+                <a
+                  href={c.id === 'sinerlly' ? 'https://pos.camandrefactory.com' : '#'}
+                  target={c.id === 'sinerlly' ? '_blank' : undefined}
+                  rel={c.id === 'sinerlly' ? 'noopener noreferrer' : undefined}
+                  style="display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--cf-ink); white-space: nowrap; text-decoration: none;"
+                >
+                  {c.id === 'sinerlly' ? 'Ver sistema →' : 'Caso →'}
                 </a>
               </div>
             </div>
