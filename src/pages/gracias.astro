@@ -2,25 +2,94 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="¡Gracias por registrarte! | Camandre Factory">
-    <main class="grow flex flex-col items-center justify-center relative z-10 px-4 py-12 text-center">
-        <div class="mb-8 animate-fade-in-down">
-            <span class="material-icons text-6xl text-secondary">check_circle</span>
-        </div>
-        
-        <h1 class="text-3xl md:text-5xl font-bold text-primary dark:text-foreground mb-4 font-display">
-            ¡Ya estás dentro!
-        </h1>
-        
-        <p class="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-            Gracias por tu interés. Te avisaremos en cuanto nuestra plataforma esté lista para despegar.
-        </p>
+<Layout title="¡Gracias! — Camandre Factory" description="Tu mensaje fue recibido. Te contactamos pronto.">
+  <section style="
+    min-height: calc(100vh - 72px - 300px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 32px;
+    background: var(--cf-bg);
+    text-align: center;
+  ">
+    <div style="max-width: 520px;">
+      <!-- Checkmark icon -->
+      <div style="
+        width: 72px; height: 72px;
+        border-radius: 50%;
+        background: rgba(14,164,114,0.12);
+        border: 2px solid rgba(14,164,114,0.3);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 32px;
+        font-size: 32px;
+      ">✓</div>
 
-        <a 
-            href="/" 
-            class="text-secondary hover:text-secondary/80 underline underline-offset-4 transition-colors font-medium"
+      <h1 style="
+        font-family: 'Geist', system-ui, sans-serif;
+        font-size: clamp(32px, 5vw, 52px);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        color: var(--cf-ink);
+        margin: 0 0 16px;
+        line-height: 1.1;
+      ">
+        ¡Ya estás dentro!
+      </h1>
+
+      <p style="
+        font-size: 17px;
+        color: var(--cf-dim);
+        line-height: 1.65;
+        margin: 0 0 40px;
+      ">
+        Recibimos tu mensaje. Te contactamos en las próximas 24 horas para coordinar una conversación.
+      </p>
+
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a
+          href="/"
+          class="cf-btn"
+          style="
+            padding: 12px 24px;
+            background: var(--cf-navy);
+            color: white;
+            border-radius: 8px;
+            font-family: 'Geist', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 4px 14px rgba(15,37,87,0.2);
+          "
         >
-            Volver al inicio
+          Volver al inicio
         </a>
-    </main>
+        <a
+          href="/portafolio"
+          class="cf-btn"
+          style="
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--cf-ink);
+            border: 1.5px solid var(--cf-rule);
+            border-radius: 8px;
+            font-family: 'Geist', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+          "
+        >
+          Ver portafolio →
+        </a>
+      </div>
+
+      <p style="
+        margin-top: 40px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: var(--cf-dim);
+      ">
+        O escribinos directo a <a href="mailto:hola@camandre.factory" style="color: var(--cf-brand);">hola@camandre.factory</a>
+      </p>
+    </div>
+  </section>
 </Layout>

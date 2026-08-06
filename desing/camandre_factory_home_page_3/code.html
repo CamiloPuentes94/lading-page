@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Camandre Factory - Portafolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0F2557",
+                        secondary: "#00A859",
+                        "primary-dark": "#0A1A3F",
+                        "secondary-dark": "#008F4C",
+                        surface: "#FFFFFF",
+                        background: "#F8FAFC",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Montserrat", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))',
+                        'glass-dark': 'linear-gradient(135deg, rgba(15, 37, 87, 0.6), rgba(15, 37, 87, 0.3))',
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+            }
+            .glass-nav {
+                @apply bg-white/80 dark:bg-[#0F2557]/80 backdrop-blur-md border-b border-white/20 dark:border-white/10;
+            }
+            .glass-card {
+                @apply bg-white/70 dark:bg-[#0F2557]/40 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-lg hover:shadow-xl transition-all duration-300;
+            }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary dark:from-white dark:to-secondary;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-secondary selection:text-white">
+<nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-3">
+<div class="relative w-10 h-10 overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-[2px]">
+<div class="w-full h-full bg-white dark:bg-slate-900 rounded-[10px] flex items-center justify-center">
+<span class="font-display font-bold text-xl text-primary dark:text-white">C</span>
+</div>
+</div>
+<div class="flex flex-col leading-none">
+<span class="font-display font-bold text-lg tracking-wide text-primary dark:text-white">CAMANDRE</span>
+<span class="font-sans text-xs tracking-[0.2em] text-secondary font-medium uppercase">Factory</span>
+</div>
+</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors relative group" href="#">
+                    Servicios
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors relative group" href="#">
+                    Nosotros
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-sm font-medium text-primary dark:text-white transition-colors relative group" href="#">
+                    Portafolio
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary transition-all"></span>
+</a>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-full p-1">
+<button class="px-3 py-1 rounded-full bg-white dark:bg-slate-700 shadow-sm text-xs font-bold text-primary dark:text-white transition-all">ES</button>
+<button class="px-3 py-1 rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors">EN</button>
+</div>
+<a class="group relative px-6 py-2.5 rounded-full overflow-hidden bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 transform hover:-translate-y-0.5" href="#">
+<div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+<span class="relative text-sm font-semibold">Cotizar</span>
+</a>
+</div>
+<div class="md:hidden flex items-center gap-4">
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-full p-1">
+<button class="px-2 py-1 rounded-full bg-white dark:bg-slate-700 shadow-sm text-[10px] font-bold text-primary dark:text-white transition-all">ES</button>
+<button class="px-2 py-1 rounded-full text-[10px] font-medium text-slate-500 dark:text-slate-400">EN</button>
+</div>
+<button class="text-slate-800 dark:text-white hover:text-secondary focus:outline-none p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-background dark:bg-slate-900">
+<div class="absolute inset-0 w-full h-full overflow-hidden -z-10">
+<div class="absolute -top-[10%] left-[20%] w-[50%] h-[50%] bg-gradient-radial from-primary/10 to-transparent blur-3xl rounded-full mix-blend-multiply dark:mix-blend-screen opacity-60"></div>
+<div class="absolute top-[10%] right-[10%] w-[40%] h-[40%] bg-gradient-radial from-secondary/10 to-transparent blur-3xl rounded-full mix-blend-multiply dark:mix-blend-screen opacity-60"></div>
+</div>
+<div class="max-w-7xl mx-auto px-6 lg:px-8 relative text-center">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm text-secondary text-xs font-bold tracking-wide uppercase mb-6 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mr-2.5"></span>
+            Experiencia Comprobada
+        </div>
+<h1 class="font-display text-4xl lg:text-6xl font-extrabold tracking-tight text-primary dark:text-white mb-6 leading-[1.1]">
+            Nuestro <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-teal-400">Portafolio</span>
+</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+            Explora cómo hemos transformado ideas en productos digitales de alto impacto. Desde plataformas de comercio electrónico hasta sistemas de gestión empresarial complejos.
+        </p>
+<div class="flex flex-wrap justify-center gap-2 mb-12">
+<button class="px-6 py-2 rounded-full bg-primary text-white shadow-lg shadow-primary/20 text-sm font-semibold transition-all hover:-translate-y-0.5">Todos</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-white transition-all text-sm font-medium hover:-translate-y-0.5">Web</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-white transition-all text-sm font-medium hover:-translate-y-0.5">Sistemas</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-white transition-all text-sm font-medium hover:-translate-y-0.5">Consultoría</button>
+</div>
+</div>
+</section>
+<section class="pb-32 bg-background dark:bg-slate-900 relative">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+<div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+<img alt="E-commerce Pro Mockup" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUAFd7hT3HtRYqpRxm1AOrQRa_hdc5qw8XB2geWvmRocrKWvaaR_DlP53NqwCiL4LZbIv8_JZAuSl4QzzWMeaL2aSdy3tvt0iZnjragFs7VV1Bq2OZ6vmWEKwHT5cbaWBlA8p8ozZD_6NypJdEQbT8Y47l3r46dRf0sf0x-O0CN34G0qvRhFKmPVEG0_mOKTFFJzqK4CXoLfdRp4KOH-zZHlyQ8HJlG853EPdEttm-4jLywxpsCfcxkRkmgzaX3QwiJRkntXsXg0k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+<a class="inline-flex items-center text-white font-medium text-sm hover:underline" href="#">
+                            Ver Caso de Estudio <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-primary dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Web</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">E-commerce Pro</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                        Plataforma de comercio electrónico de alto rendimiento con gestión de inventario en tiempo real y pasarela de pagos personalizada.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">React</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Next.js</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Stripe</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+<div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+<img alt="Dashboard Corporativo" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu-WIM-AIQ0zge_WFSjpwYdHgDIv8V2Q8YUiZYUM8kiTQR_XYexneIUtbHUHagk1B-1vxCVHCRHRT8atwiDdIVxhyfS6nFso7ikOAAoBgBCiscu7-o3Fh17zrHBXDZSsvNAUbNA_Abfd-7yK7YIAWKhQXzoiCcIhCPAjeJczJYN0kWUATA6962pRaKRDFrUSlzax8W3-siHBuvkfr-FrNsKKu6Sekgbtq1bQo4zoQOPZAeuEKTsfy9ycTk59U6pT-6GfMfPiBozeg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+<a class="inline-flex items-center text-white font-medium text-sm hover:underline" href="#">
+                            Ver Caso de Estudio <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-primary dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Sistemas</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">Dashboard Analítico</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                        Sistema de visualización de datos empresariales que centraliza métricas de marketing, ventas y operaciones en una sola interfaz.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Vue.js</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">D3.js</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Firebase</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+<div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+<img alt="App FinTech" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADdGBkwGOSkBcvB-hUHGhcCFqofESZ5lSeZssBgtCnyyqDqCKeROoHWo9bxOyphbB1gDRGgP-89BWP0iyxku0KpH0KzTl-eFdUDa697F_DXufgRpwXxWzPJcTP9FSuquJSQTOi8tC-2sWkIzr-LAHgzoDUZk03g5_e6nqzvN3YgE3hqMrhixDRcuYgpO2WQL1kx1pV8KrYlxvGXfnnO_vBGOUAdDT6L_2_dFINCC4EslrjZOBbUdSdDoOKhGxsKwVVJQQUJxWLwH4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+<a class="inline-flex items-center text-white font-medium text-sm hover:underline" href="#">
+                            Ver Caso de Estudio <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-primary dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Web</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">Nova FinTech</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                        Aplicación web progresiva (PWA) para gestión de finanzas personales con integración bancaria segura y reportes automatizados.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Angular</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Node.js</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">AWS</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+<div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+<img alt="Consultoría TI" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUWU2qogv957PrDTCmMT9iYTsL1XXK7MLbDotRmJyPg2tCytVB60o8ZQOh3P3ZiNKgAVr2jys2IYTVHIkYMVH80BiNhTaYRt61_41WHlmZm-Zyi2e1AN9-Va7XhIebc_0ozI3n0P5wTYRBKgwyFetKgG9moRI7TlYH3NFiEEUzm8sMiB6jFRZl7K93tJKO38dz6WvQ4nWlIYdrFo1Ad5JztkDelqKiqwo5P0PudH6Gtfb8fnS6UTsqpU7vl4RXzUTaFff-Mp78rkw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+<a class="inline-flex items-center text-white font-medium text-sm hover:underline" href="#">
+                            Ver Caso de Estudio <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-primary dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Consultoría</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">Migración Cloud Enterprise</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                        Estrategia y ejecución de migración de infraestructura legacy a arquitectura serverless en la nube, reduciendo costos operativos un 40%.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Azure</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Docker</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Kubernetes</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+<div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+<img alt="CRM Inmobiliario" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATMKZLQqONwNl6jkuoaJuh9Lft0gm1sHejOnxRw8FWF3MStQw-SwaaH1CgfB_vr51_FGFPfZC_Qb2AgjkaYl26cTmLZp2hY41IM7QigFfLVV8uVfL0dNqgrfqPNwluLjE94OVJSa5O8KNl6FsGyn6cWbjqb1HnmeAOBCtQcGTF9nwjJLSsnolyYNBfsGwBZx4xEqIw69vZTgIrW6keyl4ljk8yClMUrMDxNNzhKnMdF1vkswM0ZVStoojzV0QCN7hFx4dNh597yjM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+<a class="inline-flex items-center text-white font-medium text-sm hover:underline" href="#">
+                            Ver Caso de Estudio <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-primary dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Sistemas</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">CRM Inmobiliario</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                        Sistema CRM personalizado para agencia inmobiliaria con automatización de seguimiento de leads, integración de WhatsApp y firma digital.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Laravel</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Vue.js</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">MySQL</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
+<div class="relative overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800">
+<img alt="Plataforma Educativa" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA1OgJptrfw8FeKhena1_3GliP9gOdU48drdsaJPIaNZV5WTU6jRjYcmoRrLpdjRJ4SOPP4hxBjAPbL70xiVv9AkPwqwIWR_b2gTeL29SzCUcpbkpI7EINVXjd7zI0l993TrgjkWy2_56-Txl1f1upuWtZxhudGJ3QtXfjK4-8kE9ilgoHgaybrXHvkIoYaHieo2GKUuqf5IMPP6eanDbqYrTl-MddkKomgSVxBmpX7T9llXvkdg0UL4U5ICXHwKM-DKfqJWdJ9_0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+<a class="inline-flex items-center text-white font-medium text-sm hover:underline" href="#">
+                            Ver Caso de Estudio <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur text-primary dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Web</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-display text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-secondary transition-colors">EduTech Platform</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-grow leading-relaxed">
+                        LMS (Learning Management System) interactivo con clases en vivo, gamificación y análisis de progreso del estudiante mediante IA.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">React Native</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">Python</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700/50">TensorFlow</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 relative overflow-hidden bg-primary">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/40 to-transparent"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary blur-[100px] opacity-50"></div>
+<div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+<h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">¿Listo para construir el tuyo?</h2>
+<p class="text-xl text-blue-100 mb-12 font-light max-w-2xl mx-auto">
+            Hablemos sobre tu visión. Ya sea una web corporativa o un sistema complejo, tenemos la experiencia para hacerlo realidad.
+        </p>
+<div class="flex flex-col sm:flex-row gap-5 justify-center">
+<a class="px-8 py-4 bg-secondary hover:bg-white hover:text-primary text-white rounded-full font-bold text-lg transition-all duration-300 shadow-xl shadow-secondary/20 hover:shadow-white/20 transform hover:-translate-y-1" href="#">
+                Comenzar Ahora
+            </a>
+<a class="px-8 py-4 bg-transparent border border-white/30 hover:bg-white/10 text-white rounded-full font-bold text-lg transition-all backdrop-blur-sm" href="#">
+                Contactar Ventas
+            </a>
+</div>
+</div>
+</section>
+<footer class="bg-slate-900 text-slate-300 pt-20 pb-10 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-2 lg:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary p-[1px]">
+<div class="w-full h-full bg-slate-900 rounded-[7px] flex items-center justify-center">
+<span class="font-display font-bold text-sm text-white">C</span>
+</div>
+</div>
+<span class="font-display font-bold text-xl tracking-wide text-white">CAMANDRE</span>
+</div>
+<p class="text-slate-400 mb-8 text-sm leading-relaxed">
+                    Empoderando empresas a través de soluciones de software innovadoras, diseño estratégico y consultoría TI experta.
+                </p>
+<div class="flex space-x-4">
+<a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300" href="#"><span class="material-symbols-outlined text-lg">public</span></a>
+<a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300" href="#"><span class="material-symbols-outlined text-lg">alternate_email</span></a>
+<a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300" href="#"><span class="material-symbols-outlined text-lg">work</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-white mb-6">Servicios</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li><a class="hover:text-secondary transition-colors block" href="#">Desarrollo Web</a></li>
+<li><a class="hover:text-secondary transition-colors block" href="#">Apps Móviles</a></li>
+<li><a class="hover:text-secondary transition-colors block" href="#">Soluciones Cloud</a></li>
+<li><a class="hover:text-secondary transition-colors block" href="#">Consultoría TI</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-white mb-6">Compañía</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li><a class="hover:text-secondary transition-colors block" href="#">Nosotros</a></li>
+<li><a class="hover:text-secondary transition-colors block" href="#">Portafolio</a></li>
+<li><a class="hover:text-secondary transition-colors block" href="#">Carreras</a></li>
+<li><a class="hover:text-secondary transition-colors block" href="#">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-white mb-6">Contacto</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li class="flex items-start">
+<span class="material-symbols-outlined text-secondary mr-3 text-lg">location_on</span>
+<span>123 Tech Avenue, Suite 400<br/>Ciudad Innovación, 28001</span>
+</li>
+<li class="flex items-center">
+<span class="material-symbols-outlined text-secondary mr-3 text-lg">email</span>
+<span>hola@camandrefund.com</span>
+</li>
+<li class="flex items-center">
+<span class="material-symbols-outlined text-secondary mr-3 text-lg">phone</span>
+<span>+1 (555) 123-4567</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs">
+<p>© 2023 Camandre Factory. Todos los derechos reservados.</p>
+<div class="flex space-x-8 mt-4 md:mt-0">
+<a class="hover:text-white transition-colors" href="#">Política de Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos de Servicio</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        if (event.matches) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    });
+</script>
+
+</body></html>

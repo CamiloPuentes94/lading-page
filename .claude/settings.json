@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(dotnet:*)",
+      "Bash(go:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pytest:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(curl:*)",
+      "Bash(docker:*)",
+      "Bash(psql:*)",
+      "Bash(git:*)",
+      "Bash(mkdir:*)",
+      "Bash(ln:*)",
+      "Bash(rm:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(for:*)",
+      "Read(**)"
+    ]
+  }
+}
