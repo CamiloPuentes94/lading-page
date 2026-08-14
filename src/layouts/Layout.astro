@@ -2,14 +2,55 @@
 import '../styles/global.css';
 import Nav from '../components/nav/Nav.astro';
 import Footer from '../components/footer/Footer.astro';
+import geistSans400 from '@fontsource/geist-sans/files/geist-sans-latin-400-normal.woff2?url';
 
 interface Props {
   title: string;
   description?: string;
   activePage?: string;
+  /** Page-specific social share image, relative to the site root. */
+  ogImage?: string;
+  /** Keep the page out of search results (thank-you pages, dead ends). */
+  noindex?: boolean;
 }
 
-const { title, description = "Camandre Factory - Soluciones de software a medida", activePage = "" } = Astro.props;
+const {
+  title,
+  description = "Camandre Factory - Soluciones de software a medida",
+  activePage = "",
+  ogImage = "/og-default.png",
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Camandre Factory",
+  description,
+  url: Astro.site?.href,
+  logo: new URL("/favicon.svg", Astro.site).href,
+  image: ogImageUrl.href,
+  email: "camandrefactory@gmail.com",
+  telephone: "+573134212476",
+  foundingDate: "2024",
+  priceRange: "$$",
+  areaServed: "CO",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Chía",
+    addressRegion: "Cundinamarca",
+    addressCountry: "CO",
+  },
+  knowsAbout: [
+    "Desarrollo de software a medida",
+    "Sistemas POS",
+    "Infraestructura y DevOps",
+    "Consultoría técnica",
+  ],
+};
 ---
 
 <!doctype html>
@@ -19,6 +60,15 @@ const { title, description = "Camandre Factory - Soluciones de software a medida
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={geistSans400}
+      crossorigin="anonymous"
+    />
 
     <!-- Anti-FOUC: runs synchronously before first paint -->
     <script is:inline>
@@ -31,6 +81,32 @@ const { title, description = "Camandre Factory - Soluciones de software a medida
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="canonical" href={canonical.href} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Camandre Factory" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Camandre Factory — software a medida" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(organization)}
+    />
   </head>
   <body class="bg-[var(--cf-bg)] text-[var(--cf-text)] min-h-screen flex flex-col overflow-x-hidden">
     <Nav activePage={activePage} />

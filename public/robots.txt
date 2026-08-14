@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /gracias
+
+Sitemap: https://camandrefactory.com/sitemap.xml

@@ -6,7 +6,11 @@ import SectionHeader from '../components/shared/SectionHeader.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 ---
 
-<Layout title="Camandre Factory — Software a medida para empresas que toman decisiones serias" activePage="home">
+<Layout
+  title="Camandre Factory — Software a medida para empresas que toman decisiones serias"
+  description="Fábrica de software en Chía, Colombia. Construimos producto, sistemas internos e infraestructura a medida para empresas que necesitan resultados, no promesas."
+  activePage="home"
+>
 
   <!-- ═══════════════════════════════════════════════════════════
        HERO
@@ -50,7 +54,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <!-- H1 -->
           <h1 style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(56px, 6.5vw, 96px);
             font-weight: 700;
             letter-spacing: -0.04em;
@@ -66,7 +70,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <!-- Subhead -->
           <p style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: 18.5px;
             line-height: 1.6;
             color: var(--cf-dim);
@@ -96,7 +100,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             ].map(s => (
               <div>
                 <div style="
-                  font-family: 'Geist', system-ui, sans-serif;
+                  font-family: 'Geist Sans', system-ui, sans-serif;
                   font-size: 30px; font-weight: 600;
                   color: var(--cf-ink); letter-spacing: -0.02em;
                 ">{s.k}</div>
@@ -260,7 +264,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 letter-spacing: 0.1em; text-transform: uppercase;
               ">Sistema POS</div>
               <div style="
-                font-family: 'Geist', system-ui, sans-serif;
+                font-family: 'Geist Sans', system-ui, sans-serif;
                 font-size: 20px; font-weight: 600;
                 color: var(--cf-ink); margin-top: 2px;
               ">en producción</div>
@@ -286,7 +290,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div>
           <Eyebrow>Confían en nosotros</Eyebrow>
           <p style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: 15px;
             color: var(--cf-dim);
             margin-top: 12px;
@@ -331,7 +335,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div class="cf-reveal" data-cf-reveal style="max-width: 680px;">
           <div style="margin-bottom: 22px;"><Eyebrow>Cómo trabajamos</Eyebrow></div>
           <h2 style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(32px, 5.5vw, 60px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink); margin: 0; line-height: 1;
@@ -403,7 +407,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               ">4 OFICIOS</span>
             </div>
             <h3 style="
-              font-family: 'Geist', system-ui, sans-serif;
+              font-family: 'Geist Sans', system-ui, sans-serif;
               font-size: 26px; font-weight: 600;
               letter-spacing: -0.018em;
               color: var(--cf-ink);
@@ -453,7 +457,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div class="cf-reveal" data-cf-reveal>
           <div style="margin-bottom: 22px;"><Eyebrow>Producto propio · Camandre Factory</Eyebrow></div>
           <h2 style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(32px, 5.5vw, 60px); font-weight: 600;
             letter-spacing: -0.035em;
             margin: 0; line-height: 1;
@@ -499,7 +503,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             border: 1px solid #1B2548;
           ">
             <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-              <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 13px; color: #C5CADA;">Venta en curso</span>
+              <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 13px; color: #C5CADA;">Venta en curso</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand);">● en vivo</span>
             </div>
             <!-- Header -->
@@ -521,14 +525,14 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 padding: 10px 0;
                 border-top: ${i === 0 ? 'none' : '1px solid #1B2548'};
               `}>
-                <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF;">{r.p}</span>
+                <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF;">{r.p}</span>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9BA6BE;">{r.q}</span>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cf-brand); text-align: right;">{r.price}</span>
               </div>
             ))}
             <!-- Total -->
             <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #1B2548;">
-              <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #FFFFFF;">Total</span>
+              <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #FFFFFF;">Total</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: var(--cf-brand);">$136.000</span>
             </div>
           </div>
@@ -537,7 +541,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <!-- Right: text + metrics -->
         <div>
           <p style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: 19px; line-height: 1.6;
             color: var(--cf-text); margin: 0;
           ">
@@ -613,7 +617,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               "></span>
             </div>
             <h4 style="
-              font-family: 'Geist', system-ui, sans-serif;
+              font-family: 'Geist Sans', system-ui, sans-serif;
               font-size: 22px; font-weight: 600;
               letter-spacing: -0.018em;
               color: var(--cf-ink); margin: 0;
@@ -638,7 +642,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div class="cf-reveal lg:sticky lg:top-[100px]" data-cf-reveal>
           <Eyebrow>Por qué Camandre</Eyebrow>
           <h2 style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
@@ -715,7 +719,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 )}
               </div>
               <h4 style="
-                font-family: 'Geist', system-ui, sans-serif;
+                font-family: 'Geist Sans', system-ui, sans-serif;
                 font-size: 21px; font-weight: 600;
                 letter-spacing: -0.018em;
                 color: var(--cf-ink); margin: 0 0 10px; line-height: 1.2;

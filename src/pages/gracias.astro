@@ -2,7 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="¡Gracias! — Camandre Factory" description="Tu mensaje fue recibido. Te contactamos pronto.">
+<Layout
+  title="¡Gracias! — Camandre Factory"
+  description="Tu mensaje fue recibido. Te contactamos pronto."
+  noindex
+>
   <section style="
     min-height: calc(100vh - 72px - 300px);
     display: flex;
@@ -25,7 +29,7 @@ import Layout from "../layouts/Layout.astro";
       ">✓</div>
 
       <h1 style="
-        font-family: 'Geist', system-ui, sans-serif;
+        font-family: 'Geist Sans', system-ui, sans-serif;
         font-size: clamp(32px, 5vw, 52px);
         font-weight: 600;
         letter-spacing: -0.04em;
@@ -54,7 +58,7 @@ import Layout from "../layouts/Layout.astro";
             background: var(--cf-navy);
             color: white;
             border-radius: 8px;
-            font-family: 'Geist', sans-serif;
+            font-family: 'Geist Sans', sans-serif;
             font-size: 14px;
             font-weight: 600;
             display: inline-block;
@@ -72,7 +76,7 @@ import Layout from "../layouts/Layout.astro";
             color: var(--cf-ink);
             border: 1.5px solid var(--cf-rule);
             border-radius: 8px;
-            font-family: 'Geist', sans-serif;
+            font-family: 'Geist Sans', sans-serif;
             font-size: 14px;
             font-weight: 500;
             display: inline-block;
@@ -88,7 +92,7 @@ import Layout from "../layouts/Layout.astro";
         font-size: 12px;
         color: var(--cf-dim);
       ">
-        O escribinos directo a <a href="mailto:hola@camandre.factory" style="color: var(--cf-brand);">hola@camandre.factory</a>
+        O escribinos directo a <a href="mailto:camandrefactory@gmail.com" style="color: var(--cf-brand);">camandrefactory@gmail.com</a>
       </p>
     </div>
   </section>

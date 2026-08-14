@@ -22,6 +22,9 @@ html { overflow-x: hidden; }
   --cf-navy-deep: #091A3D;
   --cf-brand: #0EA472;
   --cf-brand-sel: rgba(14, 164, 114, 0.10);
+  /* Foreground for text/icons sitting on --cf-brand. Fixed in both themes:
+     the brand surface stays light, so this must not invert under .dark. */
+  --cf-on-brand: #06231A;
   --cf-bg: #FAF8F3;
   --cf-bg2: #F2EFE7;
   --cf-paper: #FFFFFF;
@@ -66,7 +69,7 @@ html { overflow-x: hidden; }
   --color-cf-text: var(--cf-text);
   --color-cf-dim: var(--cf-dim);
   --color-cf-faded-navy: var(--cf-faded-navy);
-  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -80,7 +83,7 @@ body {
 }
 
 body {
-  font-family: 'Geist', system-ui, sans-serif;
+  font-family: 'Geist Sans', system-ui, sans-serif;
   font-display: swap;
   -webkit-font-smoothing: antialiased;
 }
@@ -157,6 +160,13 @@ body {
   opacity: 0;
   transform: translateY(18px);
   animation: cfRise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+/* The h1 is the LCP element on every page — never delay or fade it in. */
+.cf-stagger > h1 {
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 .cf-stagger > *:nth-child(1) { animation-delay: 0.05s; }

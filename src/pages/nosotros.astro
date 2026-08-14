@@ -45,7 +45,11 @@ const locations = [
 
 ---
 
-<Layout title="Nosotros — Camandre Factory" activePage="nosotros">
+<Layout
+  title="Nosotros — Camandre Factory"
+  description="Fundada en 2024 en Chía, Cundinamarca. Quiénes somos, cómo trabajamos y por qué construimos software que se pueda mantener después de que nos vamos."
+  activePage="nosotros"
+>
 
   <!-- ═══════════════════════════════════════════════════════════
        HERO
@@ -70,7 +74,7 @@ const locations = [
       <div class="cf-stagger" style="max-width: 980px;">
         <Eyebrow>Nosotros · Camandre Factory</Eyebrow>
         <h1 style="
-          font-family: 'Geist', system-ui, sans-serif;
+          font-family: 'Geist Sans', system-ui, sans-serif;
           font-size: clamp(40px, 8vw, 96px);
           font-weight: 600;
           letter-spacing: -0.04em;
@@ -101,7 +105,7 @@ const locations = [
         <div class="cf-reveal" data-cf-reveal>
           <Eyebrow>Origen</Eyebrow>
           <h2 style="
-            font-family: 'Geist', system-ui, sans-serif;
+            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px);
             font-weight: 600;
             letter-spacing: -0.035em;
@@ -123,7 +127,7 @@ const locations = [
 
         <!-- Right: prose -->
         <div class="cf-reveal" data-cf-reveal>
-          <p style="font-family: 'Geist', system-ui, sans-serif; font-size: 22px; line-height: 1.55; color: var(--cf-ink); margin: 0; font-weight: 500; letter-spacing: -0.012em;">
+          <p style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 22px; line-height: 1.55; color: var(--cf-ink); margin: 0; font-weight: 500; letter-spacing: -0.012em;">
             Camandre nació en 2024 cuando dos personas se cansaron del mismo guion: agencias que prometían
             transformación digital y entregaban sitios con tres meses de retraso.
           </p>
@@ -168,7 +172,7 @@ const locations = [
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cf-brand); letter-spacing: 0.14em;">{v.n}</span>
               <span style="width: 8px; height: 8px; background: var(--cf-brand); border-radius: 4px; display: inline-block;"></span>
             </div>
-            <h3 style="font-family: 'Geist', system-ui, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0; line-height: 1.2;">{v.t}</h3>
+            <h3 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0; line-height: 1.2;">{v.t}</h3>
             <p style="font-size: 15px; line-height: 1.65; color: var(--cf-dim); margin: 0;">{v.d}</p>
           </div>
         ))}
@@ -196,14 +200,14 @@ const locations = [
           >
             <!-- Color header with initials -->
             <div style={`background: ${m.color}; aspect-ratio: 4/3; display: flex; align-items: flex-end; padding: 24px; position: relative;`}>
-              <span style="font-family: 'Geist', system-ui, sans-serif; font-size: 96px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.04em; line-height: 0.9;">{m.initials}</span>
+              <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 96px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.04em; line-height: 0.9;">{m.initials}</span>
               <span style="position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(255,255,255,0.85); letter-spacing: 0.12em; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.4); border-radius: 999px;">
                 {m.city.toUpperCase()}
               </span>
             </div>
             <!-- Card body -->
             <div style="padding: 24px 24px 26px;">
-              <h3 style="font-family: 'Geist', system-ui, sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0;">{m.name}</h3>
+              <h3 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0;">{m.name}</h3>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand); margin-top: 4px; letter-spacing: 0.08em;">{m.role.toUpperCase()}</div>
               <p style="font-size: 13.5px; line-height: 1.6; color: var(--cf-dim); margin-top: 16px;">{m.bio}</p>
             </div>
@@ -224,7 +228,7 @@ const locations = [
         <!-- Left: heading -->
         <div class="cf-reveal" data-cf-reveal>
           <Eyebrow>Ubicaciones</Eyebrow>
-          <h2 style="font-family: 'Geist', system-ui, sans-serif; font-size: clamp(28px, 4.5vw, 56px); font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
+          <h2 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: clamp(28px, 4.5vw, 56px); font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
             Chía,<br />
             <span style="color: var(--cf-dim);">Cundinamarca.</span>
           </h2>
@@ -252,7 +256,7 @@ const locations = [
                 <span style="position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--cf-brand); padding: 3px 8px; border: 1px solid var(--cf-brand); border-radius: 999px;">HQ</span>
               )}
               <div style={`font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${c.primary ? 'var(--cf-brand)' : 'var(--cf-dim)'}; letter-spacing: 0.14em;`}>{c.country.toUpperCase()}</div>
-              <h3 style="font-family: 'Geist', system-ui, sans-serif; font-size: 32px; font-weight: 600; margin: 8px 0 16px; letter-spacing: -0.025em; line-height: 1;">{c.city}</h3>
+              <h3 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 32px; font-weight: 600; margin: 8px 0 16px; letter-spacing: -0.025em; line-height: 1;">{c.city}</h3>
               <div style={`font-size: 13.5px; color: ${c.primary ? '#C5CADA' : 'var(--cf-dim)'}; white-space: pre-line; line-height: 1.55; padding-bottom: 18px; border-bottom: 1px solid ${c.primary ? '#1B2548' : 'var(--cf-rule)'};`}>{c.addr}</div>
               <div style={`margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${c.primary ? '#C5CADA' : 'var(--cf-text)'};`}>{c.count}</div>
             </div>
