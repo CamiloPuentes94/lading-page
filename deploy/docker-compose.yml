@@ -10,6 +10,8 @@ services:
       - "traefik.http.routers.landing.rule=Host(`camandrefactory.com`) || Host(`www.camandrefactory.com`)"
       - "traefik.http.routers.landing.entrypoints=websecure"
       - "traefik.http.routers.landing.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.landing.middlewares=landing-compress"
+      - "traefik.http.middlewares.landing-compress.compress=true"
       - "traefik.http.services.landing.loadbalancer.server.port=4321"
 
 networks:
