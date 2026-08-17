@@ -1,0 +1,47 @@
+# Edge proxy for the whole host. Runs once, independently of any single
+# service, and every service joins the `edge` network to be reachable.
+#
+# Bring the network up before the first deploy:
+#   docker network create edge
+#   docker compose -f docker-compose.edge.yml up -d
+#
+# The two named volumes hold the certificates and ACME account key. Losing them
+# means re-issuing every certificate, so do not prune them.
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: edge_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp" # HTTP/3
+    volumes:
+      - ./Caddyfile.edge:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+      - caddy_logs:/var/log/caddy
+    networks:
+      - edge
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "caddy", "validate", "--config", "/etc/caddy/Caddyfile"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  edge:
+    external: true
+    name: edge
+
+volumes:
+  caddy_data:
+  caddy_config:
+  caddy_logs:

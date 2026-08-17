@@ -1,20 +1,46 @@
+# Landing service. The image already contains the built site and the Caddy that
+# serves it, so there is nothing to mount and no environment to inject: the
+# container is the artifact.
+#
+# It publishes no host port. The edge proxy reaches it by service name over the
+# shared network, which is the only thing that should be able to reach it.
 services:
   landing:
     image: jcpsandoval/camandre-landing:latest
+    container_name: camandre_landing
     restart: unless-stopped
-    env_file: .env
     networks:
-      - traefik-public
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.landing.rule=Host(`camandrefactory.com`) || Host(`www.camandrefactory.com`)"
-      - "traefik.http.routers.landing.entrypoints=websecure"
-      - "traefik.http.routers.landing.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.landing.middlewares=landing-compress"
-      - "traefik.http.middlewares.landing-compress.compress=true"
-      - "traefik.http.services.landing.loadbalancer.server.port=4321"
+      - edge
+    # Belt and braces: the site is a folder of static files, so nothing inside
+    # this container ever needs to write.
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    security_opt:
+      - no-new-privileges:true
+    # The host ran out of disk once already and every deploy since reported
+    # success while changing nothing. Caps stop one service from taking the
+    # box down with it.
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
-  traefik-public:
+  edge:
     external: true
-    name: traefik-public
+    name: edge
