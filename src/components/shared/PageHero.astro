@@ -1,0 +1,69 @@
+---
+import Eyebrow from './Eyebrow.astro';
+
+/**
+ * The opening band of a secondary page: rule underneath, a faint grid
+ * behind, and a staggered text column on top.
+ *
+ * Only the chassis lives here. The heading and lede come through the slot,
+ * because the pages do not agree on their type scale and that disagreement
+ * looks deliberate: / and /portafolio open at clamp(56px, 6.5vw, 96px),
+ * /servicios and /nosotros at clamp(40px, 8vw, 96px). Folding them together
+ * would be a typographic decision disguised as a refactor.
+ */
+interface Props {
+  eyebrow: string;
+  /**
+   * Outer container width. Every page uses 1240px except /portafolio, which
+   * has always been 1280px. Kept as a prop so extracting this component does
+   * not silently narrow that page by 40px.
+   */
+  maxWidth?: string;
+  /** Width of the staggered text column itself. */
+  contentWidth: string;
+}
+
+const { eyebrow, maxWidth = '1240px', contentWidth } = Astro.props;
+---
+
+<section
+  class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]"
+  style="border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;"
+>
+  {/*
+    Decorative grid. The tint is a fixed light-ink wash, so it is only ever
+    visible over a light background: composited on --cf-bg it reaches 1.064:1
+    in the light theme and exactly 1.000:1 in the dark one, where it vanishes.
+    Three pages spelled this literally and two reached for a --cf-ink-08 token
+    that was never declared anywhere, so both spellings resolved to the same
+    fixed value. Unified here; making it theme-aware is a design change and is
+    left for its own commit.
+  */}
+  <div
+    aria-hidden="true"
+    style="
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(11,19,43,0.031) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,19,43,0.031) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
+      pointer-events: none;
+    "
+  ></div>
+
+  <div class="px-5 md:px-10" style={`max-width: ${maxWidth}; margin: 0 auto; position: relative;`}>
+    <div class="cf-stagger" style={`max-width: ${contentWidth};`}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <slot />
+    </div>
+    {/*
+      Full-width band below the text column — /portafolio hangs its stats row
+      here. It has to sit outside .cf-stagger: a direct child of that element
+      picks up the rise animation and its nth-child delay, which is wrong for
+      a block that is not part of the opening sequence.
+    */}
+    <slot name="below" />
+  </div>
+</section>

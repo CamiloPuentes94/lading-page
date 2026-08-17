@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
+import PageHero from '../components/shared/PageHero.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
 const CASES = [
@@ -49,57 +50,43 @@ const CASES = [
   <!-- ═══════════════════════════════════════════════════════════
        PORTFOLIO HERO
   ════════════════════════════════════════════════════════════ -->
-  <section class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]" style="border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
-
-    <!-- Grid backdrop -->
-    <div
-      aria-hidden="true"
+  <PageHero
+    eyebrow="Portafolio · 3 proyectos en producción"
+    maxWidth="1280px"
+    contentWidth="900px"
+  >
+    <h1
+      data-cf-reveal
       style="
-        position: absolute; inset: 0;
-        background-image:
-          linear-gradient(rgba(11,19,43,0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(11,19,43,0.05) 1px, transparent 1px);
-        background-size: 56px 56px;
-        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
+        font-size: clamp(56px, 6.5vw, 96px);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 0.98;
+        color: var(--cf-ink);
+        margin: 24px 0 0;
+        text-wrap: balance;
       "
-    ></div>
-
-    <div class="px-5 md:px-10" style="max-width: 1280px; margin: 0 auto; position: relative;">
-      <div class="cf-stagger" style="max-width: 900px;">
-        <Eyebrow>Portafolio · 3 proyectos en producción</Eyebrow>
-        <h1
-          data-cf-reveal
-          style="
-            font-size: clamp(56px, 6.5vw, 96px);
-            font-weight: 600;
-            letter-spacing: -0.04em;
-            line-height: 0.98;
-            color: var(--cf-ink);
-            margin: 24px 0 0;
-            text-wrap: balance;
-          "
-        >
-          Sistemas en producción.<br />
-          <span style="color: var(--cf-dim);">Métricas reales.</span>
-        </h1>
-        <p
-          data-cf-reveal
-          style="
-            font-size: 19px;
-            line-height: 1.6;
-            color: var(--cf-dim);
-            margin-top: 32px;
-            max-width: 640px;
-          "
-        >
-          Tres proyectos. Todos están en producción hoy.
-          Construidos desde cero, con el cliente, sin atajos.
-        </p>
-      </div>
+    >
+      Sistemas en producción.<br />
+      <span style="color: var(--cf-dim);">Métricas reales.</span>
+    </h1>
+    <p
+      data-cf-reveal
+      style="
+        font-size: 19px;
+        line-height: 1.6;
+        color: var(--cf-dim);
+        margin-top: 32px;
+        max-width: 640px;
+      "
+    >
+      Tres proyectos. Todos están en producción hoy.
+      Construidos desde cero, con el cliente, sin atajos.
+    </p>
 
       <!-- Stats bar -->
       <div
+        slot="below"
         class="grid grid-cols-2 sm:grid-cols-4"
         data-cf-reveal
         style="
@@ -130,8 +117,7 @@ const CASES = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
+  </PageHero>
 
   <!-- ═══════════════════════════════════════════════════════════
        PORTFOLIO GRID

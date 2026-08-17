@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
 import Button from '../components/shared/Button.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
+import PageHero from '../components/shared/PageHero.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
 const timeline = [
@@ -54,44 +55,24 @@ const locations = [
   <!-- ═══════════════════════════════════════════════════════════
        HERO
   ════════════════════════════════════════════════════════════ -->
-  <section class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]" style="border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
-    <!-- Grid backdrop -->
-    <div
-      aria-hidden="true"
-      style="
-        position: absolute; inset: 0;
-        background-image:
-          linear-gradient(var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px),
-          linear-gradient(90deg, var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px);
-        background-size: 56px 56px;
-        mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        pointer-events: none;
-      "
-    ></div>
-
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto; position: relative;">
-      <div class="cf-stagger" style="max-width: 980px;">
-        <Eyebrow>Nosotros · Camandre Factory</Eyebrow>
-        <h1 style="
-          font-size: clamp(40px, 8vw, 96px);
-          font-weight: 600;
-          letter-spacing: -0.04em;
-          line-height: 0.98;
-          color: var(--cf-ink);
-          margin: 24px 0 0;
-          text-wrap: balance;
-        ">
-          Una fábrica pequeña.<br />
-          <span style="color: var(--cf-dim);">Decisiones grandes.</span>
-        </h1>
-        <p style="font-size: 19px; line-height: 1.6; color: var(--cf-dim); margin-top: 32px; max-width: 700px;">
-          Somos Juan Camilo y Yuri Andrea, dos personas en Chía, Colombia, que decidieron que el mundo no
-          necesitaba otra agencia que dijera sí a todo. Necesitaba un equipo que dijera no cuando hace falta.
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero eyebrow="Nosotros · Camandre Factory" contentWidth="980px">
+    <h1 style="
+      font-size: clamp(40px, 8vw, 96px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+      color: var(--cf-ink);
+      margin: 24px 0 0;
+      text-wrap: balance;
+    ">
+      Una fábrica pequeña.<br />
+      <span style="color: var(--cf-dim);">Decisiones grandes.</span>
+    </h1>
+    <p style="font-size: 19px; line-height: 1.6; color: var(--cf-dim); margin-top: 32px; max-width: 700px;">
+      Somos Juan Camilo y Yuri Andrea, dos personas en Chía, Colombia, que decidieron que el mundo no
+      necesitaba otra agencia que dijera sí a todo. Necesitaba un equipo que dijera no cuando hace falta.
+    </p>
+  </PageHero>
 
   <!-- ═══════════════════════════════════════════════════════════
        ORIGIN — Timeline

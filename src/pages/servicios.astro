@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
+import PageHero from '../components/shared/PageHero.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 import MetricCard from '../components/shared/MetricCard.astro';
 ---
@@ -15,54 +16,30 @@ import MetricCard from '../components/shared/MetricCard.astro';
   <!-- ═══════════════════════════════════════════════════════════
        SERVICES HERO
   ════════════════════════════════════════════════════════════ -->
-  <section class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]" style="
-    border-bottom: 1px solid var(--cf-rule);
-    position: relative;
-    overflow: hidden;
-  ">
-    <!-- Grid backdrop -->
-    <div
-      aria-hidden="true"
-      style="
-        position: absolute; inset: 0;
-        background-image:
-          linear-gradient(rgba(11,19,43,0.031) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(11,19,43,0.031) 1px, transparent 1px);
-        background-size: 56px 56px;
-        mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        pointer-events: none;
-      "
-    ></div>
-
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto; position: relative;">
-      <div class="cf-stagger" style="max-width: 880px;">
-        <Eyebrow>Oficios · 4 disciplinas</Eyebrow>
-        <h1 style="
-          font-size: clamp(40px, 8vw, 96px);
-          font-weight: 600;
-          letter-spacing: -0.04em;
-          line-height: 0.98;
-          color: var(--cf-ink);
-          margin: 24px 0 0;
-          text-wrap: balance;
-        ">
-          Diseño, ingeniería e infraestructura,<br />
-          <span style="color: var(--cf-dim);">bajo el mismo techo.</span>
-        </h1>
-        <p style="
-          font-size: 19px;
-          line-height: 1.6;
-          color: var(--cf-dim);
-          margin-top: 32px;
-          max-width: 640px;
-        ">
-          Cuatro oficios complementarios. Un solo equipo. Sin subcontratación, sin handoffs,
-          sin gerentes intermediarios. El mismo equipo que arquitecta el sistema es el que lo mantiene en producción.
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero eyebrow="Oficios · 4 disciplinas" contentWidth="880px">
+    <h1 style="
+      font-size: clamp(40px, 8vw, 96px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+      color: var(--cf-ink);
+      margin: 24px 0 0;
+      text-wrap: balance;
+    ">
+      Diseño, ingeniería e infraestructura,<br />
+      <span style="color: var(--cf-dim);">bajo el mismo techo.</span>
+    </h1>
+    <p style="
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--cf-dim);
+      margin-top: 32px;
+      max-width: 640px;
+    ">
+      Cuatro oficios complementarios. Un solo equipo. Sin subcontratación, sin handoffs,
+      sin gerentes intermediarios. El mismo equipo que arquitecta el sistema es el que lo mantiene en producción.
+    </p>
+  </PageHero>
 
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 01 — PRODUCTO (paper bg, normal order)
