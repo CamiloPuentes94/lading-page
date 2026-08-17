@@ -21,7 +21,7 @@
 | `/servicios` | `src/pages/servicios.astro` | 4 bloques: Producto / Sistemas / Infra / Consultoría + Modelos de engagement |
 | `/portafolio` | `src/pages/portafolio.astro` | 3 casos reales, filtro JS por categoría |
 | `/nosotros` | `src/pages/nosotros.astro` | Origen + Timeline + Valores + Equipo (JC + YA) + Ubicaciones |
-| `/gracias` | `src/pages/gracias.astro` | ⚠️ USA TOKENS VIEJOS (text-primary etc.) — no integrada con --cf-* |
+| `/gracias` | `src/pages/gracias.astro` | Usa `--cf-*` correctamente. Lleva `noindex`. Nada la enlaza |
 | `/api/contact` | `src/pages/api/contact.ts` | POST — envía email vía Resend |
 | `/api/subscribe` | `src/pages/api/subscribe.ts` | POST — agrega contacto a audiencia Resend |
 
@@ -37,6 +37,22 @@
 | `ThemeToggle.astro` | — | Toggle `.dark` + localStorage `cf-theme` |
 | `LangSwitcher.astro` | — | UI estático — ES/EN sin i18n real |
 | `Nav.astro` | `activePage?: string` | Sticky blur, drawer mobile hamburger, Esc/overlay/focus management |
+| `Section.astro` | `surface?: bg\|paper`, `rule?: none\|bottom\|both`, `id?`, `maxWidth?` | Banda de contenido con el ritmo estándar + container centrado |
+| `PageHero.astro` | `eyebrow`, `contentWidth`, `maxWidth?`, slot `below` | Banda de apertura de páginas secundarias. El h1 y el lede van por slot |
+| `MetricCard.astro` | `label`, `value`, `delta`, `spark: rise\|wave` | Tile del mockup de dashboard |
+
+**Componentes eliminados**: `components/Footer.astro` y `components/Navbar.astro` — no los importaba nadie. Los vigentes son `footer/Footer.astro` y `nav/Nav.astro`.
+
+## Skills del Proyecto
+
+| Skill | Cuándo se carga |
+|-------|-----------------|
+| `camandre-design-tokens` | Cualquier edición de color, tipografía o espaciado en `src/` |
+| `camandre-components` | Antes de agregar una sección, hero, card o página nueva |
+| `camandre-visual-regression` | Antes de afirmar que un cambio no alteró la página |
+| `camandre-page-seo` | Rutas nuevas, props de `Layout`, sitemap o robots |
+
+Viven en `.claude/skills/`. Las 11 skills de OpenSpec que las acompañan son de proceso; estas cuatro son del oficio.
 
 ## Design System
 
@@ -63,7 +79,7 @@
 
 ## Deuda Técnica Conocida
 
-- `gracias.astro` usa tokens CSS del design viejo (`text-primary`, `text-muted-foreground`) — fuera del sistema `--cf-*`
+- ~~`gracias.astro` usa tokens CSS del design viejo~~ — **FALSO, verificado**: `rg "text-primary|text-muted-foreground"` devuelve 0 en todo `src/`. La página usa `--cf-*` correctamente. Esta deuda nunca existió.
 - `LangSwitcher.astro` es UI decorativo — no hay i18n real
 - Footer links Privacidad/Términos apuntan a `href="#"` (sin páginas reales)
 - Resend `from` usa `onboarding@resend.dev` (dominio temporal) — en producción debería ser dominio verificado
