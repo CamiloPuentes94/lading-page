@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
+import Section from '../components/shared/Section.astro';
 import Button from '../components/shared/Button.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
+import PageHero from '../components/shared/PageHero.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
 const timeline = [
@@ -49,63 +51,41 @@ const locations = [
   title="Nosotros — Camandre Factory"
   description="Fundada en 2024 en Chía, Cundinamarca. Quiénes somos, cómo trabajamos y por qué construimos software que se pueda mantener después de que nos vamos."
   activePage="nosotros"
+  ogImage="/og-nosotros.png"
 >
 
   <!-- ═══════════════════════════════════════════════════════════
        HERO
   ════════════════════════════════════════════════════════════ -->
-  <section class="pt-16 md:pt-24 lg:pt-[110px] pb-12 md:pb-16 lg:pb-[80px]" style="border-bottom: 1px solid var(--cf-rule); position: relative; overflow: hidden;">
-    <!-- Grid backdrop -->
-    <div
-      aria-hidden="true"
-      style="
-        position: absolute; inset: 0;
-        background-image:
-          linear-gradient(var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px),
-          linear-gradient(90deg, var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px);
-        background-size: 56px 56px;
-        mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 90%);
-        pointer-events: none;
-      "
-    ></div>
-
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto; position: relative;">
-      <div class="cf-stagger" style="max-width: 980px;">
-        <Eyebrow>Nosotros · Camandre Factory</Eyebrow>
-        <h1 style="
-          font-family: 'Geist Sans', system-ui, sans-serif;
-          font-size: clamp(40px, 8vw, 96px);
-          font-weight: 600;
-          letter-spacing: -0.04em;
-          line-height: 0.98;
-          color: var(--cf-ink);
-          margin: 24px 0 0;
-          text-wrap: balance;
-        ">
-          Una fábrica pequeña.<br />
-          <span style="color: var(--cf-dim);">Decisiones grandes.</span>
-        </h1>
-        <p style="font-size: 19px; line-height: 1.6; color: var(--cf-dim); margin-top: 32px; max-width: 700px;">
-          Somos Juan Camilo y Yuri Andrea, dos personas en Chía, Colombia, que decidieron que el mundo no
-          necesitaba otra agencia que dijera sí a todo. Necesitaba un equipo que dijera no cuando hace falta.
-        </p>
-      </div>
-    </div>
-  </section>
+  <PageHero eyebrow="Nosotros · Camandre Factory" contentWidth="980px">
+    <h1 style="
+      font-size: clamp(40px, 8vw, 96px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+      color: var(--cf-ink);
+      margin: 24px 0 0;
+      text-wrap: balance;
+    ">
+      Una fábrica pequeña.<br />
+      <span style="color: var(--cf-dim);">Decisiones grandes.</span>
+    </h1>
+    <p style="font-size: 19px; line-height: 1.6; color: var(--cf-dim); margin-top: 32px; max-width: 700px;">
+      Somos Juan Camilo y Yuri Andrea, dos personas en Chía, Colombia, que decidieron que el mundo no
+      necesitaba otra agencia que dijera sí a todo. Necesitaba un equipo que dijera no cuando hace falta.
+    </p>
+  </PageHero>
 
   <!-- ═══════════════════════════════════════════════════════════
        ORIGIN — Timeline
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-paper); border-bottom: 1px solid var(--cf-rule);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section surface="paper" rule="bottom">
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: eyebrow + h2 + timeline -->
         <div class="cf-reveal" data-cf-reveal>
           <Eyebrow>Origen</Eyebrow>
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px);
             font-weight: 600;
             letter-spacing: -0.035em;
@@ -127,7 +107,7 @@ const locations = [
 
         <!-- Right: prose -->
         <div class="cf-reveal" data-cf-reveal>
-          <p style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 22px; line-height: 1.55; color: var(--cf-ink); margin: 0; font-weight: 500; letter-spacing: -0.012em;">
+          <p style="font-size: 22px; line-height: 1.55; color: var(--cf-ink); margin: 0; font-weight: 500; letter-spacing: -0.012em;">
             Camandre nació en 2024 cuando dos personas se cansaron del mismo guion: agencias que prometían
             transformación digital y entregaban sitios con tres meses de retraso.
           </p>
@@ -147,14 +127,12 @@ const locations = [
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        VALUES — Cuatro principios
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
       <SectionHeader
         eyebrow="Cómo trabajamos"
         title="Cuatro principios. Negociables solo entre nosotros."
@@ -172,19 +150,17 @@ const locations = [
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cf-brand); letter-spacing: 0.14em;">{v.n}</span>
               <span style="width: 8px; height: 8px; background: var(--cf-brand); border-radius: 4px; display: inline-block;"></span>
             </div>
-            <h3 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0; line-height: 1.2;">{v.t}</h3>
+            <h3 style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0; line-height: 1.2;">{v.t}</h3>
             <p style="font-size: 15px; line-height: 1.65; color: var(--cf-dim); margin: 0;">{v.d}</p>
           </div>
         ))}
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        TEAM — 6 cards
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-paper); border-top: 1px solid var(--cf-rule); border-bottom: 1px solid var(--cf-rule);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section surface="paper" rule="both">
       <SectionHeader
         eyebrow="Equipo · 2 personas"
         title="Los que firman cada decisión."
@@ -200,14 +176,14 @@ const locations = [
           >
             <!-- Color header with initials -->
             <div style={`background: ${m.color}; aspect-ratio: 4/3; display: flex; align-items: flex-end; padding: 24px; position: relative;`}>
-              <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 96px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.04em; line-height: 0.9;">{m.initials}</span>
+              <span style="font-size: 96px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: -0.04em; line-height: 0.9;">{m.initials}</span>
               <span style="position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(255,255,255,0.85); letter-spacing: 0.12em; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.4); border-radius: 999px;">
                 {m.city.toUpperCase()}
               </span>
             </div>
             <!-- Card body -->
             <div style="padding: 24px 24px 26px;">
-              <h3 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 20px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0;">{m.name}</h3>
+              <h3 style="font-size: 20px; font-weight: 600; letter-spacing: -0.018em; color: var(--cf-ink); margin: 0;">{m.name}</h3>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand); margin-top: 4px; letter-spacing: 0.08em;">{m.role.toUpperCase()}</div>
               <p style="font-size: 13.5px; line-height: 1.6; color: var(--cf-dim); margin-top: 16px;">{m.bio}</p>
             </div>
@@ -215,20 +191,18 @@ const locations = [
         ))}
       </div>
 
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        LOCATIONS — Tres oficinas
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: heading -->
         <div class="cf-reveal" data-cf-reveal>
           <Eyebrow>Ubicaciones</Eyebrow>
-          <h2 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: clamp(28px, 4.5vw, 56px); font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
+          <h2 style="font-size: clamp(28px, 4.5vw, 56px); font-weight: 600; letter-spacing: -0.035em; color: var(--cf-ink); margin: 22px 0 0; line-height: 1;">
             Chía,<br />
             <span style="color: var(--cf-dim);">Cundinamarca.</span>
           </h2>
@@ -256,16 +230,15 @@ const locations = [
                 <span style="position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--cf-brand); padding: 3px 8px; border: 1px solid var(--cf-brand); border-radius: 999px;">HQ</span>
               )}
               <div style={`font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${c.primary ? 'var(--cf-brand)' : 'var(--cf-dim)'}; letter-spacing: 0.14em;`}>{c.country.toUpperCase()}</div>
-              <h3 style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 32px; font-weight: 600; margin: 8px 0 16px; letter-spacing: -0.025em; line-height: 1;">{c.city}</h3>
-              <div style={`font-size: 13.5px; color: ${c.primary ? '#C5CADA' : 'var(--cf-dim)'}; white-space: pre-line; line-height: 1.55; padding-bottom: 18px; border-bottom: 1px solid ${c.primary ? '#1B2548' : 'var(--cf-rule)'};`}>{c.addr}</div>
-              <div style={`margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${c.primary ? '#C5CADA' : 'var(--cf-text)'};`}>{c.count}</div>
+              <h3 style="font-size: 32px; font-weight: 600; margin: 8px 0 16px; letter-spacing: -0.025em; line-height: 1;">{c.city}</h3>
+              <div style={`font-size: 13.5px; color: ${c.primary ? 'var(--cf-dark-text-2)' : 'var(--cf-dim)'}; white-space: pre-line; line-height: 1.55; padding-bottom: 18px; border-bottom: 1px solid ${c.primary ? 'var(--cf-dark-border)' : 'var(--cf-rule)'};`}>{c.addr}</div>
+              <div style={`margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${c.primary ? 'var(--cf-dark-text-2)' : 'var(--cf-text)'};`}>{c.count}</div>
             </div>
           ))}
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
 
   <!-- ═══════════════════════════════════════════════════════════

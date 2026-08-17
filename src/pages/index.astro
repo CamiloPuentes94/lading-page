@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
+import Section from '../components/shared/Section.astro';
 import Button from '../components/shared/Button.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
@@ -54,7 +55,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <!-- H1 -->
           <h1 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(56px, 6.5vw, 96px);
             font-weight: 700;
             letter-spacing: -0.04em;
@@ -70,7 +70,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <!-- Subhead -->
           <p style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: 18.5px;
             line-height: 1.6;
             color: var(--cf-dim);
@@ -100,7 +99,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             ].map(s => (
               <div>
                 <div style="
-                  font-family: 'Geist Sans', system-ui, sans-serif;
                   font-size: 30px; font-weight: 600;
                   color: var(--cf-ink); letter-spacing: -0.02em;
                 ">{s.k}</div>
@@ -133,7 +131,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             position: relative;
             background: var(--cf-navy-deep);
             border-radius: 14px;
-            border: 1px solid #1B2548;
+            border: 1px solid var(--cf-dark-border);
             overflow: hidden;
             box-shadow: 0 30px 80px -40px rgba(11,19,43,0.45);
           ">
@@ -141,7 +139,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             <div style="
               display: flex; align-items: center; gap: 8px;
               padding: 14px 18px;
-              border-bottom: 1px solid #1B2548;
+              border-bottom: 1px solid var(--cf-dark-border);
             ">
               <span style="width: 11px; height: 11px; border-radius: 6px; background: #FF5F56; display: inline-block;"></span>
               <span style="width: 11px; height: 11px; border-radius: 6px; background: #FFBD2E; display: inline-block;"></span>
@@ -149,9 +147,9 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               <span style="
                 flex: 1; text-align: center;
                 font-family: 'JetBrains Mono', monospace;
-                font-size: 11.5px; color: #7E869A;
+                font-size: 11.5px; color: var(--cf-dark-faint);
               ">projects/sinerlly-pos · main · ↑ 2 ↓ 0</span>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E869A;">project.ts</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-dark-faint);">project.ts</span>
             </div>
 
             <!-- Body -->
@@ -161,58 +159,58 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               font-size: 13.5px; line-height: 1.85;
             ">
               <!-- Line 1: comment -->
-              <div class="cf-editor-line" style="color: #5C657A; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.45s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">1</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-comment); display: flex; gap: 18px; min-height: 24px; animation-delay: 0.45s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">1</span>
                 <span style="font-style: italic;">// camandre.factory · sprint 04</span>
               </div>
               <!-- Line 2: blank -->
               <div class="cf-editor-line" style="display: flex; gap: 18px; min-height: 24px; animation-delay: 0.54s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">2</span>
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">2</span>
                 <span>&nbsp;</span>
               </div>
               <!-- Line 3 -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.63s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">3</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 0.63s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">3</span>
                 <span>export const project = &#123;</span>
               </div>
               <!-- Line 4: string accent -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.72s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">4</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 0.72s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">4</span>
                 <span>&nbsp;&nbsp;client: <span style="color: var(--cf-brand);">"Sinerlly"</span>,</span>
               </div>
               <!-- Line 5 -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.81s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">5</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 0.81s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">5</span>
                 <span>&nbsp;&nbsp;stack: &nbsp;[<span style="color: var(--cf-brand);">"React"</span>, <span style="color: var(--cf-brand);">"Node.js"</span>, <span style="color: var(--cf-brand);">"PostgreSQL"</span>],</span>
               </div>
               <!-- Line 6 -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.90s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">6</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 0.90s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">6</span>
                 <span>&nbsp;&nbsp;team: &nbsp;&nbsp;&#123; engineers: 1, designers: 1 &#125;,</span>
               </div>
               <!-- Line 7: string accent -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 0.99s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">7</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 0.99s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">7</span>
                 <span>&nbsp;&nbsp;status: <span style="color: var(--cf-brand);">"shipping"</span>,</span>
               </div>
               <!-- Line 8 -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 1.08s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">8</span>
-                <span style="color: #5C657A; font-style: italic;">&nbsp;&nbsp;// en producción · Q1 2025</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 1.08s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">8</span>
+                <span style="color: var(--cf-dark-comment); font-style: italic;">&nbsp;&nbsp;// en producción · Q1 2025</span>
               </div>
               <!-- Line 9 -->
-              <div class="cf-editor-line" style="color: #E1E5F0; display: flex; gap: 18px; min-height: 24px; animation-delay: 1.17s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">9</span>
+              <div class="cf-editor-line" style="color: var(--cf-dark-code); display: flex; gap: 18px; min-height: 24px; animation-delay: 1.17s;">
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">9</span>
                 <span>&#125;;</span>
               </div>
               <!-- Line 10: blank -->
               <div class="cf-editor-line" style="display: flex; gap: 18px; min-height: 24px; animation-delay: 1.26s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">10</span>
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">10</span>
                 <span>&nbsp;</span>
               </div>
               <!-- Line 11: comment accent -->
               <div class="cf-editor-line" style="color: var(--cf-brand); display: flex; gap: 18px; min-height: 24px; animation-delay: 1.35s;">
-                <span style="color: #3F4A6B; user-select: none; width: 18px; text-align: right; flex-shrink: 0;">11</span>
+                <span style="color: var(--cf-dark-gutter); user-select: none; width: 18px; text-align: right; flex-shrink: 0;">11</span>
                 <span style="font-style: italic;">// build · 2025-q1 · all green</span>
               </div>
             </div>
@@ -221,9 +219,9 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             <div style="
               display: flex; justify-content: space-between;
               padding: 10px 18px;
-              border-top: 1px solid #1B2548;
+              border-top: 1px solid var(--cf-dark-border);
               font-family: 'JetBrains Mono', monospace;
-              font-size: 11px; color: #7E869A;
+              font-size: 11px; color: var(--cf-dark-faint);
               background: #070C20;
             ">
               <span>● shipping · sprint 04</span>
@@ -264,7 +262,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 letter-spacing: 0.1em; text-transform: uppercase;
               ">Sistema POS</div>
               <div style="
-                font-family: 'Geist Sans', system-ui, sans-serif;
                 font-size: 20px; font-weight: 600;
                 color: var(--cf-ink); margin-top: 2px;
               ">en producción</div>
@@ -290,7 +287,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div>
           <Eyebrow>Confían en nosotros</Eyebrow>
           <p style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: 15px;
             color: var(--cf-dim);
             margin-top: 12px;
@@ -322,8 +318,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        SERVICES
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
 
       <!-- Header -->
       <div style="
@@ -335,7 +330,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div class="cf-reveal" data-cf-reveal style="max-width: 680px;">
           <div style="margin-bottom: 22px;"><Eyebrow>Cómo trabajamos</Eyebrow></div>
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(32px, 5.5vw, 60px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink); margin: 0; line-height: 1;
@@ -407,7 +401,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               ">4 OFICIOS</span>
             </div>
             <h3 style="
-              font-family: 'Geist Sans', system-ui, sans-serif;
               font-size: 26px; font-weight: 600;
               letter-spacing: -0.018em;
               color: var(--cf-ink);
@@ -435,18 +428,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         ))}
       </div>
 
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        FEATURED CASE — Helio Health
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="
-    background: var(--cf-paper);
-    border-top: 1px solid var(--cf-rule);
-    border-bottom: 1px solid var(--cf-rule);
-  ">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section surface="paper" rule="both">
 
       <!-- Header row -->
       <div style="
@@ -457,7 +444,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div class="cf-reveal" data-cf-reveal>
           <div style="margin-bottom: 22px;"><Eyebrow>Producto propio · Camandre Factory</Eyebrow></div>
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(32px, 5.5vw, 60px); font-weight: 600;
             letter-spacing: -0.035em;
             margin: 0; line-height: 1;
@@ -481,7 +467,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <div style="
           background: var(--cf-navy-deep);
           border-radius: 14px; padding: 24px;
-          border: 1px solid #1B2548;
+          border: 1px solid var(--cf-dark-border);
           box-shadow: 0 30px 80px -40px rgba(11,19,43,0.4);
         ">
           <!-- Titlebar dots -->
@@ -492,25 +478,25 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             <span style="
               flex: 1;
               font-family: 'JetBrains Mono', monospace;
-              font-size: 11px; color: #7E869A; text-align: center;
+              font-size: 11px; color: var(--cf-dark-faint); text-align: center;
             ">cf-pos · punto de venta</span>
           </div>
 
           <!-- Table -->
           <div style="
-            background: #0B1530; border-radius: 10px;
+            background: var(--cf-dark-surface); border-radius: 10px;
             padding: 16px 18px;
-            border: 1px solid #1B2548;
+            border: 1px solid var(--cf-dark-border);
           ">
             <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-              <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 13px; color: #C5CADA;">Venta en curso</span>
+              <span style="font-size: 13px; color: var(--cf-dark-text-2);">Venta en curso</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand);">● en vivo</span>
             </div>
             <!-- Header -->
-            <div style="display: grid; grid-template-columns: 1.5fr 70px 90px; gap: 12px; padding: 6px 0 10px; border-bottom: 1px solid #1B2548;">
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; text-transform: uppercase; letter-spacing: 0.08em;">Producto</span>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; text-transform: uppercase; letter-spacing: 0.08em;">Cant.</span>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; text-transform: uppercase; letter-spacing: 0.08em; text-align: right;">Precio</span>
+            <div style="display: grid; grid-template-columns: 1.5fr 70px 90px; gap: 12px; padding: 6px 0 10px; border-bottom: 1px solid var(--cf-dark-border);">
+              <span class="font-mono uppercase text-[10px] tracking-[0.08em] text-cf-dark-faint">Producto</span>
+              <span class="font-mono uppercase text-[10px] tracking-[0.08em] text-cf-dark-faint">Cant.</span>
+              <span class="font-mono uppercase text-[10px] tracking-[0.08em] text-cf-dark-faint text-right">Precio</span>
             </div>
             {[
               { p: 'Chorizo x500g',  q: '12', price: '$8.500'  },
@@ -523,16 +509,16 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 grid-template-columns: 1.5fr 70px 90px;
                 gap: 12px; align-items: center;
                 padding: 10px 0;
-                border-top: ${i === 0 ? 'none' : '1px solid #1B2548'};
+                border-top: ${i === 0 ? 'none' : '1px solid var(--cf-dark-border)'};
               `}>
-                <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 13px; font-weight: 500; color: #FFFFFF;">{r.p}</span>
+                <span style="font-size: 13px; font-weight: 500; color: #FFFFFF;">{r.p}</span>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9BA6BE;">{r.q}</span>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cf-brand); text-align: right;">{r.price}</span>
               </div>
             ))}
             <!-- Total -->
-            <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid #1B2548;">
-              <span style="font-family: 'Geist Sans', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #FFFFFF;">Total</span>
+            <div style="display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--cf-dark-border);">
+              <span style="font-size: 13px; font-weight: 600; color: #FFFFFF;">Total</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: var(--cf-brand);">$136.000</span>
             </div>
           </div>
@@ -541,7 +527,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         <!-- Right: text + metrics -->
         <div>
           <p style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: 19px; line-height: 1.6;
             color: var(--cf-text); margin: 0;
           ">
@@ -573,14 +558,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        PROCESS
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
 
       <SectionHeader
         eyebrow="Metodología"
@@ -617,7 +600,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               "></span>
             </div>
             <h4 style="
-              font-family: 'Geist Sans', system-ui, sans-serif;
               font-size: 22px; font-weight: 600;
               letter-spacing: -0.018em;
               color: var(--cf-ink); margin: 0;
@@ -627,22 +609,19 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         ))}
       </div>
 
-    </div>
-  </section>
+  </Section>
 
 
   <!-- ═══════════════════════════════════════════════════════════
        WHY US
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: sticky label -->
         <div class="cf-reveal lg:sticky lg:top-[100px]" data-cf-reveal>
           <Eyebrow>Por qué Camandre</Eyebrow>
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
@@ -719,7 +698,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 )}
               </div>
               <h4 style="
-                font-family: 'Geist Sans', system-ui, sans-serif;
                 font-size: 21px; font-weight: 600;
                 letter-spacing: -0.018em;
                 color: var(--cf-ink); margin: 0 0 10px; line-height: 1.2;
@@ -730,8 +708,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        CLOSING CTA
