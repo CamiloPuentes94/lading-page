@@ -6,12 +6,40 @@ import SectionHeader from '../components/shared/SectionHeader.astro';
 import PageHero from '../components/shared/PageHero.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 import MetricCard from '../components/shared/MetricCard.astro';
+
+/**
+ * One Service graph per discipline, each anchored to the section that
+ * describes it so the URL a result links to is the one the reader wants.
+ */
+const DISCIPLINES = [
+  ['producto', 'Desarrollo de producto web a medida', 'Aplicaciones web modernas: SaaS, dashboards, portales y plataformas internas, construidas para que el equipo del cliente pueda mantenerlas.'],
+  ['sistemas', 'Sistemas internos a medida', 'Software interno que reemplaza hojas de cálculo y procesos manuales en operaciones que ya no escalan.'],
+  ['infra', 'Infraestructura y DevOps', 'Despliegue, observabilidad, CI/CD y operación de la infraestructura que sostiene el producto en producción.'],
+  ['consultoria', 'Consultoría técnica', 'Auditoría de arquitectura, revisión de código y acompañamiento a equipos que necesitan una segunda opinión con evidencia.'],
+];
+
+const services = DISCIPLINES.map(([anchor, name, description]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name,
+  description,
+  serviceType: name,
+  url: `https://camandrefactory.com/servicios/#${anchor}`,
+  areaServed: { '@type': 'Country', name: 'Colombia' },
+  provider: {
+    '@type': 'ProfessionalService',
+    name: 'Camandre Factory',
+    url: 'https://camandrefactory.com/',
+  },
+}));
 ---
 
 <Layout
   title="Servicios — Camandre Factory"
   description="Cuatro disciplinas: desarrollo de producto, sistemas internos, infraestructura y consultoría técnica. Modelos de engagement por proyecto, por equipo o por retainer."
   activePage="servicios"
+  ogImage="/og-servicios.png"
+  schema={services}
 >
 
   <!-- ═══════════════════════════════════════════════════════════
