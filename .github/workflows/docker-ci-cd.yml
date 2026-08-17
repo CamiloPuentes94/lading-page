@@ -7,9 +7,15 @@ on:
       - development
   workflow_dispatch:
 
+# Least privilege: this workflow reads the repo and talks to Docker Hub over a
+# secret. It never needs to write back to GitHub.
+permissions:
+  contents: read
+
 env:
   DOCKER_USERNAME: jcpsandoval
   IMAGE_NAME: camandre-landing
+  DEPLOY_DIR: /opt/camandrefactory
 
 jobs:
   build-and-push:
@@ -18,6 +24,7 @@ jobs:
     outputs:
       tag: ${{ steps.set-tag.outputs.tag }}
       should_deploy: ${{ steps.set-tag.outputs.should_deploy }}
+      digest: ${{ steps.build.outputs.digest }}
 
     steps:
       - name: 📥 Checkout
@@ -35,15 +42,17 @@ jobs:
       - name: 🏷️ Set tag
         id: set-tag
         run: |
+          set -euo pipefail
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "tag=latest" >> $GITHUB_OUTPUT
-            echo "should_deploy=true" >> $GITHUB_OUTPUT
+            echo "tag=latest" >> "$GITHUB_OUTPUT"
+            echo "should_deploy=true" >> "$GITHUB_OUTPUT"
           else
-            echo "tag=development" >> $GITHUB_OUTPUT
-            echo "should_deploy=false" >> $GITHUB_OUTPUT
+            echo "tag=development" >> "$GITHUB_OUTPUT"
+            echo "should_deploy=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: 🏗️ Build and Push
+        id: build
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -61,13 +70,101 @@ jobs:
     if: needs.build-and-push.outputs.should_deploy == 'true'
 
     steps:
-      - name: 🚀 Deploy
-        uses: appleboy/ssh-action@v1
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      # Infrastructure has to travel with the code. The compress middleware in
+      # 2600295 sat in git for days doing nothing because the compose file was
+      # only ever edited here and never copied to the host.
+      - name: 📦 Ship deploy config to the host
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "deploy/docker-compose.yml,deploy/Caddyfile.edge,deploy/docker-compose.edge.yml"
+          target: ${{ env.DEPLOY_DIR }}
+          strip_components: 1
+          overwrite: true
+
+      - name: 🚀 Deploy
+        uses: appleboy/ssh-action@v1
+        env:
+          EXPECTED_DIGEST: ${{ needs.build-and-push.outputs.digest }}
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: EXPECTED_DIGEST
           script: |
-            cd /opt/camandrefactory
+            set -euo pipefail
+            cd ${{ env.DEPLOY_DIR }}
+
+            IMAGE="${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.build-and-push.outputs.tag }}"
+
+            # A full disk is what turned every deploy since 2026-08-14 into a
+            # silent no-op: the pull failed to extract, `up -d` kept the old
+            # container, and the job still reported success. Fail here instead.
+            echo "── disk ──"
+            df -h /var/lib/docker / | tail -n +1
+            AVAIL_MB=$(df -Pm /var/lib/docker 2>/dev/null | awk 'NR==2 {print $4}' || df -Pm / | awk 'NR==2 {print $4}')
+            echo "available: ${AVAIL_MB}MB"
+            if [ "${AVAIL_MB}" -lt 2048 ]; then
+              echo "::error::Only ${AVAIL_MB}MB free. Need at least 2048MB to pull safely. Run 'docker system prune -af --volumes' on the host."
+              exit 1
+            fi
+
+            echo "── pull ──"
             docker compose pull
-            docker compose up -d
+
+            echo "── up ──"
+            docker compose up -d --remove-orphans
+
+            # `docker compose up -d` exits 0 when it decides to keep a running
+            # container, so its exit code proves nothing about which bytes are
+            # serving traffic. Compare identities instead.
+            echo "── verify ──"
+            RUNNING_ID=$(docker inspect --format '{{.Image}}' camandre_landing)
+            LATEST_ID=$(docker image inspect --format '{{.Id}}' "$IMAGE")
+            echo "running: $RUNNING_ID"
+            echo "pulled:  $LATEST_ID"
+            if [ "$RUNNING_ID" != "$LATEST_ID" ]; then
+              echo "::error::The running container is not the image that was just pulled. The deploy did not take effect."
+              exit 1
+            fi
+
+            echo "── health ──"
+            for i in $(seq 1 15); do
+              STATUS=$(docker inspect --format '{{.State.Health.Status}}' camandre_landing 2>/dev/null || echo unknown)
+              [ "$STATUS" = "healthy" ] && break
+              echo "waiting for health ($i/15): $STATUS"
+              sleep 2
+            done
+            if [ "$STATUS" != "healthy" ]; then
+              echo "::error::Container never became healthy (last status: $STATUS)."
+              docker logs --tail 50 camandre_landing || true
+              exit 1
+            fi
+
+            docker image prune -f
+            echo "deploy verified: $RUNNING_ID"
+
+      # The container can be healthy while the site is unreachable from outside,
+      # so the last word belongs to a request that crosses the edge proxy.
+      - name: 🔎 Smoke test against production
+        run: |
+          set -euo pipefail
+          BASE="https://camandrefactory.com"
+          fail=0
+          for path in / /servicios/ /portafolio/ /nosotros/ /robots.txt /sitemap.xml; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$BASE$path")
+            printf '  %-16s %s\n' "$path" "$code"
+            [ "$code" = "200" ] || fail=1
+          done
+
+          # Compression has been the silent failure twice. Assert it, do not hope.
+          enc=$(curl -sS -H 'Accept-Encoding: gzip' -o /dev/null -D - --max-time 20 "$BASE/" | tr -d '\r' | awk 'tolower($1)=="content-encoding:" {print $2}')
+          echo "  content-encoding: ${enc:-NONE}"
+          [ -n "$enc" ] || { echo "::error::Production is serving uncompressed responses."; fail=1; }
+
+          exit $fail
