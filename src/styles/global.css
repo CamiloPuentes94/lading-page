@@ -37,6 +37,35 @@ html { overflow-x: hidden; }
   --cf-shadow-lg: 0 30px 80px -40px rgba(11, 19, 43, 0.45);
 }
 
+/* ─── On-dark scale ────────────────────────────────────────────
+   Surfaces and foregrounds for content that sits on a permanently
+   dark panel: the footer, the closing CTA, and the product mockups
+   in /servicios and /. Those panels are navy in both themes, so
+   these values must NOT be redeclared under .dark — inverting them
+   would put dark text on a dark surface.
+
+   Contrast against --cf-navy-deep (#091A3D), unless noted:
+     text 14.20:1 · text-2 10.46:1 · dim 6.81:1 · faint 4.70:1
+     code 13.59:1 · gutter 3.26:1 (decorative, see below)
+     mock-value #FFFFFF on --cf-dark-surface 18.04:1 */
+:root {
+  --cf-dark-surface: #0B1530;
+  --cf-dark-border: #1B2548;
+  --cf-dark-text: #E7EAF0;
+  --cf-dark-text-2: #C5CADA;
+  --cf-dark-dim: #9BA3BC;
+  --cf-dark-faint: #7E869A;
+  --cf-dark-code: #E1E5F0;
+  /* Comment lines of the editor mockup. Raised from #5C657A (2.93:1) to
+     clear 3:1 while staying quieter than --cf-dark-code beside it. */
+  --cf-dark-comment: #6B7490;
+  /* Line-number gutter of the editor mockup. Incidental text inside an
+     illustration, so WCAG 1.4.3 does not apply, but the original #3F4A6B
+     sat at 1.96:1 — low enough to read as a rendering fault. Raised to
+     3.26:1: legible, still quieter than the code it numbers. */
+  --cf-dark-gutter: #5D6B94;
+}
+
 /* ─── Brand tokens — dark ──────────────────────────────────── */
 .dark {
   --cf-ink: #F1F4FB;
@@ -69,6 +98,19 @@ html { overflow-x: hidden; }
   --color-cf-text: var(--cf-text);
   --color-cf-dim: var(--cf-dim);
   --color-cf-faded-navy: var(--cf-faded-navy);
+  --color-cf-on-brand: var(--cf-on-brand);
+
+  /* On-dark scale — see the :root block above. */
+  --color-cf-dark-surface: var(--cf-dark-surface);
+  --color-cf-dark-border: var(--cf-dark-border);
+  --color-cf-dark-text: var(--cf-dark-text);
+  --color-cf-dark-text-2: var(--cf-dark-text-2);
+  --color-cf-dark-dim: var(--cf-dark-dim);
+  --color-cf-dark-faint: var(--cf-dark-faint);
+  --color-cf-dark-code: var(--cf-dark-code);
+  --color-cf-dark-comment: var(--cf-dark-comment);
+  --color-cf-dark-gutter: var(--cf-dark-gutter);
+
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
