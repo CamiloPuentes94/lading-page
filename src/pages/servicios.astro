@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
+import Section from '../components/shared/Section.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import PageHero from '../components/shared/PageHero.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
@@ -44,11 +45,7 @@ import MetricCard from '../components/shared/MetricCard.astro';
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 01 — PRODUCTO (paper bg, normal order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="producto" class="py-16 md:py-24 lg:py-[120px]" style="
-    background: var(--cf-paper);
-    border-bottom: 1px solid var(--cf-rule);
-  ">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section id="producto" surface="paper" rule="bottom">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Mock — order 1 -->
@@ -145,17 +142,12 @@ import MetricCard from '../components/shared/MetricCard.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 02 — SISTEMAS (bg, reverse order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="sistemas" class="py-16 md:py-24 lg:py-[120px]" style="
-    background: var(--cf-bg);
-    border-bottom: 1px solid var(--cf-rule);
-  ">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section id="sistemas" rule="bottom">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Body — order 1 (reverse) -->
@@ -276,17 +268,12 @@ import MetricCard from '../components/shared/MetricCard.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 03 — INFRAESTRUCTURA (paper bg, normal order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="infra" class="py-16 md:py-24 lg:py-[120px]" style="
-    background: var(--cf-paper);
-    border-bottom: 1px solid var(--cf-rule);
-  ">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section id="infra" surface="paper" rule="bottom">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Mock — order 1 -->
@@ -404,17 +391,12 @@ import MetricCard from '../components/shared/MetricCard.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        BLOCK 04 — CONSULTORÍA (bg, reverse order)
   ════════════════════════════════════════════════════════════ -->
-  <section id="consultoria" class="py-16 md:py-24 lg:py-[120px]" style="
-    background: var(--cf-bg);
-    border-bottom: 1px solid var(--cf-rule);
-  ">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section id="consultoria" rule="bottom">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
         <!-- Body — order 1 (reverse) -->
@@ -524,14 +506,12 @@ import MetricCard from '../components/shared/MetricCard.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        ENGAGEMENT MODELS
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
 
       <SectionHeader
         eyebrow="Cómo nos contratan"
@@ -623,8 +603,7 @@ import MetricCard from '../components/shared/MetricCard.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        CLOSING CTA

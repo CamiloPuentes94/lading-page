@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
+import Section from '../components/shared/Section.astro';
 import Button from '../components/shared/Button.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
@@ -317,8 +318,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
   <!-- ═══════════════════════════════════════════════════════════
        SERVICES
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
 
       <!-- Header -->
       <div style="
@@ -428,18 +428,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         ))}
       </div>
 
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        FEATURED CASE — Helio Health
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="
-    background: var(--cf-paper);
-    border-top: 1px solid var(--cf-rule);
-    border-bottom: 1px solid var(--cf-rule);
-  ">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section surface="paper" rule="both">
 
       <!-- Header row -->
       <div style="
@@ -564,14 +558,12 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        PROCESS
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
 
       <SectionHeader
         eyebrow="Metodología"
@@ -617,15 +609,13 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         ))}
       </div>
 
-    </div>
-  </section>
+  </Section>
 
 
   <!-- ═══════════════════════════════════════════════════════════
        WHY US
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: sticky label -->
@@ -718,8 +708,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        CLOSING CTA

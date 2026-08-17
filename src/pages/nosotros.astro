@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
+import Section from '../components/shared/Section.astro';
 import Button from '../components/shared/Button.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import PageHero from '../components/shared/PageHero.astro';
@@ -77,8 +78,7 @@ const locations = [
   <!-- ═══════════════════════════════════════════════════════════
        ORIGIN — Timeline
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-paper); border-bottom: 1px solid var(--cf-rule);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section surface="paper" rule="bottom">
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: eyebrow + h2 + timeline -->
@@ -126,14 +126,12 @@ const locations = [
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        VALUES — Cuatro principios
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
       <SectionHeader
         eyebrow="Cómo trabajamos"
         title="Cuatro principios. Negociables solo entre nosotros."
@@ -156,14 +154,12 @@ const locations = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        TEAM — 6 cards
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-paper); border-top: 1px solid var(--cf-rule); border-bottom: 1px solid var(--cf-rule);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section surface="paper" rule="both">
       <SectionHeader
         eyebrow="Equipo · 2 personas"
         title="Los que firman cada decisión."
@@ -194,14 +190,12 @@ const locations = [
         ))}
       </div>
 
-    </div>
-  </section>
+  </Section>
 
   <!-- ═══════════════════════════════════════════════════════════
        LOCATIONS — Tres oficinas
   ════════════════════════════════════════════════════════════ -->
-  <section class="py-16 md:py-24 lg:py-[120px]" style="background: var(--cf-bg);">
-    <div class="px-5 md:px-10" style="max-width: 1240px; margin: 0 auto;">
+  <Section>
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-20 items-start">
 
         <!-- Left: heading -->
@@ -243,8 +237,7 @@ const locations = [
         </div>
 
       </div>
-    </div>
-  </section>
+  </Section>
 
 
   <!-- ═══════════════════════════════════════════════════════════

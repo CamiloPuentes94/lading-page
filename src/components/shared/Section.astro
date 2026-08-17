@@ -1,0 +1,36 @@
+---
+/**
+ * A full-width content band: the shared vertical rhythm, a surface, optional
+ * hairlines, and the centred container every page repeats underneath.
+ *
+ * Only the bands that follow the standard rhythm belong here. The home hero,
+ * the marquee strip and /gracias size themselves differently on purpose and
+ * stay hand-written.
+ */
+interface Props {
+  id?: string;
+  /** Which surface token paints the band. */
+  surface?: 'bg' | 'paper';
+  /** Where the hairline rules sit. */
+  rule?: 'none' | 'bottom' | 'both';
+  /** Container width. /portafolio has always run 40px wider than the rest. */
+  maxWidth?: string;
+}
+
+const { id, surface = 'bg', rule = 'none', maxWidth = '1240px' } = Astro.props;
+
+const HAIRLINE = '1px solid var(--cf-rule)';
+const style = [
+  `background: var(--cf-${surface})`,
+  rule !== 'none' ? `border-bottom: ${HAIRLINE}` : null,
+  rule === 'both' ? `border-top: ${HAIRLINE}` : null,
+]
+  .filter(Boolean)
+  .join('; ') + ';';
+---
+
+<section id={id} class="py-16 md:py-24 lg:py-[120px]" style={style}>
+  <div class="px-5 md:px-10" style={`max-width: ${maxWidth}; margin: 0 auto;`}>
+    <slot />
+  </div>
+</section>
