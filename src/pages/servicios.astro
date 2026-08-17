@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
+import MetricCard from '../components/shared/MetricCard.astro';
 ---
 
 <Layout
@@ -38,7 +39,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       <div class="cf-stagger" style="max-width: 880px;">
         <Eyebrow>Oficios · 4 disciplinas</Eyebrow>
         <h1 style="
-          font-family: 'Geist Sans', system-ui, sans-serif;
           font-size: clamp(40px, 8vw, 96px);
           font-weight: 600;
           letter-spacing: -0.04em;
@@ -85,7 +85,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             background: var(--cf-navy-deep);
             border-radius: 14px;
             padding: 22px;
-            border: 1px solid #1B2548;
+            border: 1px solid var(--cf-dark-border);
             box-shadow: 0 30px 80px -40px rgba(11,19,43,0.4);
           ">
             <!-- Titlebar -->
@@ -93,58 +93,14 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               <span style="width: 9px; height: 9px; border-radius: 5px; background: #FF5F56; display: inline-block;"></span>
               <span style="width: 9px; height: 9px; border-radius: 5px; background: #FFBD2E; display: inline-block;"></span>
               <span style="width: 9px; height: 9px; border-radius: 5px; background: #27C93F; display: inline-block;"></span>
-              <span style="flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7E869A;">app.northwind.co · dashboard</span>
+              <span style="flex: 1; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-dark-faint);">app.northwind.co · dashboard</span>
             </div>
             <!-- Metrics grid -->
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-              <!-- MRR -->
-              <div style="background: #0B1530; border-radius: 10px; padding: 16px 18px; border: 1px solid #1B2548;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7E869A; letter-spacing: 0.1em; text-transform: uppercase;">MRR</div>
-                <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px;">
-                  <span style="font-family: 'Geist Sans', sans-serif; font-size: 26px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">$284K</span>
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand);">+12.4%</span>
-                </div>
-                <svg width="100%" height="34" viewBox="0 0 100 34" style="margin-top: 8px;">
-                  <path d="M0 28 Q 25 16, 40 20 T 70 10 T 100 6" stroke="var(--cf-brand)" stroke-width="1.5" fill="none" />
-                  <path d="M0 28 Q 25 16, 40 20 T 70 10 T 100 6 L 100 34 L 0 34 Z" fill="rgba(14,164,114,0.19)" />
-                </svg>
-              </div>
-              <!-- Cuentas -->
-              <div style="background: #0B1530; border-radius: 10px; padding: 16px 18px; border: 1px solid #1B2548;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7E869A; letter-spacing: 0.1em; text-transform: uppercase;">Cuentas activas</div>
-                <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px;">
-                  <span style="font-family: 'Geist Sans', sans-serif; font-size: 26px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">1,247</span>
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand);">+38</span>
-                </div>
-                <svg width="100%" height="34" viewBox="0 0 100 34" style="margin-top: 8px;">
-                  <path d="M0 18 Q 25 24, 40 14 T 70 20 T 100 12" stroke="var(--cf-brand)" stroke-width="1.5" fill="none" />
-                  <path d="M0 18 Q 25 24, 40 14 T 70 20 T 100 12 L 100 34 L 0 34 Z" fill="rgba(14,164,114,0.19)" />
-                </svg>
-              </div>
-              <!-- NPS -->
-              <div style="background: #0B1530; border-radius: 10px; padding: 16px 18px; border: 1px solid #1B2548;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7E869A; letter-spacing: 0.1em; text-transform: uppercase;">NPS</div>
-                <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px;">
-                  <span style="font-family: 'Geist Sans', sans-serif; font-size: 26px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">64</span>
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand);">+8 vs Q1</span>
-                </div>
-                <svg width="100%" height="34" viewBox="0 0 100 34" style="margin-top: 8px;">
-                  <path d="M0 28 Q 25 16, 40 20 T 70 10 T 100 6" stroke="var(--cf-brand)" stroke-width="1.5" fill="none" />
-                  <path d="M0 28 Q 25 16, 40 20 T 70 10 T 100 6 L 100 34 L 0 34 Z" fill="rgba(14,164,114,0.19)" />
-                </svg>
-              </div>
-              <!-- Churn -->
-              <div style="background: #0B1530; border-radius: 10px; padding: 16px 18px; border: 1px solid #1B2548;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7E869A; letter-spacing: 0.1em; text-transform: uppercase;">Churn 90d</div>
-                <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px;">
-                  <span style="font-family: 'Geist Sans', sans-serif; font-size: 26px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">2.1%</span>
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-brand);">−0.4 pt</span>
-                </div>
-                <svg width="100%" height="34" viewBox="0 0 100 34" style="margin-top: 8px;">
-                  <path d="M0 18 Q 25 24, 40 14 T 70 20 T 100 12" stroke="var(--cf-brand)" stroke-width="1.5" fill="none" />
-                  <path d="M0 18 Q 25 24, 40 14 T 70 20 T 100 12 L 100 34 L 0 34 Z" fill="rgba(14,164,114,0.19)" />
-                </svg>
-              </div>
+              <MetricCard label="MRR"             value="$284K" delta="+12.4%"   spark="rise" />
+              <MetricCard label="Cuentas activas" value="1,247" delta="+38"      spark="wave" />
+              <MetricCard label="NPS"             value="64"    delta="+8 vs Q1" spark="rise" />
+              <MetricCard label="Churn 90d"       value="2.1%"  delta="−0.4 pt"  spark="wave" />
             </div>
           </div>
         </div>
@@ -168,7 +124,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </div>
 
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
@@ -182,7 +137,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <!-- Includes -->
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
+            <div class="font-mono uppercase text-[11px] tracking-[0.14em] text-cf-brand mb-4">Incluye</div>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Investigación + diseño de producto', 'Sistema de UI propio', 'Frontend con Astro / React', 'Backend con TypeScript o Go', 'SEO técnico + Core Web Vitals', 'Accesibilidad WCAG 2.2 AA'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
@@ -198,11 +153,11 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           <!-- Deliverables + Stack -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Producto en producción + repo + sistema de diseño + documentación viva</div>
             </div>
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Stack típico</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Stack típico</div>
               <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                 {['Astro', 'React', 'TypeScript', 'Tailwind', 'shadcn/ui', 'Go', 'Postgres'].map((s) => (
                   <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 4px 10px; background: var(--cf-bg2); color: var(--cf-ink); border-radius: 4px;">{s}</span>
@@ -244,7 +199,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </div>
 
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
@@ -257,7 +211,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </p>
 
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
+            <div class="font-mono uppercase text-[11px] tracking-[0.14em] text-cf-brand mb-4">Incluye</div>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Modelado de dominio del negocio', 'Migración desde sistemas legacy', 'Permisos y trazabilidad finos', 'Reportería en tiempo real', 'Integraciones (SAP, Siesa, Stripe)', 'Capacitación a tu equipo'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
@@ -272,11 +226,11 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Sistema en producción + integraciones + onboarding · 90+ días de soporte</div>
             </div>
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Stack típico</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Stack típico</div>
               <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                 {['Django', 'FastAPI', 'Go', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'Grafana'].map((s) => (
                   <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 4px 10px; background: var(--cf-bg2); color: var(--cf-ink); border-radius: 4px;">{s}</span>
@@ -310,7 +264,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             <!-- Header -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--cf-rule);">
               <div>
-                <div style="font-family: 'Geist Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--cf-ink);">Bitácora de operación</div>
+                <div style="font-size: 14px; font-weight: 600; color: var(--cf-ink);">Bitácora de operación</div>
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-dim); margin-top: 2px;">ERP · módulo logística · sucursal: todas</div>
               </div>
               <span style="
@@ -368,18 +322,18 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           <div style="
             background: var(--cf-navy-deep);
             border-radius: 14px; padding: 24px;
-            border: 1px solid #1B2548;
+            border: 1px solid var(--cf-dark-border);
           ">
             <div style="display: flex; justify-content: space-between; margin-bottom: 18px;">
-              <div style="font-family: 'Geist Sans', sans-serif; font-size: 14px; font-weight: 600; color: #FFFFFF;">Plataforma · panorama</div>
+              <div style="font-size: 14px; font-weight: 600; color: #FFFFFF;">Plataforma · panorama</div>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand);">● healthy</span>
             </div>
             <!-- Node diagram -->
-            <div style="position: relative; height: 220px; background: #070C20; border-radius: 10px; border: 1px solid #1B2548; overflow: hidden;">
+            <div style="position: relative; height: 220px; background: #070C20; border-radius: 10px; border: 1px solid var(--cf-dark-border); overflow: hidden;">
               <svg width="100%" height="100%" viewBox="0 0 400 220" style="position: absolute; inset: 0;">
                 <defs>
                   <pattern id="infra-dots" width="16" height="16" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1" fill="#1B2548" />
+                    <circle cx="2" cy="2" r="1" fill="var(--cf-dark-border)" />
                   </pattern>
                 </defs>
                 <rect width="400" height="220" fill="url(#infra-dots)" />
@@ -389,25 +343,25 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                 <line x1="200" y1="110" x2="280" y2="170" stroke="var(--cf-brand)" stroke-width="1.5" opacity="0.6" />
               </svg>
               <!-- Nodes -->
-              <div style="position: absolute; left: 68px; top: 44px; width: 64px; height: 32px; background: #0B1530; border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">API</div>
-              <div style="position: absolute; left: 268px; top: 44px; width: 64px; height: 32px; background: #0B1530; border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">WEB</div>
-              <div style="position: absolute; left: 168px; top: 94px; width: 64px; height: 32px; background: #0B1530; border: 1px solid #FFBD2E; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">GATEWAY</div>
-              <div style="position: absolute; left: 88px; top: 154px; width: 64px; height: 32px; background: #0B1530; border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">DB</div>
-              <div style="position: absolute; left: 248px; top: 154px; width: 64px; height: 32px; background: #0B1530; border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">CACHE</div>
+              <div style="position: absolute; left: 68px; top: 44px; width: 64px; height: 32px; background: var(--cf-dark-surface); border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">API</div>
+              <div style="position: absolute; left: 268px; top: 44px; width: 64px; height: 32px; background: var(--cf-dark-surface); border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">WEB</div>
+              <div style="position: absolute; left: 168px; top: 94px; width: 64px; height: 32px; background: var(--cf-dark-surface); border: 1px solid #FFBD2E; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">GATEWAY</div>
+              <div style="position: absolute; left: 88px; top: 154px; width: 64px; height: 32px; background: var(--cf-dark-surface); border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">DB</div>
+              <div style="position: absolute; left: 248px; top: 154px; width: 64px; height: 32px; background: var(--cf-dark-surface); border: 1px solid var(--cf-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #FFFFFF; letter-spacing: 0.08em;">CACHE</div>
             </div>
             <!-- Stats -->
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px;">
-              <div style="background: #0B1530; border-radius: 8px; padding: 12px 14px; border: 1px solid #1B2548;">
-                <div style="font-family: 'Geist Sans', sans-serif; font-size: 20px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">99.98%</div>
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; letter-spacing: 0.1em; margin-top: 2px;">UPTIME 90D</div>
+              <div style="background: var(--cf-dark-surface); border-radius: 8px; padding: 12px 14px; border: 1px solid var(--cf-dark-border);">
+                <div style="font-size: 20px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">99.98%</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cf-dark-faint); letter-spacing: 0.1em; margin-top: 2px;">UPTIME 90D</div>
               </div>
-              <div style="background: #0B1530; border-radius: 8px; padding: 12px 14px; border: 1px solid #1B2548;">
-                <div style="font-family: 'Geist Sans', sans-serif; font-size: 20px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">184ms</div>
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; letter-spacing: 0.1em; margin-top: 2px;">p95 LATENCY</div>
+              <div style="background: var(--cf-dark-surface); border-radius: 8px; padding: 12px 14px; border: 1px solid var(--cf-dark-border);">
+                <div style="font-size: 20px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">184ms</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cf-dark-faint); letter-spacing: 0.1em; margin-top: 2px;">p95 LATENCY</div>
               </div>
-              <div style="background: #0B1530; border-radius: 8px; padding: 12px 14px; border: 1px solid #1B2548;">
-                <div style="font-family: 'Geist Sans', sans-serif; font-size: 20px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">0</div>
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7E869A; letter-spacing: 0.1em; margin-top: 2px;">INCIDENTES Q2</div>
+              <div style="background: var(--cf-dark-surface); border-radius: 8px; padding: 12px 14px; border: 1px solid var(--cf-dark-border);">
+                <div style="font-size: 20px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">0</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--cf-dark-faint); letter-spacing: 0.1em; margin-top: 2px;">INCIDENTES Q2</div>
               </div>
             </div>
           </div>
@@ -431,7 +385,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </div>
 
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
@@ -444,7 +397,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </p>
 
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
+            <div class="font-mono uppercase text-[11px] tracking-[0.14em] text-cf-brand mb-4">Incluye</div>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Auditoría de infraestructura actual', 'Diseño de arquitectura cloud', 'Migración por fases con canary', 'IaC con Terraform / Pulumi', 'Observabilidad: logs, métricas, tracing', 'Plan de respuesta a incidentes'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
@@ -459,11 +412,11 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Infraestructura productiva + IaC + runbooks + SLOs documentados</div>
             </div>
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Stack típico</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Stack típico</div>
               <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                 {['GCP', 'AWS', 'Terraform', 'Kubernetes', 'Grafana', 'Datadog'].map((s) => (
                   <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 4px 10px; background: var(--cf-bg2); color: var(--cf-ink); border-radius: 4px;">{s}</span>
@@ -505,7 +458,6 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </div>
 
           <h2 style="
-            font-family: 'Geist Sans', system-ui, sans-serif;
             font-size: clamp(28px, 4.5vw, 56px); font-weight: 600;
             letter-spacing: -0.035em;
             color: var(--cf-ink);
@@ -518,7 +470,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </p>
 
           <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-brand); letter-spacing: 0.14em; margin-bottom: 16px; text-transform: uppercase;">Incluye</div>
+            <div class="font-mono uppercase text-[11px] tracking-[0.14em] text-cf-brand mb-4">Incluye</div>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-[10px] gap-x-6" style="list-style: none; padding: 0; margin: 0;">
               {['Auditoría de código y arquitectura', 'Due diligence técnico para M&A', 'Hojas de ruta a 6 / 12 meses', 'Acompañamiento a tu CTO', 'Procesos de contratación técnica', 'Coaching de equipos de ingeniería'].map((item) => (
                 <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--cf-text); line-height: 1.5;">
@@ -533,11 +485,11 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-top: 28px;">
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Entregables</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Entregables</div>
               <div style="font-size: 14.5px; color: var(--cf-text);">Informe ejecutivo + plan accionable + acompañamiento opcional</div>
             </div>
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 8px; text-transform: uppercase;">Stack típico</div>
+              <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-2">Stack típico</div>
               <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                 {['Audit', 'Strategy', 'Roadmap', 'Hiring', 'Training'].map((s) => (
                   <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 4px 10px; background: var(--cf-bg2); color: var(--cf-ink); border-radius: 4px;">{s}</span>
@@ -560,7 +512,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             border: 1px solid var(--cf-rule);
             box-shadow: var(--cf-shadow-md);
           ">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cf-dim); letter-spacing: 0.14em; margin-bottom: 18px; text-transform: uppercase;">Hoja de ruta · 6 meses</div>
+            <div class="font-mono uppercase text-[11px] tracking-[0.14em] text-cf-dim mb-[18px]">Hoja de ruta · 6 meses</div>
             <div style="position: relative; padding-left: 32px;">
               <!-- Vertical line -->
               <div style="position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: var(--cf-rule); border-radius: 2px;"></div>
@@ -585,7 +537,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cf-dim); font-weight: 600;">{r.m}</span>
                   </span>
                   <div>
-                    <div style="font-family: 'Geist Sans', sans-serif; font-size: 15px; font-weight: 600; color: var(--cf-ink);">{r.t}</div>
+                    <div style="font-size: 15px; font-weight: 600; color: var(--cf-ink);">{r.t}</div>
                     <div style="font-size: 13px; color: var(--cf-dim); margin-top: 2px;">{r.d}</div>
                   </div>
                 </div>
@@ -627,14 +579,14 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             position: relative;
           "
         >
-          <h3 style="font-family: 'Geist Sans', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0;">Proyecto cerrado</h3>
+          <h3 style="font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0;">Proyecto cerrado</h3>
           <p style="font-size: 14.5px; color: var(--cf-dim); margin-top: 12px; line-height: 1.6;">Alcance, plazo y precio fijos. Para entregables claros y bien acotados.</p>
           <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;">Inversión</div>
-            <div style="font-family: 'Geist Sans', sans-serif; font-size: 17px; font-weight: 600; color: var(--cf-ink);">desde 8 sem · USD 40K</div>
+            <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-1.5">Inversión</div>
+            <div style="font-size: 17px; font-weight: 600; color: var(--cf-ink);">desde 8 sem · USD 40K</div>
           </div>
           <div style="margin-top: 18px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;">Ideal para</div>
+            <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-1.5">Ideal para</div>
             <div style="font-size: 13.5px; color: var(--cf-text); line-height: 1.5;">MVPs · rediseños · auditorías</div>
           </div>
         </div>
@@ -658,14 +610,14 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             font-family: 'JetBrains Mono', monospace; font-size: 11px;
             letter-spacing: 0.1em;
           ">MÁS POPULAR</span>
-          <h3 style="font-family: 'Geist Sans', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0;">Equipo dedicado</h3>
+          <h3 style="font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0;">Equipo dedicado</h3>
           <p style="font-size: 14.5px; color: var(--cf-dim); margin-top: 12px; line-height: 1.6;">2–6 personas que trabajan exclusivamente contigo durante 3+ meses.</p>
           <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;">Inversión</div>
-            <div style="font-family: 'Geist Sans', sans-serif; font-size: 17px; font-weight: 600; color: var(--cf-ink);">desde USD 14K / mes</div>
+            <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-1.5">Inversión</div>
+            <div style="font-size: 17px; font-weight: 600; color: var(--cf-ink);">desde USD 14K / mes</div>
           </div>
           <div style="margin-top: 18px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;">Ideal para</div>
+            <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-1.5">Ideal para</div>
             <div style="font-size: 13.5px; color: var(--cf-text); line-height: 1.5;">productos en evolución continua</div>
           </div>
         </div>
@@ -681,14 +633,14 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
             position: relative;
           "
         >
-          <h3 style="font-family: 'Geist Sans', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0;">Retainer + on-call</h3>
+          <h3 style="font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--cf-ink); margin: 0;">Retainer + on-call</h3>
           <p style="font-size: 14.5px; color: var(--cf-dim); margin-top: 12px; line-height: 1.6;">Horas garantizadas al mes + SLA opcional para soporte 24/7.</p>
           <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--cf-rule);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;">Inversión</div>
-            <div style="font-family: 'Geist Sans', sans-serif; font-size: 17px; font-weight: 600; color: var(--cf-ink);">desde USD 6K / mes</div>
+            <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-1.5">Inversión</div>
+            <div style="font-size: 17px; font-weight: 600; color: var(--cf-ink);">desde USD 6K / mes</div>
           </div>
           <div style="margin-top: 18px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--cf-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;">Ideal para</div>
+            <div class="font-mono uppercase text-[10.5px] tracking-[0.14em] text-cf-dim mb-1.5">Ideal para</div>
             <div style="font-size: 13.5px; color: var(--cf-text); line-height: 1.5;">mantenimiento + mejora continua</div>
           </div>
         </div>

@@ -1,0 +1,39 @@
+---
+/**
+ * A single tile of the product dashboard mockup: label, headline number,
+ * delta and a decorative sparkline.
+ *
+ * The tile always sits on a fixed dark panel, so it draws from the on-dark
+ * scale in global.css rather than the theme-reactive --cf-* tokens.
+ *
+ * The sparklines carry no data — they are illustration. Only two shapes are
+ * used across the mockup, so they live here as named constants instead of
+ * being pasted at each call site.
+ */
+const SPARKS = {
+  rise: 'M0 28 Q 25 16, 40 20 T 70 10 T 100 6',
+  wave: 'M0 18 Q 25 24, 40 14 T 70 20 T 100 12',
+} as const;
+
+interface Props {
+  label: string;
+  value: string;
+  delta: string;
+  spark: keyof typeof SPARKS;
+}
+
+const { label, value, delta, spark } = Astro.props;
+const d = SPARKS[spark];
+---
+
+<div class="bg-cf-dark-surface border border-cf-dark-border rounded-[10px] px-[18px] py-4">
+  <div class="font-mono text-[10.5px] tracking-[0.1em] uppercase text-cf-dark-faint">{label}</div>
+  <div class="flex items-baseline gap-2 mt-1.5">
+    <span class="text-[26px] font-semibold tracking-[-0.02em] text-white">{value}</span>
+    <span class="font-mono text-[11.5px] text-cf-brand">{delta}</span>
+  </div>
+  <svg width="100%" height="34" viewBox="0 0 100 34" class="mt-2">
+    <path d={d} stroke="var(--cf-brand)" stroke-width="1.5" fill="none" />
+    <path d={`${d} L 100 34 L 0 34 Z`} fill="rgba(14,164,114,0.19)" />
+  </svg>
+</div>
