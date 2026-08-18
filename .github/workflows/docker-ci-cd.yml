@@ -14,6 +14,10 @@ on:
     branches:
       - main
       - development
+  pull_request:
+    branches:
+      - main
+      - development
   workflow_dispatch:
 
 env:
@@ -21,9 +25,45 @@ env:
   IMAGE_NAME: camandre-landing
 
 jobs:
+  verify:
+    name: 🔍 Verify
+    runs-on: ubuntu-latest
+
+    # Runs on pull requests too, which is the whole point: until this job
+    # existed the pipeline only started after the merge, so a broken change was
+    # discovered in production rather than in review.
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: 📦 Install
+        run: yarn install --frozen-lockfile
+
+      - name: 🔎 Typecheck
+        # `astro check` resolves component props, imports and the content
+        # collections that a bare `astro build` will happily compile around.
+        run: yarn typecheck
+
+      - name: 🏗️ Build
+        # The Dockerfile runs this same command. Running it here means a build
+        # failure costs a red check instead of a failed deploy.
+        run: yarn build
+
   build-and-push:
     name: 🏗️ Build & Push
     runs-on: ubuntu-latest
+    needs: verify
+
+    # Pull requests stop at verify. Publishing an image for a branch nobody
+    # deploys would burn a registry tag and hand Docker Hub credentials to a run
+    # triggered by a fork.
+    if: github.event_name != 'pull_request'
     outputs:
       tag: ${{ steps.set-tag.outputs.tag }}
       should_deploy: ${{ steps.set-tag.outputs.should_deploy }}
