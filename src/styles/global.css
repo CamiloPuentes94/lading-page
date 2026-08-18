@@ -1,12 +1,17 @@
-@import "tailwindcss";
+/* `source(none)` turns off Tailwind's automatic detection, so the scan is
+   exactly the @source lines below and nothing else.
 
-/* Tailwind 4 discovers its own sources by walking the project, which means any
-   HTML in the repo feeds the generated CSS. The mockups under desing/ are
-   design references that are never served, and they were contributing roughly
-   45% of the bundle: 114588 bytes with them, 62619 without. Scope the scan to
-   the code that actually ships. */
+   Without it the automatic walk still runs and @source only ADDS to it, which
+   is how design mockups under desing/ once contributed 45% of the bundle. That
+   was fixed by excluding them by name, but the walk itself remained: Tailwind
+   reads text, not code, and cannot tell `class="blur"` from the word "blur" in
+   a sentence. A line in .atl/skill-registry.md reading "fixes must shrink the
+   system, not grow it" was enough to emit .shrink and .grow into the stylesheet
+   every visitor downloads. Prose in a markdown file is not a styling decision.
+
+   Scanning src/ alone drops 17 such selectors and 357 bytes of brotli. */
+@import "tailwindcss" source(none);
 @source "../";
-@source not "../../desing";
 
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
