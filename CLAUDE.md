@@ -71,11 +71,10 @@ Viven en `.claude/skills/`. Las 11 skills de OpenSpec que las acompañan son de 
 
 ## Estado OpenSpec
 
-| Change | Estado real | Acción pendiente |
-|--------|-------------|-----------------|
-| `archive/2026-05-27-rediseno-landing-page` | CLOSED ✅ | — |
-| `responsive-mobile-tablet` | Implementado en commits `97239ec` + `6c2be13`, pero yaml dice `proposed` | **Archivar** |
-| `rediseno-landing-page` (activo) | Spec de referencia — no es change pendiente | Revisar si archivar |
+Sin changes activos. Los cuatro están en `openspec/changes/archive/`:
+`rediseno-landing-page`, `fix-hero-chip`, `responsive-mobile-tablet` y
+`cicd-mejora`. Las specs vigentes viven en `openspec/specs/` — siete
+capacidades, y son la referencia, no las copias delta dentro de los changes.
 
 ## Deuda Técnica Conocida
 
@@ -86,7 +85,6 @@ esta lista llegó a tener tres entradas que no existían y una tarde perdida
 - Footer: **Privacidad** y **Términos** apuntan a `href="#"`. Prometen páginas que no existen.
 - ~46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
 - El contenido es el techo del SEO: 2074 palabras en todo el sitio, y ninguna página responde una búsqueda que alguien escriba sin conocer la marca.
-- `openspec/changes/` tiene `fix-hero-chip` y `rediseno-landing-page` duplicados: existen a la vez como activos y como archivados. `cicd-mejora` quedó activo y sin archivar.
 - El servidor viejo tiene el disco lleno. Se decidió migrar a uno nuevo con Caddy en vez de repararlo (`deploy/Caddyfile.edge`).
 
 **Resueltas** (no volver a listarlas): tipografía Geist, compresión, tokens del design system, `LangSwitcher`, años contradictorios, drawer translúcido, destinos táctiles, `:focus-visible`, `--cf-ink-08`.
