@@ -32,6 +32,11 @@ html { overflow-x: hidden; }
   --cf-text: #1A2236;
   --cf-dim: #5C657A;
   --cf-faded-navy: #E4E7F0;
+  /* Grid wash behind the page heroes. Two pages already reached for a
+     --cf-ink-08 token that was never declared, so both spellings fell through
+     to a fixed light-ink tint — which composites to exactly the background in
+     dark mode (1.000:1) and made the grid vanish there. */
+  --cf-ink-08: rgba(11, 19, 43, 0.031);
   --cf-nav-bg: rgba(250, 248, 243, 0.85);
   --cf-shadow-md: 0 18px 40px -24px rgba(11, 19, 43, 0.18);
   --cf-shadow-lg: 0 30px 80px -40px rgba(11, 19, 43, 0.45);
@@ -80,6 +85,7 @@ html { overflow-x: hidden; }
   --cf-text: #C7CDE0;
   --cf-dim: #7C849C;
   --cf-faded-navy: #2A3050;
+  --cf-ink-08: rgba(241, 244, 251, 0.045);
   --cf-nav-bg: rgba(10, 15, 31, 0.82);
   --cf-shadow-md: 0 18px 40px -24px rgba(0, 0, 0, 0.55);
   --cf-shadow-lg: 0 30px 80px -40px rgba(0, 0, 0, 0.7);
@@ -276,6 +282,78 @@ body {
 
 .cf-card:hover {
   transform: translateY(-4px);
+}
+
+/* ─── Focus ────────────────────────────────────────────────────
+   The codebase had no :focus-visible rule at all, so keyboard users navigated
+   on whatever the user agent happened to draw — and Tailwind's reset removes
+   the default outline on several elements. :focus-visible rather than :focus
+   so a mouse click never paints a ring. */
+:where(a, button, [role="button"], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--cf-brand);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Skip link: the first tab stop on every page, visible only once focused.
+   Without it a keyboard user walks the whole nav before reaching content. */
+.cf-skip {
+  position: absolute;
+  left: 12px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--cf-brand);
+  color: var(--cf-on-brand);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: top 0.15s ease;
+}
+
+.cf-skip:focus {
+  top: 12px;
+}
+
+/* ─── Touch targets ────────────────────────────────────────────
+   WCAG 2.5.8 asks for 24x24 CSS px; Apple and Material both ask for 44.
+   The base padding clears the standard everywhere, and coarse pointers —
+   fingers, not mice — get the full 44. Applied by class rather than to every
+   `a`, because plenty of links here sit inside prose where extra padding
+   would open holes in the paragraph. */
+.cf-tap {
+  display: inline-flex;
+  align-items: center;
+  padding-block: 6px;
+}
+
+@media (pointer: coarse) {
+  .cf-tap {
+    min-height: 44px;
+  }
+}
+
+/* Square icon controls — hamburger, drawer close, theme toggle. They sit at
+   36-40px, which reads fine but misses the finger-sized minimum. */
+.cf-tap-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Footer link: the hover opacity used to live in inline onmouseover /
+   onmouseout handlers, which never fire on a touch screen and needed
+   'unsafe-inline' in the CSP to run at all. */
+.cf-footer-link {
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.cf-footer-link:hover,
+.cf-footer-link:focus-visible {
+  opacity: 1;
 }
 
 /* Nav link underline */

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
 import Section from '../components/shared/Section.astro';
+import { YEARS_ACTIVE } from '../data/company';
 import Button from '../components/shared/Button.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
@@ -23,8 +24,8 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
       style="
         position: absolute; inset: 0;
         background-image:
-          linear-gradient(var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px),
-          linear-gradient(90deg, var(--cf-ink-08, rgba(11,19,43,0.031)) 1px, transparent 1px);
+          linear-gradient(var(--cf-ink-08) 1px, transparent 1px),
+          linear-gradient(90deg, var(--cf-ink-08) 1px, transparent 1px);
         background-size: 56px 56px;
         mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 90%);
         -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 90%);
@@ -94,7 +95,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           ">
             {[
               { k: '3',      v: 'proyectos en producción' },
-              { k: '2',      v: 'años en el oficio' },
+              { k: String(YEARS_ACTIVE), v: 'años en el oficio' },
               { k: '100%',   v: 'uptime promedio' },
             ].map(s => (
               <div>
@@ -344,7 +345,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
           </p>
           <a
             href="/servicios"
-            class="cf-navlink"
+            class="cf-navlink cf-tap"
             style="display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--cf-ink);"
           >Ver detalle de servicios →</a>
         </div>
@@ -455,7 +456,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
         </div>
         <a
           href="/portafolio"
-          class="cf-navlink"
+          class="cf-navlink cf-tap"
           style="font-size: 14px; font-weight: 600; color: var(--cf-ink); white-space: nowrap;"
         >Ver más casos →</a>
       </div>
@@ -552,6 +553,7 @@ import ClosingCTA from '../components/shared/ClosingCTA.astro';
               href="https://pos.camandrefactory.com"
               target="_blank"
               rel="noopener noreferrer"
+              class="cf-tap"
               style="font-size: 14px; font-weight: 600; color: var(--cf-brand); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"
             >Ver sistema en vivo →</a>
           </div>

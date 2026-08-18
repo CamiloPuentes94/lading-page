@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/shared/Eyebrow.astro';
 import PageHero from '../components/shared/PageHero.astro';
+import { YEARS_ACTIVE_LABEL } from '../data/company';
 import ClosingCTA from '../components/shared/ClosingCTA.astro';
 
 const CASES = [
@@ -131,7 +132,7 @@ const caseList = [
         {[
           { k: '3',    v: 'Proyectos en producción' },
           { k: '1',    v: 'País en operación' },
-          { k: '1 año', v: 'En el oficio' },
+          { k: YEARS_ACTIVE_LABEL, v: 'En el oficio' },
           { k: '100%', v: 'Uptime promedio' },
         ].map((s, i) => (
           <div
@@ -323,6 +324,7 @@ const caseList = [
                   </div>
                 ))}
                 <a
+                  class="cf-tap"
                   href={c.id === 'sinerlly' ? 'https://pos.camandrefactory.com' : '#'}
                   target={c.id === 'sinerlly' ? '_blank' : undefined}
                   rel={c.id === 'sinerlly' ? 'noopener noreferrer' : undefined}
@@ -343,7 +345,7 @@ const caseList = [
         </div>
         <a
           href="mailto:camandrefactory@gmail.com"
-          class="cf-navlink"
+          class="cf-navlink cf-tap"
           style="font-size: 14px; font-weight: 600; color: var(--cf-ink);"
         >
           Solicitar acceso al archivo completo →

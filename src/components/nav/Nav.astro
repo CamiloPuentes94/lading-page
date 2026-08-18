@@ -1,6 +1,5 @@
 ---
 import ThemeToggle from '../shared/ThemeToggle.astro';
-import LangSwitcher from '../shared/LangSwitcher.astro';
 import Logo from '../shared/Logo.astro';
 
 interface Props {
@@ -47,7 +46,7 @@ const links = [
       {links.map((link) => (
         <a
           href={link.href}
-          class="cf-navlink"
+          class="cf-navlink cf-tap"
           data-active={activePage === link.key ? 'true' : 'false'}
           style="
             font-size: 15px;
@@ -61,10 +60,9 @@ const links = [
       ))}
     </nav>
 
-    <!-- Right: ThemeToggle + LangSwitcher + CTA (desktop) -->
+    <!-- Right: ThemeToggle + CTA (desktop) -->
     <div class="hidden md:flex" style="align-items: center; gap: 12px; flex-shrink: 0;">
       <ThemeToggle />
-      <LangSwitcher />
       <a
         href="#contacto"
         class="cf-btn"
@@ -91,6 +89,7 @@ const links = [
       aria-controls="cf-nav-drawer"
       aria-label="Abrir menú de navegación"
       class="flex items-center justify-center flex-shrink-0 md:hidden"
+      class="cf-tap-icon"
       style="
         background: none;
         border: none;
@@ -135,6 +134,7 @@ const links = [
   id="cf-nav-drawer"
   data-open="false"
   aria-hidden="true"
+  inert
   style="
     position: fixed;
     top: 0;
@@ -142,7 +142,11 @@ const links = [
     bottom: 0;
     z-index: 50;
     width: min(320px, 85vw);
-    background: var(--cf-nav-bg);
+    /* Opaque on purpose. --cf-nav-bg is a translucent token built for the
+       sticky bar, which pairs it with backdrop-filter: blur(14px). The drawer
+       has no blur, so the same value just let the page read through the menu:
+       0.82 alpha in dark, 0.85 in light, both unreadable over the hero. */
+    background: var(--cf-paper);
     border-left: 1px solid var(--cf-rule);
     display: flex;
     flex-direction: column;
@@ -158,6 +162,7 @@ const links = [
     <button
       id="cf-drawer-close"
       aria-label="Cerrar menú de navegación"
+      class="cf-tap-icon"
       style="
         background: none;
         border: none;
@@ -181,7 +186,7 @@ const links = [
     {links.map((link) => (
       <a
         href={link.href}
-        class="cf-drawer-link cf-navlink"
+        class="cf-drawer-link cf-navlink cf-tap"
         data-active={activePage === link.key ? 'true' : 'false'}
         style="
           font-size: 18px;
@@ -202,7 +207,6 @@ const links = [
   <div style="display: flex; flex-direction: column; gap: 16px; margin-top: auto;">
     <div style="display: flex; align-items: center; gap: 12px;">
       <ThemeToggle />
-      <LangSwitcher />
     </div>
     <a
       href="#contacto"
@@ -243,6 +247,7 @@ const links = [
       drawer.style.transform = 'translateX(0)';
       drawer.setAttribute('data-open', 'true');
       drawer.setAttribute('aria-hidden', 'false');
+      drawer.removeAttribute('inert');
       overlay.style.opacity = '1';
       overlay.style.pointerEvents = 'auto';
       overlay.setAttribute('data-open', 'true');
@@ -261,6 +266,11 @@ const links = [
       drawer.style.transform = 'translateX(100%)';
       drawer.setAttribute('data-open', 'false');
       drawer.setAttribute('aria-hidden', 'true');
+      // inert removes the panel from the tab order and the accessibility tree.
+      // Without it the drawer keeps its focusable children while hidden, which
+      // is what made aria-hidden="true" sit on top of tabbable links — and it
+      // stayed reachable on desktop, where the drawer never appears at all.
+      drawer.setAttribute('inert', '');
       overlay.style.opacity = '0';
       overlay.style.pointerEvents = 'none';
       overlay.setAttribute('data-open', 'false');
@@ -281,8 +291,31 @@ const links = [
 
     overlay.addEventListener('click', closeDrawer);
 
+    var FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && isOpen) { closeDrawer(); }
+      if (!isOpen) return;
+
+      if (e.key === 'Escape') { closeDrawer(); return; }
+
+      // Keep Tab inside the panel. An open drawer covers the page, so letting
+      // focus walk behind it strands the keyboard on controls nobody can see.
+      if (e.key !== 'Tab') return;
+      var items = Array.prototype.filter.call(
+        drawer.querySelectorAll(FOCUSABLE),
+        function (el) { return el.offsetParent !== null; }
+      );
+      if (!items.length) return;
+
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
 
     var drawerLinks = drawer.querySelectorAll('.cf-drawer-link');
