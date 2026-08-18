@@ -1,37 +1,31 @@
-# Etapa 1: Base
-FROM node:22-alpine AS base
-WORKDIR /app
-# Instalamos libc6-compat por si alguna librería nativa lo necesita (buena práctica en Alpine)
+# The site prerenders to a folder of files, so production needs a file server,
+# not a Node runtime. The Node stages exist only to produce dist/.
 
-# Etapa 2: Dependencias
-FROM base AS deps
+# ── Build ──────────────────────────────────────────────────────────────
+FROM node:22-alpine AS deps
+WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-# Etapa 3: Builder
-FROM base AS builder
+FROM node:22-alpine AS builder
+WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Construimos el proyecto
 RUN yarn build
 
-# Etapa 4: Runner (Imagen final limpia)
-FROM base AS runner
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=4321
+# ── Runtime ────────────────────────────────────────────────────────────
+FROM caddy:2-alpine AS runner
 
-# Creamos usuario no-root por seguridad
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 astro
+COPY deploy/Caddyfile /etc/caddy/Caddyfile
+COPY --from=builder /app/dist /srv
 
-# Copiamos solo lo necesario desde el builder
-COPY --from=builder --chown=astro:nodejs /app/dist ./dist
-COPY --from=builder --chown=astro:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=astro:nodejs /app/package.json ./package.json
+# Fails the build instead of shipping a container that 404s everything.
+RUN caddy validate --config /etc/caddy/Caddyfile \
+    && test -f /srv/index.html
 
-USER astro
+EXPOSE 80
 
-EXPOSE 4321
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget --spider -q http://127.0.0.1/healthz || exit 1
 
-CMD ["node", "./dist/server/entry.mjs"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

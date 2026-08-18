@@ -1,0 +1,43 @@
+# Edge Caddy — the host's single entry point, replacing Traefik.
+#
+# This file is NOT part of the landing image. It belongs to the host, next to
+# the edge compose file, and it grows a block per service. It lives here so the
+# landing's routing is versioned somewhere instead of only existing on a server
+# nobody can reconstruct — which is exactly how the compress middleware was
+# committed in 2600295 and never reached production.
+#
+# Caddy obtains and renews certificates on its own; there is no cert resolver to
+# configure and no ACME email required for staging. Set one for production so
+# expiry warnings have somewhere to go.
+{
+	email camandrefactory@gmail.com
+	# Uncomment while pointing DNS at a new host, to avoid burning Let's Encrypt
+	# rate limits on a domain that does not resolve here yet.
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# Canonical host. www redirects rather than serving a duplicate, so the
+# canonical tags the site already emits keep pointing at one address.
+www.camandrefactory.com {
+	redir https://camandrefactory.com{uri} permanent
+}
+
+camandrefactory.com {
+	encode zstd gzip
+
+	# Only the edge speaks TLS, so only the edge can promise HTTPS.
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+	reverse_proxy landing:80 {
+		health_uri /healthz
+		health_interval 30s
+		health_timeout 3s
+	}
+
+	log {
+		output file /var/log/caddy/camandrefactory.log {
+			roll_size 10mb
+			roll_keep 3
+		}
+	}
+}

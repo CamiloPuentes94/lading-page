@@ -9,10 +9,10 @@
 # builds, so a single merged _astro/ at the root serves both sets at once.
 set -euo pipefail
 
-BASE="${1:?path to the baseline dist/client}"
+BASE="${1:?path to the baseline dist}"
 PORT="${2:-4403}"
 OUT="$(mktemp -d)/compare"
-CUR="dist/client"
+CUR="dist"
 
 [ -d "$CUR" ] || { echo "run astro build first: $CUR is missing" >&2; exit 1; }
 
