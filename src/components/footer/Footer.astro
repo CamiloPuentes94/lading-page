@@ -1,5 +1,6 @@
 ---
 // Footer.astro — Full 4-column footer on cf-navy-deep background
+import { CURRENT_YEAR, COPYRIGHT_RANGE } from '../../data/company';
 ---
 
 <footer
@@ -117,7 +118,7 @@
               letter-spacing: 0.06em;
               color: var(--cf-brand);
             "
-          >Aceptamos proyectos · 2025</span>
+          >Aceptamos proyectos · {CURRENT_YEAR}</span>
         </div>
       </div>
 
@@ -134,11 +135,11 @@
             text-transform: uppercase;
           "
         >Servicios</p>
-        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;">
-          <li><a href="/servicios#producto" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Producto Web</a></li>
-          <li><a href="/servicios#sistemas" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Sistemas a medida</a></li>
-          <li><a href="/servicios#infra" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Infraestructura</a></li>
-          <li><a href="/servicios#consultoria" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Consultoría TI</a></li>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0;">
+          <li><a href="/servicios/#producto" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Producto Web</a></li>
+          <li><a href="/servicios/#sistemas" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Sistemas a medida</a></li>
+          <li><a href="/servicios/#infra" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Infraestructura</a></li>
+          <li><a href="/servicios/#consultoria" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Consultoría TI</a></li>
         </ul>
       </div>
 
@@ -155,9 +156,9 @@
             text-transform: uppercase;
           "
         >Camandre</p>
-        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;">
-          <li><a href="/nosotros" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Nosotros</a></li>
-          <li><a href="/portafolio" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">Portafolio</a></li>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0;">
+          <li><a href="/nosotros/" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Nosotros</a></li>
+          <li><a href="/portafolio/" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Portafolio</a></li>
         </ul>
       </div>
 
@@ -174,10 +175,11 @@
             text-transform: uppercase;
           "
         >Contacto</p>
-        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0;">
           <li>
             <a
               href="mailto:camandrefactory@gmail.com"
+              class="cf-tap"
               style="color: var(--cf-brand); text-decoration: none; font-size: 14px;"
             >camandrefactory@gmail.com</a>
           </li>
@@ -209,12 +211,15 @@
       "
     >
       <p style="margin: 0; font-size: 13px; color: var(--cf-dark-dim);">
-        © Camandre Factory · 2024–2025 · Todos los derechos reservados
+        © Camandre Factory · {COPYRIGHT_RANGE} · Todos los derechos reservados
       </p>
-      <div style="display: flex; gap: 20px; align-items: center;">
-        <a href="#" style="font-size: 13px; color: var(--cf-dark-dim); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cf-dark-text)'" onmouseout="this.style.color='var(--cf-dark-dim)'">Privacidad</a>
-        <a href="#" style="font-size: 13px; color: var(--cf-dark-dim); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cf-dark-text)'" onmouseout="this.style.color='var(--cf-dark-dim)'">Términos</a>
-      </div>
+      {/*
+        Privacidad and Términos used to sit here pointing at href="#". A link
+        that promises a page and delivers nothing costs more trust than the
+        absence of the link. The site collects nothing to disclose anyway: no
+        forms, no cookies, no analytics, no third-party requests — only a
+        localStorage key holding the theme. Bring them back as real routes.
+      */}
     </div>
   </div>
 </footer>

@@ -143,8 +143,9 @@ const graphs = [organization, breadcrumb, ...schema].filter(Boolean);
     ))}
   </head>
   <body class="bg-[var(--cf-bg)] text-[var(--cf-text)] min-h-screen flex flex-col overflow-x-hidden">
+    <a class="cf-skip" href="#contenido">Saltar al contenido</a>
     <Nav activePage={activePage} />
-    <main class="flex-1">
+    <main id="contenido" class="flex-1">
       <slot />
     </main>
     <Footer />
