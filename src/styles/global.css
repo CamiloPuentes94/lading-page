@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Tailwind 4 discovers its own sources by walking the project, which means any
+   HTML in the repo feeds the generated CSS. The mockups under desing/ are
+   design references that are never served, and they were contributing roughly
+   45% of the bundle: 114588 bytes with them, 62619 without. Scope the scan to
+   the code that actually ships. */
+@source "../";
+@source not "../../desing";
+
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
