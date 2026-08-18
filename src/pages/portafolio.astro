@@ -17,6 +17,23 @@ const CASES = [
     stack: ['React', 'Node.js', 'PostgreSQL'],
     mock: 'sinerlly',
     url: 'https://pos.camandrefactory.com',
+    story: {
+      problem:
+        'El sistema con el que vendía era lento, y en un negocio que factura al ' +
+        'peso eso no molesta una vez: molesta en cada artículo de cada venta. ' +
+        'Debajo de eso había algo que no se ve desde el mostrador — Sinerlly ' +
+        'compra a crédito a sus proveedores y no tenía cómo saber cuánto debía ' +
+        'en total ni cuánto llevaba pagado.',
+      decision:
+        'Equipo nuevo y un punto de venta que no se frenara en la venta, con el ' +
+        'crédito de proveedores adentro del mismo sistema en vez de a un ' +
+        'costado. Registrar una venta y saber cómo va la cuenta con cada ' +
+        'proveedor dejaron de ser dos tareas distintas.',
+      result:
+        'Sinerlly cierra el día con las cuentas claras: ventas, cuentas de cobro ' +
+        'y el estado de lo que debe y lo que pagó a cada proveedor, en un solo ' +
+        'lugar. Y el mostrador dejó de esperar al sistema.',
+    },
   },
   {
     id: 'falcon-1',
@@ -202,8 +219,17 @@ const caseList = [
         </div>
       </div>
 
-      <!-- Cards grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!--
+        Cards grid.
+
+        items-start matters: a grid row stretches its items to the tallest one,
+        and the cases no longer hold the same amount of text. Sinerlly carries a
+        problem/decision/result, the two Falcon systems are internal work for a
+        public body and carry a summary, so stretching left ~500px of blank card
+        under each of them — which reads as content that failed to load rather
+        than as a shorter case. Let each card be its own height.
+      -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
         {CASES.map((c) => (
           <article
             class="cf-card cf-reveal"
@@ -311,6 +337,25 @@ const caseList = [
               <p style="font-size: 14.5px; line-height: 1.6; color: var(--cf-dim); margin: 0;">
                 {c.desc}
               </p>
+
+              {c.story && (
+                <div style="margin-top: 18px; display: grid; gap: 14px;">
+                  {[
+                    ['El problema', c.story.problem],
+                    ['La decisión', c.story.decision],
+                    ['El resultado', c.story.result],
+                  ].map(([label, body]) => (
+                    <div>
+                      <div class="font-mono uppercase text-[9.5px] tracking-[0.14em] text-cf-brand mb-1.5 leading-[1.3]">
+                        {label}
+                      </div>
+                      <p style="font-size: 14.5px; line-height: 1.6; color: var(--cf-dim); margin: 0;">
+                        {body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <!-- Stats row -->
               <div style="margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--cf-rule); display: grid; grid-template-columns: 1fr 1fr auto; gap: 20px; align-items: end;">
