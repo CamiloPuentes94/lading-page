@@ -13,12 +13,19 @@
 
 html { overflow-x: hidden; }
 
-/* Fontsource self-hosted */
-@import "@fontsource/geist-sans/400.css";
-@import "@fontsource/geist-sans/500.css";
-@import "@fontsource/geist-sans/600.css";
-@import "@fontsource/jetbrains-mono/400.css";
-@import "@fontsource/jetbrains-mono/500.css";
+/* Fontsource self-hosted.
+   Pin the subset, not just the weight. The bare `400.css` entrypoints pull every
+   subset a family ships — for JetBrains Mono that is cyrillic, cyrillic-ext,
+   greek, latin, latin-ext and vietnamese. The two smallest of those fall under
+   Vite's 4KB inline threshold, so they were emitted as base64 data URIs inside
+   the stylesheet itself: unconditional bytes, no unicode-range left to skip
+   them, on a site that declares lang="es". They were half the compressed CSS.
+   Geist Sans only ever shipped latin, so its imports change name, not payload. */
+@import "@fontsource/geist-sans/latin-400.css";
+@import "@fontsource/geist-sans/latin-500.css";
+@import "@fontsource/geist-sans/latin-600.css";
+@import "@fontsource/jetbrains-mono/latin-400.css";
+@import "@fontsource/jetbrains-mono/latin-500.css";
 
 /* Dark mode via .dark class */
 @custom-variant dark (&:where(.dark, .dark *));
