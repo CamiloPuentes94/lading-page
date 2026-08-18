@@ -9,7 +9,7 @@
 |------|-----------|
 | Framework | Astro 6.3.x — `output: "static"`, **sin adapter**. Las 5 páginas se prerenderizan |
 | Estilos | Tailwind CSS 4.3 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
-| Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500) |
+| Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500). **Importar siempre `latin-<peso>.css`, nunca `<peso>.css`** |
 | Gestor | **yarn** (`yarn.lock`). `yarn` no está instalado en la máquina del dev: usar `node_modules/.bin/astro` |
 | Build | Docker multistage: `node:22-alpine` compila → `caddy:2-alpine` sirve `dist/` en :80 |
 | Proxy | Caddy al borde (`deploy/Caddyfile.edge`) — TLS, dominios, HSTS. Reemplazó a Traefik |
@@ -61,7 +61,7 @@ Viven en `.claude/skills/`. Las 11 skills de OpenSpec que las acompañan son de 
 **Dark** (`.dark`): `--cf-brand` #22C58E · `--cf-bg` #0A0F1F · `--cf-paper` #141A2E
 
 **Tipografía**:
-- H1 hero: `clamp(40-56px, 6.5-8vw, 96px)`, weight 700, letter-spacing -0.04em
+- H1 hero: `clamp(40-56px, 6.5-8vw, 96px)`, weight 600, letter-spacing -0.04em
 - H2 secciones: `clamp(28px, 4.5vw, 56px)`, -0.03em
 - ClosingCTA H2: `clamp(36px, 7vw, 88px)`, -0.04em
 
@@ -82,12 +82,12 @@ Verificada el 2026-08-18. Antes de agregar algo acá, comprobalo contra el repo:
 esta lista llegó a tener tres entradas que no existían y una tarde perdida
 "arreglando" `gracias.astro`, que siempre estuvo bien.
 
-- Footer: **Privacidad** y **Términos** apuntan a `href="#"`. Prometen páginas que no existen.
 - ~46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
-- El contenido es el techo del SEO: 2074 palabras en todo el sitio, y ninguna página responde una búsqueda que alguien escriba sin conocer la marca.
-- El servidor viejo tiene el disco lleno. Se decidió migrar a uno nuevo con Caddy en vez de repararlo (`deploy/Caddyfile.edge`).
+- El contenido es el techo del SEO: 2054 palabras visibles en todo el sitio (/ 592, /servicios/ 639, /portafolio/ 247, /nosotros/ 576), y ninguna página responde una búsqueda que alguien escriba sin conocer la marca. `/portafolio/` es el mejor material y la página más flaca.
+- Cero tests, cero lint, cero typecheck. `package.json` solo tiene `dev`, `build`, `preview` y `astro`; no hay `astro check` ni en local ni en CI.
+- `/gracias` no la enlaza nada desde el repo. Lleva `noindex` y está fuera del sitemap a propósito, así que puede estar viva como destino de algún link externo — averiguarlo antes de borrarla.
 
-**Resueltas** (no volver a listarlas): tipografía Geist, compresión, tokens del design system, `LangSwitcher`, años contradictorios, drawer translúcido, destinos táctiles, `:focus-visible`, `--cf-ink-08`.
+**Resueltas** (no volver a listarlas): tipografía Geist, compresión, tokens del design system, `LangSwitcher`, años contradictorios, drawer translúcido, destinos táctiles, `:focus-visible`, `--cf-ink-08`, links muertos del footer (b8d6c6c), migración al servidor nuevo con Caddy (PR #7), subsets de fuente no usados (83b58e2), faux-bold del H1 (335f7d6), `tools/get-resend-id.js` y los SVG del starter.
 
 ## Datos de Contacto en Producción
 
