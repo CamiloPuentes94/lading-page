@@ -16,6 +16,7 @@ const CASES = [
     metrics: [{ k: '2025', v: 'En producción' }, { k: 'Producto propio', v: 'Disponible' }],
     stack: ['React', 'Node.js', 'PostgreSQL'],
     mock: 'sinerlly',
+    url: 'https://pos.camandrefactory.com',
   },
   {
     id: 'falcon-1',
@@ -323,15 +324,24 @@ const caseList = [
                     </div>
                   </div>
                 ))}
-                <a
-                  class="cf-tap"
-                  href={c.id === 'sinerlly' ? 'https://pos.camandrefactory.com' : '#'}
-                  target={c.id === 'sinerlly' ? '_blank' : undefined}
-                  rel={c.id === 'sinerlly' ? 'noopener noreferrer' : undefined}
-                  style="display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--cf-ink); white-space: nowrap; text-decoration: none;"
-                >
-                  {c.id === 'sinerlly' ? 'Ver sistema →' : 'Caso →'}
-                </a>
+                {/*
+                  Only rendered when the case actually leads somewhere. The two
+                  Falcon Precision cards used to show a "Caso →" affordance
+                  wired to href="#": it looked clickable, it read as clickable
+                  to a screen reader, and it went nowhere. Internal systems for
+                  a public body have no public URL to point at.
+                */}
+                {c.url && (
+                  <a
+                    class="cf-tap"
+                    href={c.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--cf-ink); white-space: nowrap; text-decoration: none;"
+                  >
+                    Ver sistema →
+                  </a>
+                )}
               </div>
             </div>
           </article>

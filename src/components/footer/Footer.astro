@@ -136,10 +136,10 @@ import { CURRENT_YEAR, COPYRIGHT_RANGE } from '../../data/company';
           "
         >Servicios</p>
         <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0;">
-          <li><a href="/servicios#producto" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Producto Web</a></li>
-          <li><a href="/servicios#sistemas" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Sistemas a medida</a></li>
-          <li><a href="/servicios#infra" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Infraestructura</a></li>
-          <li><a href="/servicios#consultoria" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Consultoría TI</a></li>
+          <li><a href="/servicios/#producto" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Producto Web</a></li>
+          <li><a href="/servicios/#sistemas" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Sistemas a medida</a></li>
+          <li><a href="/servicios/#infra" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Infraestructura</a></li>
+          <li><a href="/servicios/#consultoria" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Consultoría TI</a></li>
         </ul>
       </div>
 
@@ -157,8 +157,8 @@ import { CURRENT_YEAR, COPYRIGHT_RANGE } from '../../data/company';
           "
         >Camandre</p>
         <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0;">
-          <li><a href="/nosotros" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Nosotros</a></li>
-          <li><a href="/portafolio" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Portafolio</a></li>
+          <li><a href="/nosotros/" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Nosotros</a></li>
+          <li><a href="/portafolio/" class="cf-tap cf-footer-link" style="color: var(--cf-dark-text); text-decoration: none; font-size: 14px;">Portafolio</a></li>
         </ul>
       </div>
 
@@ -213,10 +213,13 @@ import { CURRENT_YEAR, COPYRIGHT_RANGE } from '../../data/company';
       <p style="margin: 0; font-size: 13px; color: var(--cf-dark-dim);">
         © Camandre Factory · {COPYRIGHT_RANGE} · Todos los derechos reservados
       </p>
-      <div style="display: flex; gap: 20px; align-items: center;">
-        <a href="#" class="cf-tap cf-footer-link" style="font-size: 13px; color: var(--cf-dark-dim); text-decoration: none;">Privacidad</a>
-        <a href="#" class="cf-tap cf-footer-link" style="font-size: 13px; color: var(--cf-dark-dim); text-decoration: none;">Términos</a>
-      </div>
+      {/*
+        Privacidad and Términos used to sit here pointing at href="#". A link
+        that promises a page and delivers nothing costs more trust than the
+        absence of the link. The site collects nothing to disclose anyway: no
+        forms, no cookies, no analytics, no third-party requests — only a
+        localStorage key holding the theme. Bring them back as real routes.
+      */}
     </div>
   </div>
 </footer>

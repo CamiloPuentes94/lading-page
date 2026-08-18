@@ -2,16 +2,19 @@
 
 ## Stack Técnico
 
+> Verificado contra `package.json`, `astro.config.mjs` y el `Dockerfile` el 2026-08-18.
+> Si algo de acá no coincide con el repo, el repo tiene razón — corregí esta tabla.
+
 | Capa | Tecnología |
 |------|-----------|
-| Framework | Astro 5.17.1 + adapter @astrojs/node 9.5.2 (standalone SSR) |
-| Estilos | Tailwind CSS 4.1.18 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
+| Framework | Astro 6.3.x — `output: "static"`, **sin adapter**. Las 5 páginas se prerenderizan |
+| Estilos | Tailwind CSS 4.3 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
 | Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500) |
-| Email | resend 6.9.2 |
-| Validación | zod 4.3.6 |
-| Deploy | Docker multistage node:20-alpine, usuario astro:nodejs, puerto 4321 |
+| Gestor | **yarn** (`yarn.lock`). `yarn` no está instalado en la máquina del dev: usar `node_modules/.bin/astro` |
+| Build | Docker multistage: `node:22-alpine` compila → `caddy:2-alpine` sirve `dist/` en :80 |
+| Proxy | Caddy al borde (`deploy/Caddyfile.edge`) — TLS, dominios, HSTS. Reemplazó a Traefik |
 
-**Variables de entorno requeridas**: `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`
+**Variables de entorno requeridas**: ninguna. El sitio es estático y no habla con ningún servicio externo.
 
 ## Páginas
 
@@ -22,8 +25,6 @@
 | `/portafolio` | `src/pages/portafolio.astro` | 3 casos reales, filtro JS por categoría |
 | `/nosotros` | `src/pages/nosotros.astro` | Origen + Timeline + Valores + Equipo (JC + YA) + Ubicaciones |
 | `/gracias` | `src/pages/gracias.astro` | Usa `--cf-*` correctamente. Lleva `noindex`. Nada la enlaza |
-| `/api/contact` | `src/pages/api/contact.ts` | POST — envía email vía Resend |
-| `/api/subscribe` | `src/pages/api/subscribe.ts` | POST — agrega contacto a audiencia Resend |
 
 ## Componentes Shared
 
@@ -78,10 +79,17 @@ Viven en `.claude/skills/`. Las 11 skills de OpenSpec que las acompañan son de 
 
 ## Deuda Técnica Conocida
 
-- ~~`gracias.astro` usa tokens CSS del design viejo~~ — **FALSO, verificado**: `rg "text-primary|text-muted-foreground"` devuelve 0 en todo `src/`. La página usa `--cf-*` correctamente. Esta deuda nunca existió.
-- Footer links Privacidad/Términos apuntan a `href="#"` (sin páginas reales)
-- Resend `from` usa `onboarding@resend.dev` (dominio temporal) — en producción debería ser dominio verificado
-- `responsive-mobile-tablet` sin archivar en OpenSpec
+Verificada el 2026-08-18. Antes de agregar algo acá, comprobalo contra el repo:
+esta lista llegó a tener tres entradas que no existían y una tarde perdida
+"arreglando" `gracias.astro`, que siempre estuvo bien.
+
+- Footer: **Privacidad** y **Términos** apuntan a `href="#"`. Prometen páginas que no existen.
+- ~46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
+- El contenido es el techo del SEO: 2074 palabras en todo el sitio, y ninguna página responde una búsqueda que alguien escriba sin conocer la marca.
+- `openspec/changes/` tiene `fix-hero-chip` y `rediseno-landing-page` duplicados: existen a la vez como activos y como archivados. `cicd-mejora` quedó activo y sin archivar.
+- El servidor viejo tiene el disco lleno. Se decidió migrar a uno nuevo con Caddy en vez de repararlo (`deploy/Caddyfile.edge`).
+
+**Resueltas** (no volver a listarlas): tipografía Geist, compresión, tokens del design system, `LangSwitcher`, años contradictorios, drawer translúcido, destinos táctiles, `:focus-visible`, `--cf-ink-08`.
 
 ## Datos de Contacto en Producción
 
