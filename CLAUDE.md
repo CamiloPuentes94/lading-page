@@ -10,7 +10,8 @@
 | Framework | Astro 6.3.x — `output: "static"`, **sin adapter**. Las 5 páginas se prerenderizan |
 | Estilos | Tailwind CSS 4.3 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
 | Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500). **Importar siempre `latin-<peso>.css`, nunca `<peso>.css`** |
-| Gestor | **yarn** (`yarn.lock`). `yarn` no está instalado en la máquina del dev: usar `node_modules/.bin/astro` |
+| Gestor | **yarn** (`yarn.lock`, formato v1). `yarn` no está instalado en la máquina del dev: instalar con `npx --yes yarn@1.22.22 install --frozen-lockfile`, ejecutar con `node_modules/.bin/astro`. **Nunca `npm install`** — ver Deuda Técnica |
+| Verificación | `yarn typecheck` (`astro check`) y `yarn build`. CI los corre en cada PR a `main`/`development`: `.github/workflows/docker-ci-cd.yml`, job `verify` |
 | Build | Docker multistage: `node:22-alpine` compila → `caddy:2-alpine` sirve `dist/` en :80 |
 | Proxy | Caddy al borde (`deploy/Caddyfile.edge`) — TLS, dominios, HSTS. Reemplazó a Traefik |
 
@@ -69,6 +70,33 @@ Viven en `.claude/skills/`. Las 11 skills de OpenSpec que las acompañan son de 
 
 **Dark mode**: clase `.dark` en `<html>` · script anti-FOUC en `<head>` · localStorage `cf-theme` · cross-tab sync via `storage` event
 
+## Voz y Posicionamiento
+
+Establecido en PR #14. Aplica a todo texto visible, `title` y `description`.
+
+**Público: pymes.** El H1 del home es "Tu pyme **ya creció**. Tu software, no."
+Los clientes reales son de ese tamaño — Sinerlly es una distribuidora de
+alimentos con un POS.
+
+**Registro: tuteo.** `tu`, `tienes`, `contratas`. Cero `usted`, cero voseo.
+"Contratás" o "tenés" son defectos, no variantes.
+
+**Nunca califiques al lector.** El sitio decía "para empresas que toman
+decisiones serias", "con ambiciones técnicas reales", "que toman su tecnología
+en serio". Ese movimiento juzga antes de vender y no filtra a nadie: ninguna
+empresa se auto-describe como poco seria. Aparecía cinco veces y costó una
+reescritura completa. Si escribís un adjetivo que separa clientes dignos de
+indignos, borralo.
+
+**Presupuesto SEO**: títulos **57-59** caracteres, descriptions **147-159**.
+Es el patrón que el sitio ya sostiene, y una página nueva fuera de esa banda
+se nota. `Layout.astro` recorta el breadcrumb con `title.split("—")[0]`, así
+que el formato `"Página — extra | Camandre Factory"` es seguro.
+
+**`/portafolio/` no dice "pyme".** Su array `CASES` describe los dos proyectos
+de Falcon Precision como "entidad del estado". Etiquetar esa página como
+cartera de pymes contradiría sus propios datos estructurados.
+
 ## Estado OpenSpec
 
 Sin changes activos. Los cuatro están en `openspec/changes/archive/`:
@@ -78,16 +106,18 @@ capacidades, y son la referencia, no las copias delta dentro de los changes.
 
 ## Deuda Técnica Conocida
 
-Verificada el 2026-08-18. Antes de agregar algo acá, comprobalo contra el repo:
+Verificada el 2026-08-22. Antes de agregar algo acá, comprobalo contra el repo:
 esta lista llegó a tener tres entradas que no existían y una tarde perdida
 "arreglando" `gracias.astro`, que siempre estuvo bien.
 
-- ~46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
-- El contenido es el techo del SEO: 2054 palabras visibles en todo el sitio (/ 592, /servicios/ 639, /portafolio/ 247, /nosotros/ 576), y ninguna página responde una búsqueda que alguien escriba sin conocer la marca. `/portafolio/` es el mejor material y la página más flaca.
-- Cero tests, cero lint, cero typecheck. `package.json` solo tiene `dev`, `build`, `preview` y `astro`; no hay `astro check` ni en local ni en CI.
+- 46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
+- El contenido sigue siendo el techo del SEO: 2096 palabras en todo el sitio (/ 629, /servicios/ 675, /portafolio/ 242, /nosotros/ 550), contadas sobre `dist/` excluyendo `nav`, `footer`, `header`, `script`, `style` y `svg` — ese es el método, reproducilo si vas a comparar. Los títulos ya cargan términos que la gente busca, pero la profundidad del contenido no cambió. `/portafolio/` sigue siendo el mejor material y la página más flaca.
+- Cero tests y cero lint. **Typecheck sí hay**: `yarn typecheck` (`astro check`) existe desde `ff233c5` y corre en CI en cada PR. Lo que falta es una aserción de humo sobre `dist/` que compruebe que cada página emite un `<title>` y una `description` no vacíos — una sola prueba cubre las cuatro.
+- **`npm install` rompe el build.** Ignora el `yarn.lock` y resuelve versiones frescas, armando un combo incompatible de `@tailwindcss/vite` + `vite`/`rolldown` que muere con `Missing field 'tsconfigPaths'` en `global.css`. El lockfile es funcional, no decorativo.
+- **Los dos archivos `.atl/` se regeneran solos** durante una sesión, al invocar skills. Se derivan del layout local de la máquina, así que no son reproducibles desde el repo: una regeneración borró ~20 skills solo porque cuatro directorios no existían acá, y el encabezado ahora refleja el typo del directorio (`lading-page`). Nunca `git add -A` en este repo; dejalos sin stagear o commiteálos aparte.
 - `/gracias` no la enlaza nada desde el repo. Lleva `noindex` y está fuera del sitemap a propósito, así que puede estar viva como destino de algún link externo — averiguarlo antes de borrarla.
 
-**Resueltas** (no volver a listarlas): tipografía Geist, compresión, tokens del design system, `LangSwitcher`, años contradictorios, drawer translúcido, destinos táctiles, `:focus-visible`, `--cf-ink-08`, links muertos del footer (b8d6c6c), migración al servidor nuevo con Caddy (PR #7), subsets de fuente no usados (83b58e2), faux-bold del H1 (335f7d6), `tools/get-resend-id.js` y los SVG del starter.
+**Resueltas** (no volver a listarlas): tipografía Geist, compresión, tokens del design system, `LangSwitcher`, años contradictorios, drawer translúcido, destinos táctiles, `:focus-visible`, `--cf-ink-08`, links muertos del footer (b8d6c6c), migración al servidor nuevo con Caddy (PR #7), subsets de fuente no usados (83b58e2), faux-bold del H1 (335f7d6), `tools/get-resend-id.js`, los SVG del starter, y el copy que calificaba al lector (PR #14).
 
 ## Datos de Contacto en Producción
 
