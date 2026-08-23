@@ -2,8 +2,11 @@
 
 ## Stack Técnico
 
-> Verificado contra `package.json`, `astro.config.mjs` y el `Dockerfile` el 2026-08-18.
+> Verificado contra `package.json`, `astro.config.mjs`, el `Dockerfile` y
+> `.github/workflows/docker-ci-cd.yml` el 2026-08-22.
 > Si algo de acá no coincide con el repo, el repo tiene razón — corregí esta tabla.
+> La fila de Verificación es la más frágil: nombra un archivo, un job y dos ramas
+> que pueden cambiar sin que nadie toque este documento. Comprobala antes de confiar.
 
 | Capa | Tecnología |
 |------|-----------|
@@ -78,8 +81,12 @@ Establecido en PR #14. Aplica a todo texto visible, `title` y `description`.
 Los clientes reales son de ese tamaño — Sinerlly es una distribuidora de
 alimentos con un POS.
 
-**Registro: tuteo.** `tu`, `tienes`, `contratas`. Cero `usted`, cero voseo.
-"Contratás" o "tenés" son defectos, no variantes.
+**Registro del sitio: tuteo.** `tu`, `tienes`, `contratas`. Cero `usted`, cero
+voseo. "Contratás" o "tenés" dentro de `src/` son defectos, no variantes.
+
+Ojo con el alcance: **la regla gobierna `src/`, no este archivo.** El `CLAUDE.md`
+está escrito en voseo a propósito porque le habla al equipo, no al visitante.
+Si ves "borralo" acá y "borra eso" en un `.astro`, las dos están bien.
 
 **Nunca califiques al lector.** El sitio decía "para empresas que toman
 decisiones serias", "con ambiciones técnicas reales", "que toman su tecnología
@@ -112,7 +119,7 @@ esta lista llegó a tener tres entradas que no existían y una tarde perdida
 
 - 46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
 - El contenido sigue siendo el techo del SEO: 2096 palabras en todo el sitio (/ 629, /servicios/ 675, /portafolio/ 242, /nosotros/ 550), contadas sobre `dist/` excluyendo `nav`, `footer`, `header`, `script`, `style` y `svg` — ese es el método, reproducilo si vas a comparar. Los títulos ya cargan términos que la gente busca, pero la profundidad del contenido no cambió. `/portafolio/` sigue siendo el mejor material y la página más flaca.
-- Cero tests y cero lint. **Typecheck sí hay**: `yarn typecheck` (`astro check`) existe desde `ff233c5` y corre en CI en cada PR. Lo que falta es una aserción de humo sobre `dist/` que compruebe que cada página emite un `<title>` y una `description` no vacíos — una sola prueba cubre las cuatro.
+- Cero tests y cero lint. **Typecheck sí hay**: `yarn typecheck` (`astro check`) existe desde `ff233c5` y corre en CI en cada PR. Lo que falta es una aserción de humo sobre `dist/` que recorra las **cinco** páginas —`/gracias` incluida, que también emite ambas etiquetas— y compruebe que cada una tiene `<title>` y `description` no vacíos, únicos entre sí, y dentro del presupuesto de longitud de la sección Voz y Posicionamiento. Hoy esas tres invariantes solo se sostienen porque alguien las mide a mano.
 - **`npm install` rompe el build.** Ignora el `yarn.lock` y resuelve versiones frescas, armando un combo incompatible de `@tailwindcss/vite` + `vite`/`rolldown` que muere con `Missing field 'tsconfigPaths'` en `global.css`. El lockfile es funcional, no decorativo.
 - **Los dos archivos `.atl/` se regeneran solos** durante una sesión, al invocar skills. Se derivan del layout local de la máquina, así que no son reproducibles desde el repo: una regeneración borró ~20 skills solo porque cuatro directorios no existían acá, y el encabezado ahora refleja el typo del directorio (`lading-page`). Nunca `git add -A` en este repo; dejalos sin stagear o commiteálos aparte.
 - `/gracias` no la enlaza nada desde el repo. Lleva `noindex` y está fuera del sitemap a propósito, así que puede estar viva como destino de algún link externo — averiguarlo antes de borrarla.
