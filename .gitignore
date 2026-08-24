@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # One Piece Agents (symlink al repo central — no versionar)
 .claude/one-piece-agents
+
+# Machine-derived, not reproducible from this repo: the registry lists the
+# skills present on whoever ran the refresh, so it churned on every session and
+# a regeneration silently dropped ~20 entries that only existed on another
+# machine. Regenerate locally with `gentle-ai skill-registry refresh --force`.
+.atl/
