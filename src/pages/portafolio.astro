@@ -40,22 +40,56 @@ const CASES = [
     client: 'Falcon Precision',
     cat: 'Sistemas',
     year: '2025',
-    title: 'App de gestión interna',
-    desc: 'Aplicación interna para optimizar procesos administrativos.',
+    title: 'Consulta documental',
+    desc: 'Interfaz de consulta sobre un archivo documental que no se puede reemplazar: los datos quedan a la vista y el documento original sigue siendo la fuente legal.',
     metrics: [{ k: '2025', v: 'En producción' }, { k: 'Interno', v: 'No público' }],
     stack: ['React', 'API REST', 'PostgreSQL'],
     mock: 'falcon1',
+    story: {
+      problem:
+        'La información que el equipo necesitaba vivía dentro de documentos, no ' +
+        'dentro de un sistema. Para mirar un solo dato había que ubicar el ' +
+        'documento, abrirlo y leerlo hasta encontrarlo — y otra vez con el ' +
+        'siguiente, documento por documento.',
+      decision:
+        'Migrar no era una opción, y no por costo: el documento original es la ' +
+        'fuente legal. Lo que vale ante un tercero es el documento, no una copia ' +
+        'en una base de datos. Así que el sistema no lo reemplaza, se para ' +
+        'encima: los datos que el equipo consulta se extraen y quedan a la ' +
+        'vista, y la autoridad sigue siendo el original.',
+      result:
+        'Consultar dejó de exigir abrir. El equipo ve en pantalla lo que antes ' +
+        'estaba enterrado adentro del documento, y cuando hay que respaldar algo ' +
+        'el original está a un clic — intacto, y todavía siendo la fuente que vale.',
+    },
   },
   {
     id: 'falcon-2',
     client: 'Falcon Precision',
     cat: 'Sistemas',
     year: '2025',
-    title: 'App operativa interna',
-    desc: 'Segunda aplicación interna para automatización de procesos operativos.',
+    title: 'Informes digitales',
+    desc: 'Los informes salieron de Excel y Word: formularios que se llenan en pantalla, se guardan mientras se escriben y miden solos su tiempo de respuesta.',
     metrics: [{ k: '2025', v: 'En producción' }, { k: 'Interno', v: 'No público' }],
     stack: ['React', 'Node.js', 'PostgreSQL'],
     mock: 'falcon2',
+    story: {
+      problem:
+        'Cada informe se armaba a mano en Excel o Word. Horas de copiar, pegar ' +
+        'y pelear con el formato antes de que el contenido existiera. Y una vez ' +
+        'enviado, el informe terminaba en un archivo suelto, sin nada alrededor ' +
+        'que dijera si los tiempos de respuesta se estaban cumpliendo.',
+      decision:
+        'Formularios en vez de documentos. Se llena en pantalla, se guarda ' +
+        'mientras se escribe — sin un botón de guardar del que dependa el ' +
+        'trabajo de una hora —, se adjuntan imágenes donde hacen falta y se ' +
+        'comenta adentro del mismo informe. Y el sistema lleva indicadores de ' +
+        'ANS, para que el cumplimiento se mire en vez de suponerse.',
+      result:
+        'El informe pasó de horas a minutos, y dejó de terminar en un archivo ' +
+        'suelto. Queda registrado con sus imágenes y sus comentarios, y con ' +
+        'indicadores de ANS que muestran si los tiempos se están cumpliendo.',
+    },
   },
 ];
 
