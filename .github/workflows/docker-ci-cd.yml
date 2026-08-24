@@ -55,6 +55,12 @@ jobs:
         # failure costs a red check instead of a failed deploy.
         run: yarn build
 
+      - name: 🧪 Test
+        # Asserts over dist/, so it has to follow the build. Covers the metadata
+        # contract `astro check` cannot see: one non-empty title and description
+        # per page, unique across pages, inside the documented length budget.
+        run: yarn test
+
   build-and-push:
     name: 🏗️ Build & Push
     runs-on: ubuntu-latest
