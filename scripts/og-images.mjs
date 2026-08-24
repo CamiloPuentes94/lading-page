@@ -82,7 +82,7 @@ function card({ lines, footer }) {
 
 const CARDS = {
   'og-default': {
-    lines: ['Software a medida', 'para empresas serias.'],
+    lines: ['Tu operación ya creció.', 'Tu software, no.'],
     footer: 'EST. 2024 · CHÍA · COLOMBIA',
   },
   'og-servicios': {
