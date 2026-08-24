@@ -11,6 +11,15 @@
 // stays in og-images.mjs.
 
 import { createHash } from 'node:crypto';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// Every output path is resolved from this module, not from the caller's working
+// directory. og-images.mjs writes the manifest only after all four PNGs are on
+// disk, so a cwd-relative path run from the wrong directory would scatter the
+// images and then fail — leaving exactly the images-newer-than-manifest state
+// the freshness test exists to detect, produced by the tooling itself.
+export const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 export const W = 1200;
 export const H = 630;
@@ -77,7 +86,8 @@ export function card({ lines, footer }) {
   </svg>`;
 }
 
-export const MANIFEST_PATH = 'scripts/og-images.manifest.json';
+export const MANIFEST_PATH = join(REPO_ROOT, 'scripts', 'og-images.manifest.json');
+export const PUBLIC_DIR = join(REPO_ROOT, 'public');
 
 /**
  * Digest of a card's complete rendering input — the SVG source, before any

@@ -24,24 +24,27 @@
 // someone edited the copy and forgot to re-run this script.
 
 import { writeFileSync } from 'node:fs';
+import { join, relative } from 'node:path';
 
 import sharp from 'sharp';
 
-import { CARDS, MANIFEST_PATH, card, inputDigest } from './og-cards.mjs';
+import { CARDS, MANIFEST_PATH, PUBLIC_DIR, REPO_ROOT, card, inputDigest } from './og-cards.mjs';
+
+const label = (p) => relative(REPO_ROOT, p);
 
 for (const [name, spec] of Object.entries(CARDS)) {
   const svg = card(spec);
-  const out = `public/${name}.png`;
+  const out = join(PUBLIC_DIR, `${name}.png`);
   const info = await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(out);
-  console.log(`  ${out.padEnd(28)} ${info.width}x${info.height}  ${Math.round(info.size / 1024)}KB`);
+  console.log(`  ${label(out).padEnd(28)} ${info.width}x${info.height}  ${Math.round(info.size / 1024)}KB`);
 }
 
 const manifest = {
-  comment: `Written by ${import.meta.url.split('/').pop()}. Do not edit by hand — re-run the script.`,
+  comment: 'Written by scripts/og-images.mjs. Do not edit by hand — re-run the script.',
   cards: Object.fromEntries(
     Object.entries(CARDS).map(([name, spec]) => [name, inputDigest(spec)])
   ),
 };
 
 writeFileSync(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`);
-console.log(`  ${MANIFEST_PATH.padEnd(28)} ${Object.keys(manifest.cards).length} cards`);
+console.log(`  ${label(MANIFEST_PATH).padEnd(28)} ${Object.keys(manifest.cards).length} cards`);
