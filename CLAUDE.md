@@ -3,7 +3,7 @@
 ## Stack Técnico
 
 > Verificado contra `package.json`, `astro.config.mjs`, el `Dockerfile` y
-> `.github/workflows/docker-ci-cd.yml` el 2026-08-22.
+> `.github/workflows/docker-ci-cd.yml` el 2026-08-24.
 > Si algo de acá no coincide con el repo, el repo tiene razón — corregí esta tabla.
 > La fila de Verificación es la más frágil: nombra un archivo, un job y dos ramas
 > que pueden cambiar sin que nadie toque este documento. Comprobala antes de confiar.
@@ -13,7 +13,7 @@
 | Framework | Astro 6.3.x — `output: "static"`, **sin adapter**. Las 5 páginas se prerenderizan |
 | Estilos | Tailwind CSS 4.3 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
 | Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500). **Importar siempre `latin-<peso>.css`, nunca `<peso>.css`** |
-| Gestor | **yarn** (`yarn.lock`, formato v1). `yarn` no está instalado en la máquina del dev: instalar con `npx --yes yarn@1.22.22 install --frozen-lockfile`, ejecutar con `node_modules/.bin/astro`. **Nunca `npm install`** — ver Deuda Técnica |
+| Gestor | **yarn** (`yarn.lock`, formato v1) es la fuente de verdad: CI y el `Dockerfile` corren `yarn install --frozen-lockfile`. `yarn` no está en la máquina del dev. Para **correr** scripts alcanza con `bun run <script>` — lee `package.json`, usa el `node_modules` existente y no escribe ningún lockfile — o con `node_modules/.bin/astro`. Para **instalar**, `npx --yes yarn@1.22.22 install --frozen-lockfile`. Nunca un instalador que re-resuelva el árbol (`npm install`, y por el mismo motivo `bun install` o `pnpm install` sin importar el lock) — ver Deuda Técnica |
 | Verificación | `yarn typecheck` (`astro check`), `yarn build` y `yarn test`. CI los corre en ese orden en cada PR a `main`/`development`: `.github/workflows/docker-ci-cd.yml`, job `verify`. `yarn test` es `node --test` sobre `test/*.test.mjs`, sin dependencias, y afirma sobre `dist/` — necesita el build hecho |
 | Build | Docker multistage: `node:22-alpine` compila → `caddy:2-alpine` sirve `dist/` en :80 |
 | Proxy | Caddy al borde (`deploy/Caddyfile.edge`) — TLS, dominios, HSTS. Reemplazó a Traefik |
