@@ -1,0 +1,9 @@
+{
+  "comment": "Written by scripts/og-images.mjs. Do not edit by hand — re-run the script.",
+  "cards": {
+    "og-default": "sha256:86760e39398a9e7143ea4a0762c34643af253b861800638c4f343205b34ccf36",
+    "og-servicios": "sha256:22e4d09db365f12a54f2bdce8342f9ebd8aff9e8e5242213b2f2f497d496cc02",
+    "og-portafolio": "sha256:d2519862da7688402f3bd9874c6dc43b46c9455bb1ee9ae5a2ebb9021a7d9313",
+    "og-nosotros": "sha256:0dec985ce95435632ba28489ee8ec8fd1b6d99710bdfe40d23a844ee40685497"
+  }
+}
