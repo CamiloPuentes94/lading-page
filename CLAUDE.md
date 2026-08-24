@@ -3,7 +3,7 @@
 ## Stack Técnico
 
 > Verificado contra `package.json`, `astro.config.mjs`, el `Dockerfile` y
-> `.github/workflows/docker-ci-cd.yml` el 2026-08-22.
+> `.github/workflows/docker-ci-cd.yml` el 2026-08-24.
 > Si algo de acá no coincide con el repo, el repo tiene razón — corregí esta tabla.
 > La fila de Verificación es la más frágil: nombra un archivo, un job y dos ramas
 > que pueden cambiar sin que nadie toque este documento. Comprobala antes de confiar.
@@ -13,7 +13,7 @@
 | Framework | Astro 6.3.x — `output: "static"`, **sin adapter**. Las 5 páginas se prerenderizan |
 | Estilos | Tailwind CSS 4.3 vía @tailwindcss/vite — **sin tailwind.config.js**, todo en global.css |
 | Tipografías | @fontsource/geist-sans (400/500/600) + @fontsource/jetbrains-mono (400/500). **Importar siempre `latin-<peso>.css`, nunca `<peso>.css`** |
-| Gestor | **yarn** (`yarn.lock`, formato v1). `yarn` no está instalado en la máquina del dev: instalar con `npx --yes yarn@1.22.22 install --frozen-lockfile`, ejecutar con `node_modules/.bin/astro`. **Nunca `npm install`** — ver Deuda Técnica |
+| Gestor | **yarn** (`yarn.lock`, formato v1) es la fuente de verdad: CI y el `Dockerfile` corren `yarn install --frozen-lockfile`. `yarn` no está en la máquina del dev. Para **correr** scripts alcanza con `bun run <script>` — lee `package.json`, usa el `node_modules` existente y no escribe ningún lockfile — o con `node_modules/.bin/astro`. Para **instalar**, `npx --yes yarn@1.22.22 install --frozen-lockfile`. Nunca un instalador que re-resuelva el árbol (`npm install`, y por el mismo motivo `bun install` o `pnpm install` sin importar el lock) — ver Deuda Técnica |
 | Verificación | `yarn typecheck` (`astro check`), `yarn build` y `yarn test`. CI los corre en ese orden en cada PR a `main`/`development`: `.github/workflows/docker-ci-cd.yml`, job `verify`. `yarn test` es `node --test` sobre `test/*.test.mjs`, sin dependencias, y afirma sobre `dist/` — necesita el build hecho |
 | Build | Docker multistage: `node:22-alpine` compila → `caddy:2-alpine` sirve `dist/` en :80 |
 | Proxy | Caddy al borde (`deploy/Caddyfile.edge`) — TLS, dominios, HSTS. Reemplazó a Traefik |
@@ -100,9 +100,14 @@ Es el patrón que el sitio ya sostiene, y una página nueva fuera de esa banda
 se nota. `Layout.astro` recorta el breadcrumb con `title.split("—")[0]`, así
 que el formato `"Página — extra | Camandre Factory"` es seguro.
 
-**`/portafolio/` no dice "pyme".** Su array `CASES` describe los dos proyectos
-de Falcon Precision como "entidad del estado". Etiquetar esa página como
-cartera de pymes contradiría sus propios datos estructurados.
+**`/portafolio/` no dice "pyme".** Hasta el PR #16 la razón era que su array
+`CASES` describía los proyectos de Falcon Precision como "entidad del estado".
+Esa frase ya no está y no vuelve: el sitio dejó de identificar al cliente final
+a propósito, en el copy y en los comentarios del código. La razón vigente es
+más simple — ninguno de los tres casos se describe como pyme. Sinerlly es una
+distribuidora de alimentos con un POS, y los dos de Falcon son sistemas
+internos. Etiquetar la página como cartera de pymes le pondría un rótulo que
+sus propios datos no sostienen.
 
 ## Estado OpenSpec
 
@@ -113,12 +118,12 @@ capacidades, y son la referencia, no las copias delta dentro de los changes.
 
 ## Deuda Técnica Conocida
 
-Verificada el 2026-08-22. Antes de agregar algo acá, comprobalo contra el repo:
+Verificada el 2026-08-24. Antes de agregar algo acá, comprobalo contra el repo:
 esta lista llegó a tener tres entradas que no existían y una tarde perdida
 "arreglando" `gracias.astro`, que siempre estuvo bien.
 
-- 46 literales hexadecimales fuera de `global.css`. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos.
-- El contenido sigue siendo el techo del SEO: 2096 palabras en las cuatro páginas indexables (/ 629, /servicios/ 675, /portafolio/ 242, /nosotros/ 550), contadas sobre `dist/` excluyendo `nav`, `footer`, `header`, `script`, `style` y `svg`, y sin `/gracias`, que lleva `noindex` y no compite por nada — ese es el método, reproducilo si vas a comparar. Los títulos ya cargan términos que la gente busca, pero la profundidad del contenido no cambió. `/portafolio/` sigue siendo el mejor material y la página más flaca.
+- 50 literales hexadecimales fuera de `global.css`, no 46: ese número ya estaba desactualizado antes de que nadie lo mirara — en `eea6345` ya eran 50, y ni el PR #12 ni el #16 agregaron uno. La mayoría son `#FFFFFF` sobre paneles oscuros fijos y los semáforos del mockup de macOS, que son legítimos. El grueso vive en `servicios.astro` (15) e `index.astro` (14).
+- El contenido sigue siendo el techo del SEO: 2237 palabras en las cuatro páginas indexables (/ 629, /servicios/ 675, /portafolio/ 386, /nosotros/ 547), contadas sobre `dist/` excluyendo `nav`, `footer`, `header`, `script`, `style` y `svg`, y sin `/gracias`, que lleva `noindex` y no compite por nada — ese es el método, reproducilo si vas a comparar. `/portafolio/` ganó 144 palabras con el caso Sinerlly (PR #12) y aun así **sigue siendo la página más flaca**: es el mejor material del sitio y el que menos texto tiene.
 - **Cero lint.** Typecheck y tests sí hay: `yarn typecheck` desde `ff233c5`, y `yarn test` desde el commit que agregó `test/seo.test.mjs`. El test cubre solo el contrato de metadata (presencia, unicidad, longitud, separador de breadcrumb) sobre las cinco páginas. No hay ninguna prueba de comportamiento del sitio: nada verifica el drawer, el toggle de tema, el filtro del portafolio ni las animaciones de scroll.
 - **`npm install` rompe el build.** Ignora el `yarn.lock` y resuelve versiones frescas, armando un combo incompatible de `@tailwindcss/vite` + `vite`/`rolldown` que muere con `Missing field 'tsconfigPaths'` en `global.css`. El lockfile es funcional, no decorativo.
 - **`.atl/` ya no se versiona.** Esos dos archivos se regeneran solos al invocar skills y se derivan del layout local de la máquina, así que nunca fueron reproducibles desde el repo: una regeneración borró ~20 skills solo porque cuatro directorios no existían acá. Ahora están en `.gitignore` y cada máquina genera el suyo con `gentle-ai skill-registry refresh --force`. Si los volvés a versionar, vuelve el churn en cada `git status`.
